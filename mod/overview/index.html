@@ -1,0 +1,454 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>
+			ミュージックフォーマット MOD について
+		</title>
+		<link rel="stylesheet" type="text/css" href="../../style.css"/>
+	</head>
+
+	<body background="../../back01.jpg" text="#FFFFFF" link="#FFE080" alink="#FFA060" vlink="#FF8040" bgcolor="#000000">
+		<table width="80%" align="center"><tr><td bgcolor="#202020">
+			<a href="../../index.html">
+				[戻る]
+			</a>
+
+			<br/>
+
+			<h1>
+				ミュージックフォーマット MOD について
+			</h1>
+			MOD は、海外のパソコン Amiga 上で生れ、発展したミュージックフォーマットです。
+			このではその概要についてまとめます。
+
+			<blockquote>
+				<font color="#FFC080">
+					注）2000/07/11 時点の記事をもとに加筆修正し 2020年8月時点の状況を反映させた内容となっています。
+					現状とは合致しない可能性があります。
+				</font>
+			</blockquote>
+			<br/>
+
+
+			<h2>
+				概要
+			</h2>
+			<ul>
+				<li>
+					<span class="emphasis">
+						MOD とは
+					</span>
+					<br/>
+
+					MOD はミュージックフォーマットの一種です。
+					初期は MOD 形式のみでしたが、
+					その後派生して、S3M 形式 / XM 形式 / IT 形式などの様々なバリエーションが登場しました。
+					総称して MOD と呼んでいます。
+					初期の MOD 形式は 1987年リリースで、後期の IT 形式が 1995 年リリースです。
+					それ以降フォーマットが拡張されることはありませんでした。
+					4 つの形式の中で、主流とされるのは XM 形式 です。
+					<br/><br/>
+				</li>
+
+				<li>
+					<span class="emphasis">
+						MOD の音色データはサンプリング音のみが利用可能
+					</span>
+					<br/>
+
+					MOD データは音色を定義するサンプリングデータと、
+					音を並べて曲を作るためのシーケンス情報から構成されます。
+					音色データは、サンプリング音以外は利用できません。
+					たとえ矩形波や三角波などの単純な波形であっても、
+					サンプリング音として用意する必要があります。
+					<br/><br/>
+				</li>
+
+				<li>
+					<span class="emphasis">
+						MOD データは楽曲データの中身がまる見せなフォーマットである
+					</span>
+					<br/>
+
+					MOD データにはソースコードという概念がなく、
+					楽曲データ = ソースコード となっています。
+					したがって、楽曲データの中を覗くと、構成する音色情報やシーケンス情報などすべての情報がまる見せになっています。
+					<br/><br/>
+
+					中身がまる見せであることはフォーマットの不備と考えることもできますが、
+					結果的に新規アーティストが先駆者たちの優れた楽曲データから学ぶことを可能にし、
+					またアーティスト同士が相互に刺激しあう（パクリ合う）きっかけを作り、
+					コミュニティを発展させることにつながりました。
+					<br/><br/>
+				</li>
+			</ul>
+
+
+			<h2>
+				MOD の長所・短所
+			</h2>
+			<ul>
+				<li>
+					<span class="emphasis">
+						MOD の長所
+					</span>
+					<br/>
+
+					<ul>
+						<li>
+							<b><font color="#FFC080">
+								再生結果が再生機材に依存しない
+							</font></b>
+							<br/>
+
+							データファイル内に音色データをサンプリングデータとして持つので、
+							MIDI 音源等の様に使っている機材毎に再生結果が異なるといった心配がありません。
+							<br/><br/>
+						</li>
+
+						<li>
+							<b><font color="#FFC080">
+								データサイズが比較的小さい
+							</font></b>
+							<br/>
+
+							楽曲データは音色定義のための短いサンプリング音とシーケンスデータで構成されるので、
+							mp3 等のストリーミング系のフォーマットに比べデータサイズを小さくできます。
+							<br/><br/>
+						</li>
+
+						<li>
+							<b><font color="#FFC080">
+								枯れたフォーマットである
+							</font></b>
+							<br/>
+
+							これ以上改変されることがないフォーマットです。
+							フォーマットのバージョンによって動作が異なるなどの心配がないので、
+							安心して楽曲データ作成に集中することができます。
+							<br/><br/>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<span class="emphasis">
+						MOD の短所
+					</span>
+					<br/>
+
+					<ul>
+						<li>
+							<b><font color="#FFC080">
+								再生結果が再生ソフトによって異なる
+							</font></b>
+							<br/>
+
+							MOD の再生結果は、再生ソフトによって異なります。
+							同様にデータ作成ツールごとに方言があり、
+							再生ソフトの相性次第で再生結果が異なります。
+							<br/><br/>
+
+							ゲームやデモプログラム等の BGM に用いる場合は、
+							再生ソフトをアプリケーションに内蔵してしまえば良いので、
+							再生ソフト毎の差異の問題は考える必要は有りませんが、
+							例えば MOD データを単体で WEB 上で配布するような場合は、
+							推奨再生環境をしっかり指定しておく必要があります。
+							<br/><br/>
+						</li>
+
+						<li>
+							<b><font color="#FFC080">
+								フォーマットの完全な仕様書は存在しない
+							</font></b>
+							<br/>
+
+							フォーマットの仕様書は存在するのですが、
+							事実上の標準となっているのは、主要な MOD 作成ソフトおよび再生ソフトの挙動そのものです。
+							仕様書に書かれていないような細かな動作の違い、解釈の違い、実装バグ等々が、再生結果に影響を与えます。
+							「動く仕様書」と言ってよい状況です。
+							<br/><br/>
+
+							また一部のデータはバグをテクニックとして活用しているケースがあります。
+							バグに依存したデータは、本来であればイリーガルなデータとして排除されるべきところですが、
+							そのようなデータは往々にして機能を細部まで活用した優れた楽曲データであり、
+							逆にそれらを正しく再生できることが実装側に求められることになります。
+							最終的には、バグも含めて事実上の仕様として定着していくことになります。
+							<br/><br/>
+
+							このような状況が長く続いた結果、
+							完全互換な再生ソフトは主要な MOD 作成ソフトのデコーダ実装の完全クローン以外ありえないという状況になっています。
+							さらに困ったことに、デコーダの実装はソース非公開であったり、
+							歴史的な経緯でフルアセンブラ実装だったりするため、
+							それらを移植することはとても困難です。
+							<br/><br/>
+						</li>
+					</ul>
+				</li>
+			</ul>
+
+			<h2>
+				MOD がサポートする機能
+			</h2>
+			MOD形式 / S3M形式 / XM形式 / IT形式 で差がありますが、
+			MOD がサポートする機能は概ね以下の様なものです。
+			<ul>
+				<li>
+					多チャンネル同時発声
+				</li>
+				<li>
+					ポルタメント
+				</li>
+				<li>
+					ボリュームスライド
+				</li>
+				<li>
+					パンスライド
+				</li>
+				<li>
+					サンプリングデータのループ再生
+				</li>
+				<li>
+					サンプリングデータの各種エンベロープ指定
+				</li>
+				<ul>
+					<li>
+						音量の変化を示すボリュームエンベロープ
+					</li>
+					<li>
+						パンの変化を示すパンエンベロープ
+					</li>
+					<li>
+						音程の変化を示すピッチエンベロープ
+					</li>
+				</ul>
+				<li>
+					音階ごとのサンプリングデータ差し替え
+				</li>
+			</ul>
+			<br/>
+
+
+			<h2>
+				MOD データの構成要素
+			</h2>
+			MOD データは以下に挙げる要素で構成されています。
+			<ul>
+				<li>
+					<span class="emphasis">
+						Note
+					</span>
+					<br/>
+
+					音符に相当します。音階、音色、音量、エフェクト等の情報をまとめたものです。
+					<br/><br/>
+				</li>
+
+				<li>
+					<span class="emphasis">
+						Row
+					</span>
+					<br/>
+
+					各チャンネルの Note を横一列に記述した行を Row と呼びます。
+					これはある瞬間の各チャンネルの発声状況を記述したものです。
+					<br/><br/>
+				</li>
+
+				<li>
+					<span class="emphasis">
+						Pattern
+					</span>
+					<br/>
+
+					１小節相当の演奏内容を記述したものです。
+					Row を縦に羅列したものです。
+					<br/><br/>
+				</li>
+
+				<li>
+					<span class="emphasis">
+						Sequence
+					</span>
+					<br/>
+
+					Pattern の演奏順序を数字の羅列で示したものです。
+					Sequence は Order とも呼ばれます。
+					<br/><br/>
+				</li>
+
+				<li>
+					<span class="emphasis">
+						Sample
+					</span>
+					<br/>
+					サンプリングデータ、つまり音色の波形データです。
+					ループ再生の指定等が可能です。
+					<br/><br/>
+				</li>
+
+				<li>
+					<span class="emphasis">
+						Instrument
+					</span>
+					<br/>
+
+					音色データです。以下のような情報を含んでいます。
+					<br/>
+
+					<ul>
+						<li>
+							サンプリングデータ番号（音階毎に設定可能）
+						</li>
+						<li>
+							各種エンベロープの形状
+						</li>
+						<li>
+							自動ビブラートの形状
+						</li>
+					</ul>
+				</li>
+			</ul>
+			要約すると、
+			各チャンネルの音符（=Note）と音色（=Sample &amp; Instrument）の情報を横に記述した行（=Row）を、
+			さらに縦に並べて１小節（=Pattern）分のデータを作ったのち、
+			小節の並び順（=Sequence）を定義することで、全体の楽曲が定義されます。
+			<br/><br/>
+
+
+			<h2>
+				MOD データの作成
+			</h2>
+			MOD データ作成ツールは、一般的に Tracker と呼ばれています。
+			<ul>
+				<li>
+					<span class="emphasis">
+						OpenMPT 
+					</span>
+					<br/>
+
+					一般的な Windows アプリケーションの体裁をもつトラッカーです。
+
+					<a href="https://openmpt.org/" target="top">
+						こちら
+					</a>
+					からダウンロードできます。
+					<br/><br/>
+
+					<center>
+						<img src="openmpt.png" border="2" width="60%" height="60%"/>
+						<br/>
+						OpenMPT
+					</center>
+					<br/>
+				</li>
+
+				<li>
+					<span class="emphasis">
+						FastTracker II
+					</span>
+					<br/>
+
+					FastTracker II は、
+					XM 形式開発チームによるオリジナル実装です。
+					長らくメンテナンスが途絶えていましたが、
+					有志によるクローン実装が存在しており、windows 上から利用できます。
+
+					<a href="https://github.com/8bitbubsy/ft2-clone" target="top">
+						こちら
+					</a>
+					からダウンロードできます。
+					<br/><br/>
+
+					FastTracker II は DOS ベースのツールであるため、
+					一般的な Windows アプリケーションとは操作系が異なります。
+					<br/><br/>
+
+					<center>
+						<img src="ft2clone.png" border="2" width="60%" height="60%"/>
+						<br/>
+						ft2-clone
+					</center>
+					<br/>
+				</li>
+			</ul>
+
+
+			<h2>
+				MOD データの再生
+			</h2>
+			<ul>
+				</li>
+					<span class="emphasis">
+						おすすめ再生ソフト
+					</span>
+					<br/>
+					<a href="https://wiki.openmpt.org/Libopenmpt" target="top">
+						XMPlay
+					</a>
+					がオススメです。
+					XMPlay はもともと XM 形式の再生に特化して作成されたもので、
+					XM 形式をはじめ MOD データの再現精度が高いとされています。
+					2020 年現在、デモパーティで使用される MOD 再生環境としてデファクトスタンダードとなっています。
+					<br/><br/>
+
+					<center>
+						<img src="xmplay.png" border="2" width="60%" height="60%"/>
+						<br/>
+						XMPlay
+					</center>
+					<br/>
+				</li>
+			</ul>
+
+
+			<h2>
+				MOD とデモシーンの関係
+			</h2>
+			デモシーンについては、
+			<a href="../../demoscene/overview/index.html" target="top">
+				こちら
+			</a>
+			を参照してください。
+			<br/><br/>
+
+			MOD 形式は Amiga 発祥のミュージックフォーマットで、
+			Amiga 上で作成されたデモの音源として広く利用されました。
+			その後継である XM 形式 / S3M 形式 / IT 形式などのフォーマットは、
+			いずれも PC デモの音源として広く利用されました。
+			このような経緯から、
+			MOD はデモシーンにとってなじみのあるフォーマットになっています。
+			現在のデモパーティでも、コンペティションの部門として、
+			MOD による楽曲で競う Tracked Muisc Compo というカテゴリが存在します。
+			<br/><br/>
+
+			Tracked Muisc Compo では、
+			エントリ作品はパターン情報などの中身が丸見せ状態で再生されます。
+			楽曲の中身は詮索されたくないと感じるコンポーザーの方もいらっしゃるかもしれませんが、
+			MOD が元々中身まる見せなフォーマットであるがゆえ、隠すことには意味がありません。
+			むしろ、丸見せであることを逆手にとって、
+			パターン情報上でアスキーアートアニメーションを同時に再生したり、
+			パフォーマンスの一手段として利用されることもあります。
+			<br/><br/>
+
+			<center>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/r8Lm9CoxEHg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="1"></iframe>
+				<br/>
+				Logicoma - Wrecklamation (live @ Revision 2018) | Demoscene Music
+				<br/>
+				再生中のパターン表示も作品の一部になっている
+			</center>
+			<br/><br/>
+
+
+			<a href="../../index.html">
+				[戻る]
+			</a>
+		</td></tr></table>
+	</body>
+</html>
+

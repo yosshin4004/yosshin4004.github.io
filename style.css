@@ -1,0 +1,52 @@
+body {
+	max-width        : 1920px ;		/* 横解像度の上限 */
+	margin-left      : auto ;		/* 中央に配置 */
+	margin-right     : auto ;		/* 中央に配置 */
+	margin-bottom    : 100px ;		/* 末端に余白 */
+	background-color : #f0f0f0 ;
+}
+
+h1 {
+	width : 100% ;
+	background-color : #504060 ;
+	border-width : 1px ;
+	border-style : solid ;
+	border-color : #101010 ;
+}
+
+h2,h3,h4,h5,h6 {
+	width : 100% ;
+	background-color : #504060 ;
+}
+
+a:link{
+	color : #A0A0FF ;
+	text-decoration : none ;
+	font-weight : bold ;
+}
+a:visited{
+	color : #8080FF ;
+	text-decoration : none ;
+	font-weight : bold ;
+}
+a:hover{
+	color : #C0C0FF ;
+}
+a:active{
+	color : #FFFFFF ;
+}
+
+
+div.code {
+	background-color : #203060 ;
+}
+
+div.bad_code {
+	background-color : #603020 ;
+}
+
+span.emphasis {
+	color : #FF4080 ;
+	font-weight : bold ;
+	font-size : larger ;
+}
