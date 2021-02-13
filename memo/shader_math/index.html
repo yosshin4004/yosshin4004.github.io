@@ -434,7 +434,7 @@
 					それ以外の場合は配列変数型になります。
 <div class="code"><pre>
 
-	template<int dim>
+	template&lt;int dim&gt;
 	struct GenSimdVecTraits {
 		typedef float IntrinsicType_t[dim];
 		enum {
@@ -442,8 +442,8 @@
 		};
 	};
 
-	template<>
-	struct GenSimdVecTraits<4> {
+	template&lt;&gt;
+	struct GenSimdVecTraits&lt;4&gt; {
 		typedef __m128 IntrinsicType_t;
 		enum {
 			isM128 = 1,
@@ -459,7 +459,7 @@
 	union Vec {
 	private:
 		float elements[Traits_t::memDim];
-		GenSimdVecTraits<Traits_t::memDim> simdVec;         // ここに追加した
+		GenSimdVecTraits&lt;Traits_t::memDim&gt; simdVec;         // ここに追加した
 	public:
 		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,0,0&gt;, recursiveCount+1&gt; xxxx;
 		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,0,1&gt;, recursiveCount+1&gt; xxxy;
@@ -486,7 +486,7 @@
 
 <div class="code"><pre>
 
-	if constexpr (SimdVecTraits_t::isM128 && Traits0_t::opeDim == 4) {
+	if constexpr (SimdVecTraits_t::isM128 &amp;&amp; Traits0_t::opeDim == 4) {
 		__m128 tmp = v.simdVec;
 		this->simdVec = tmp;
 	} else {

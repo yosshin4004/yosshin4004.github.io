@@ -240,7 +240,7 @@
 					<br/><br/>
 
 					<center>
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/49f066DhuAU?start=7693" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/49f066DhuAU?start=7693" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="1"></iframe>
 						<br/>
 						初代アーケード版グラディウス（KONAMI 1985）
 						<br/>
@@ -269,7 +269,7 @@
 					<br/><br/>
 
 					<center>
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/iA-KvM1aoTk?start=2150" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/iA-KvM1aoTk?start=2150" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="1"></iframe>
 						<br/>
 						Varth (CAPCOM 1992)
 						<br/>
@@ -643,11 +643,11 @@
 
 	LARGE_INTEGER liPerfFreq;
 	LARGE_INTEGER liPerfCount;
-	memset(&liPerfFreq, 0, sizeof(liPerfFreq));
-	memset(&liPerfCount, 0, sizeof(liPerfCount));
+	memset(&amp;liPerfFreq, 0, sizeof(liPerfFreq));
+	memset(&amp;liPerfCount, 0, sizeof(liPerfCount));
 
 	double currentTime = 0.0;
-	if (QueryPerformanceCounter(&liPerfCount) && QueryPerformanceFrequency(&liPerfFreq)) {
+	if (QueryPerformanceCounter(&amp;liPerfCount) &amp;&amp; QueryPerformanceFrequency(&amp;liPerfFreq)) {
 		double counter = (double)liPerfCount.QuadPart;
 		double frequency = (double)liPerfFreq.QuadPart;
 		currentTime	= counter * 1000000.0 / frequency;
