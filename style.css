@@ -1,5 +1,6 @@
 body {
 /* 1920px以上の幅の場合に適応される */
+	font-family      : "メイリオ" ;
 	max-width        : 1920px ;		/* 横解像度の上限 */
 	margin-left      : auto ;		/* 中央に配置 */
 	margin-right     : auto ;		/* 中央に配置 */
@@ -11,6 +12,7 @@ body {
 @media screen and (max-width: 1920px) {
 /* 1920pxまでの幅の場合に適応される */
 	body {
+		font-family      : "メイリオ" ;
 		max-width        : 100% ;		/* 横解像度の上限 */
 		margin-left      : auto ;		/* 中央に配置 */
 		margin-right     : auto ;		/* 中央に配置 */
