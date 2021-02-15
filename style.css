@@ -5,16 +5,39 @@ body {
 	margin-right     : auto ;		/* 中央に配置 */
 	margin-bottom    : 100px ;		/* 末端に余白 */
 	background-color : #f0f0f0 ;
+	font-size        : 100% ;
 }
 
 @media screen and (max-width: 1920px) {
 /* 1920pxまでの幅の場合に適応される */
-	max-width        : 100% ;		/* 横解像度の上限 */
-	margin-left      : auto ;		/* 中央に配置 */
-	margin-right     : auto ;		/* 中央に配置 */
-	margin-bottom    : 100px ;		/* 末端に余白 */
-	background-color : #f0f0f0 ;
+	body {
+		max-width        : 100% ;		/* 横解像度の上限 */
+		margin-left      : auto ;		/* 中央に配置 */
+		margin-right     : auto ;		/* 中央に配置 */
+		margin-bottom    : 100px ;		/* 末端に余白 */
+		background-color : #f0f0f0 ;
+		font-size        : 100% ;
+	}
 }
+
+/* 埋め込み動画のレスポンシブ対応 */
+@media screen and (max-width: 960px) {
+/* 960pxまでの幅の場合に適応される */
+	.movie-wrap {
+	     position: relative;
+	     padding-bottom: 56.25%; /*アスペクト比 16:9の場合の縦幅*/
+	     height: 0;
+	     overflow: hidden;
+	}
+	.movie-wrap iframe {
+	     position: absolute;
+	     top: 0;
+	     left: 0;
+	     width: 100%;
+	     height: 100%;
+	}
+}
+
 
 h1 {
 	width : 100% ;
@@ -60,3 +83,4 @@ span.emphasis {
 	font-weight : bold ;
 	font-size : larger ;
 }
+
