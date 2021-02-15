@@ -1,5 +1,15 @@
 body {
+/* 1920px以上の幅の場合に適応される */
 	max-width        : 1920px ;		/* 横解像度の上限 */
+	margin-left      : auto ;		/* 中央に配置 */
+	margin-right     : auto ;		/* 中央に配置 */
+	margin-bottom    : 100px ;		/* 末端に余白 */
+	background-color : #f0f0f0 ;
+}
+
+@media screen and (max-width: 1920px) {
+/* 1920pxまでの幅の場合に適応される */
+	max-width        : 100% ;		/* 横解像度の上限 */
 	margin-left      : auto ;		/* 中央に配置 */
 	margin-right     : auto ;		/* 中央に配置 */
 	margin-bottom    : 100px ;		/* 末端に余白 */
