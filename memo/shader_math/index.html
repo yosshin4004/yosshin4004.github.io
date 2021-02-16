@@ -12,8 +12,8 @@
 		<link rel="stylesheet" type="text/css" href="../../style.css"/>
 	</head>
 
-	<body background="../../back01.jpg" text="#FFFFFF" link="#FFE080" alink="#FFA060" vlink="#FF8040" bgcolor="#000000">
-		<table width="90%" align="center"><tr><td bgcolor="#202020">
+	<body>
+        <div class="main">
 			<a href="../../index.html">
 				[戻る]
 			</a>
@@ -47,20 +47,18 @@
 			これらを扱うためベクトル型およびベクトル型をサポートした数学関数を提供しています。
 			<br/><br/>
 			コード例：色の加算
-<div class="code"><pre>
-
+<pre><code>
 	vec3 colorR = {1,0,0};                   // 赤色
 	vec3 colorG = {0,1,0};                   // 緑色
 	vec3 colorB = {0,0,1};                   // 青色
 
 	vec3 colorW = colorR + colorG + colorB;  // 白色
 
-</pre></div>
+</code></pre>
 			<br/>
 
 			コード例：座標変換
-<div class="code"><pre>
-
+<pre><code>
 	vec4 localPos = {0,0,0,1};               // ローカル座標（3次元同次）
 	mat4 localToWorld = {{1,0,0,0},          // ローカル → ワールド変換（1,1,1 の平行移動）
 	                     {0,1,0,0},
@@ -68,7 +66,7 @@
 	                     {1,1,1,1}};
 	vec4 worldPos = localToWorld * localPos; // ワールド座標（3次元同次）
 
-</pre></div>
+</code></pre>
 			<br/>
 
 
@@ -78,40 +76,37 @@
 			シェーダ言語のベクトル型は、操作対象のメンバを swizzle と呼ばれる仕組みで指定できます。
 			実際のコード例を示します。
 
-<div class="code"><pre>
-
+<pre><code>
 	vec4 a = vec4(1,2,3,4);
 	vec3 b = a.xyz;        // b = vec3(1,2,3)
 
-</pre></div>
+</code></pre>
 
 			この例では、a は 4 次元ベクトルですが、x y z の 3 次元成分のみを b にコピーしています。
 			この xyz が、swizzle と呼ばれるものです。
 			<br/><br/>
 			swizzle は、x y z w をどのような順序で並べても構いません。例えば以下のような記述も可能です。
 
-<div class="code"><pre>
-
+<pre><code>
 	vec4 a = vec4(1,2,3,4);
 	vec4 b = a.xyzw;       // b = vec4(1,2,3,4)
 	vec4 c = a.wzyx;       // c = vec4(4,3,2,1)
 	vec4 d;
 	d.wzyx = a;            // d = vec4(4,3,2,1)
 
-</pre></div>
+</code></pre>
 
 			swizzle は、x y z w 以外にも、r g b a の組み合わせで指定することが可能です。
 			色情報を扱うベクトルの場合は、r g b a を使った方がコードが読みやすくなります。
 
-<div class="code"><pre>
-
+<pre><code>
 	vec4 a = vec4(1,2,3,4);
 	vec4 b = a.rgba;       // b = vec4(1,2,3,4)
 	vec4 c = a.abgr;       // c = vec4(4,3,2,1)
 	vec4 d;
 	d.abgr = a;            // d = vec4(4,3,2,1)
 
-</pre></div>
+</code></pre>
 
 			swizzle はとても便利な機能です。
 			一度この便利さに慣れてしまうと、
@@ -224,8 +219,7 @@
 					ナイーブな最初の実装は以下のようなものです。
 					この時点では単に swizzle 毎に union メンバを定義しただけで、
 					まだ何の機能も実装されていません。
-<div class="code"><pre>
-
+<pre><code>
 	union Vec4 {
 	private:
 		float elements[4];
@@ -239,14 +233,13 @@
 			:
 	};
 
-</pre></div>
+</code></pre>
 					続いて、
 					ベクトルの次元数と swizzle 構造の情報を、
 					型情報として保持するクラスを用意します。
 					次元数は、メモリ上のフットプリントを示す次元数と、
 					演算上の次元数の 2 種類が必要になります。
-<div class="code"><pre>
-
+<pre><code>
 	template&lt;int opeDim_, int memDim_, int i0_, int i1_, int i2_, int i3_&gt;
 	struct Traits {
 		enum {
@@ -259,10 +252,9 @@
 		};
 	};
 
-</pre></div>
+</code></pre>
 					そしてこれを、型情報としてベクトル型に与えます。
-<div class="code"><pre>
-
+<pre><code>
 	template&lt;typename Traits_t&gt;
 	union Vec {
 	private:
@@ -277,7 +269,7 @@
 			:
 	}
 
-</pre></div>
+</code></pre>
 					<br/>
 				</li>
 
@@ -296,8 +288,7 @@
 					そして swizzle 指定 union メンバには、recursiveCount をインクリメントしたVec 型を適用します。
 					recursiveCount は 0 から開始します。
 					具体的には以下のようになります。
-<div class="code"><pre>
-
+<pre><code>
 	template&lt;typename Traits_t, int recursiveCount&gt;
 	union Vec {
 	private:
@@ -312,7 +303,7 @@
 			:
 	};
 
-</pre></div>
+</code></pre>
 					これにより、Vec 型と union メンバで使われる Vec 型は、recursiveCount が異なる別の型と認識され、
 					コンパイルエラーは回避されます。
 					<br/><br/>
@@ -320,15 +311,14 @@
 					しかしまだ不完全です。このままでは無限に再帰を起こしてしまうので、
 					やはりコンパイルエラーになります。
 					これを回避するため、template 特殊化を利用した再帰ストッパーを定義します。
-<div class="code"><pre>
-
+<pre><code>
 	template&lt;typename Traits_t&gt;
 	union Vec&lt;Traits_t, 1&gt; {
 	private:
 		float elements[Traits_t::memDim];
 	};
 
-</pre></div>
+</code></pre>
 					これにより、recursiveCount が 1 に達すると再帰的に展開しなくなります。
 					<br/><br/>
 
@@ -352,8 +342,7 @@
 					自分自身と引数の型を区別するため、
 					型情報は 2 種類必要になります
 					（名前に 0 が付くものが自分自身の型、1 が付くものが引数の型を示す）。
-<div class="code"><pre>
-
+<pre><code>
 	template&lt;typename Traits0_t, int recursiveCount0&gt;
 	union Vec {
 			:
@@ -372,7 +361,7 @@
 			:
 	};
 
-</pre></div>
+</code></pre>
 					<br/>
 				</li>
 
@@ -402,8 +391,7 @@
 					std にシェーダ言語互換動作の関数が含まれているならそれを using で取り出し、
 					互換でないもののみ独自に実装を定義しています（この例では引数を 2 つとる atan 関数）。
 
-<div class="code"><pre>
-
+<pre><code>
 	using ::std::sin;
 	using ::std::cos;
 	using ::std::tan;
@@ -418,7 +406,7 @@
 		return std::atan2(y, x);
 	}
 
-</pre></div>
+</code></pre>
 					<br/>
 				</li>
 
@@ -433,8 +421,7 @@
 					具体的には以下のようなコードになります。
 					このコードでは、IntrinsicType_t は float x 4 の時だけ __m128 に、
 					それ以外の場合は配列変数型になります。
-<div class="code"><pre>
-
+<pre><code>
 	template&lt;int dim&gt;
 	struct GenSimdVecTraits {
 		typedef float IntrinsicType_t[dim];
@@ -451,11 +438,10 @@
 		};
 	};
 
-</pre></div>
+</code></pre>
 					この GenSimdVecTraits を使い、ベクトルの union メンバを追加します。
 
-<div class="code"><pre>
-
+<pre><code>
 	template&lt;typename Traits_t, int recursiveCount&gt;
 	union Vec {
 	private:
@@ -471,7 +457,7 @@
 			:
 	};
 
-</pre></div>
+</code></pre>
 					GenSimdVecTraits が持つ enum メンバである isM128 は、
 					__m128 型のメンバが存在することをコンパイル時点で認識可能にするために使うフラグで、
 					if constexpr と併用してコードの分岐に利用できます。
@@ -485,8 +471,7 @@
 					その場合は if constexpr による分岐によりコード自体がスキップされるので、
 					問題なくビルドが通ります。
 
-<div class="code"><pre>
-
+<pre><code>
 	if constexpr (SimdVecTraits_t::isM128 &amp;&amp; Traits0_t::opeDim == 4) {
 		__m128 tmp = v.simdVec;
 		this->simdVec = tmp;
@@ -494,7 +479,7 @@
 		通常の実装（elements 配列を 1 つずつコピーする）
 	}
 
-</pre></div>
+</code></pre>
 					<br/>
 				</li>
 			</ul>
@@ -530,7 +515,7 @@
 			<a href="../../index.html">
 				[戻る]
 			</a>
-		</td></tr></table>
+		</div>
 	</body>
 </html>
 

@@ -12,8 +12,8 @@
 		<link rel="stylesheet" type="text/css" href="../../style.css"/>
 	</head>
 
-	<body background="../../back01.jpg" text="#FFFFFF" link="#FFE080" alink="#FFA060" vlink="#FF8040" bgcolor="#000000">
-		<table width="90%" align="center"><tr><td bgcolor="#202020">
+	<body>
+        <div class="main">
 			<a href="../../index.html">
 				[戻る]
 			</a>
@@ -50,15 +50,14 @@
 					以下のような破棄済みメモリに対する不正アクセスは、
 					典型的なバグの一つです。
 
-<div class="code"><pre>
-
+<pre><code>
 	int *p = (int *)malloc(256);
 	    :
 	free(p);
 	    :
 	*p = 0;    /* 不正なメモリアクセス */
 
-</pre></div>
+</code></pre>
 					<br/>
 				</li>
 
@@ -174,8 +173,7 @@
 					冒頭で不正なメモリアクセスの例として挙げたコードは、
 					次のように書き直すことができます。
 
-<div class="code"><pre>
-
+<pre><code>
 	int sh = p2sh(malloc(256));
 	    :
 	int *p = (int *)sh2p(sh);
@@ -184,7 +182,7 @@
 	int *p = (int *)sh2p(sh);
 	if (p != NULL) { *p = 0; }    /* 不正なメモリアクセスは回避される */
 
-</pre></div>
+</code></pre>
 
 					副作用として、若干コードが煩雑化します。
 					C++ の場合、template を利用してもっとシンプルに記述可能にできます（ここでは詳細は割愛します）。
@@ -243,8 +241,7 @@
 					各ハンドルに割り当てられたシリアルハンドル値とポインタを記録します。
 					ここでは、ハンドル値が 16 bit なので、テーブル要素数は 65536 個です。
 
-<div class="code"><pre>
-
+<pre><code>
 	#define NUM_HANDLE_BITS    16
 	#define NUM_HANDLES        (1 &lt;&lt; NUM_HANDLE_BITS)
 	#define NUM_HANDLES_MINUS1 (NUM_HANDLES - 1)
@@ -253,7 +250,7 @@
 	    void *p;
 	} table[NUM_HANDLES] = {0};
 
-</pre></div>
+</code></pre>
 					ハンドル値は、このテーブルのインデクス値になります。
 					<br/><br/>
 				</li>
@@ -296,8 +293,7 @@
 							そのハンドルに適用されたシリアル値とポインタ値は、
 							テーブルに記録しておきます。
 							<br/>
-<div class="code"><pre>
-
+<pre><code>
 	/* 注：説明のためのナイーブな実装です。線形検索を避ける最適化が必要です。*/ 
 
 	uint32_t p2sh(void *p) {
@@ -315,7 +311,7 @@
 		return 0;       /* シリアルハンドルが確保できなかった */
 	}
 
-</pre></div>
+</code></pre>
 						</li>
 
 						<li>
@@ -328,8 +324,7 @@
 							シリアル値が一致しているなら有効なシリアルハンドルであるとみなして、
 							ポインタを取得します。無効なら NULL を返却します。
 							<br/>
-<div class="code"><pre>
-
+<pre><code>
 	void *sh2p(uint32_t serialHandle) {
 		uint32_t handle = serialHandle &amp; NUM_HANDLES_MINUS1;
 		uint32_t serial = serialHandle &gt;&gt; NUM_HANDLE_BITS;
@@ -339,7 +334,7 @@
 		return NULL;    /* シリアルハンドルは無効だった */
 	}
 
-</pre></div>
+</code></pre>
 						</li>
 
 						<li>
@@ -352,8 +347,7 @@
 							シリアル値が一致しているなら有効なシリアルハンドルであるとみなして、
 							テーブル上のポインタ値を無効化します。
 							<br/>
-<div class="code"><pre>
-
+<pre><code>
 	bool dispose_sh(uint32_t serialHandle) {
 		uint32_t handle = serialHandle &amp; NUM_HANDLES_MINUS1;
 		uint32_t serial = serialHandle &gt;&gt; NUM_HANDLE_BITS;
@@ -364,7 +358,7 @@
 		return false;
 	}
 
-</pre></div>
+</code></pre>
 						</li>
 					</ul>
 					<br/>
@@ -442,8 +436,7 @@
 								シリアルハンドル 使用前
 							</font></b>
 							<br/>
-<div class="code"><pre>
-
+<pre><code>
 	struct Obj {
 		:
 	};
@@ -454,7 +447,7 @@
 
 	bool DeleteObj(Obj *p);
 
-</pre></div>
+</code></pre>
 						</li>
 
 						<li>
@@ -462,8 +455,7 @@
 								シリアルハンドル 使用後
 							</font></b>
 							<br/>
-<div class="code"><pre>
-
+<pre><code>
 	typedef uint32_t ObjHandle;
 
 	ObjHandle CreateObj();
@@ -472,7 +464,7 @@
 
 	bool DeleteObj(ObjHandle h);
 
-</pre></div>
+</code></pre>
 							シリアルハンドルを受け取る API は、内部で シリアルハンドル → ポインタ 変換を行います。
 							そしてポインタとして NULL が得られたら、そのオブジェクトは破棄済みであるとみなし、
 							エラー終了します。
@@ -503,7 +495,7 @@
 			<a href="../../index.html">
 				[戻る]
 			</a>
-		</td></tr></table>
+		</div>
 	</body>
 </html>
 

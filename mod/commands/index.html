@@ -13,10 +13,8 @@
 	</head>
 
 
-	<body background="../../back01.jpg" text="#FFFFFF" link="#FFE080" alink="#FFA060" vlink="#FF8040" bgcolor="#000000">
-		<br/>
-
-		<table width="90%" align="center"><tr><td bgcolor="#202020">
+	<body>
+        <div class="main">
 			<a href="../../index.html">
 				[戻る]
 			</a>
@@ -119,10 +117,11 @@
 					音を再生します（訳注：+1 で半音と数えます。また、+ 方向にしか指定できません。）。
 					<br/><br/>
 					例）
-<pre>
+<pre><code>
   S3M/IT の場合：C-4 01 .. J37
   MOD/XM の場合：C-4 01 .. J37（訳注：C-4 01 .. 037、の間違いだと思われます。）
-</pre>
+
+</code></pre>
 					この例では、C-4 → D#4 → G-4 の順に再生されます。
 					<br/><br/>
 					注意：もし x y 共に 0 の場合、MOD/XM形式では、このコマンドは無視されます。
@@ -192,11 +191,12 @@
 			and will bend the current pitch at the given speed towards the specified note.
 			<br/><br/>
 			Ex:
-	<pre>
+<pre><code>
   C-4 01 ..
   F-4 .. .. G05  (bend the note up towards F-4)
   ... .. .. G00  (continue to slide up, until F-4 is reached)
-	</pre>
+
+</code></pre>
 			If the glissando command has been used before, the pitch will be rounded to the nearest halftone. 
 			<blockquote>
 				<font color="#C0FFC0">
@@ -205,12 +205,13 @@
 					（訳注：パラメーター xy で）与えられた速度で変化します。
 					<br/><br/>
 					例）
-	<pre>
+<pre><code>
   （訳注：この例は、S3M/IT のものです。また、連続した３行を示しています。）
   C-4 01 ..    ：（訳注：C-4 で音色 01 を再生）
   F-4 .. .. G05：（F-4 に向かって音階上昇（訳注：上昇速度は 05））
   ... .. .. G00：（そのまま F-4 に達するまで音階上昇（訳注：上昇速度は先の 05 を維持））
-	</pre>
+
+</code></pre>
 					（訳注：ソースを解析する限りでは、パラメーターに 00 を指定すると直前の上昇速度を維持する仕組みは、
 					MOD/XM 形式でも共通のようです。）
 					<br/><br/>
@@ -1460,6 +1461,6 @@
 			<a href="../../index.html">
 				[戻る]
 			</a>
-		</td></tr></table>
+		</div>
 	</body>
 </html>
