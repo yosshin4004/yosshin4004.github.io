@@ -73,7 +73,7 @@
 			</h2>
 			<ul>
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						使用した機器と設定
 					</span>
 					<br/>
@@ -93,7 +93,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						サウンド遅延発生状況
 					</span>
 					<br/>
@@ -130,7 +130,7 @@
 
 			<ul>
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						音を可視化して高フレームレート動画撮影
 					</span>
 					<br/>
@@ -163,7 +163,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						ゲーム画面と音感知 LED を高フレームレート動画撮影
 					</span>
 					<br/>
@@ -196,7 +196,7 @@
 			</h2>
 			<ul>
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						117ms!?
 					</span>
 					<br/>
@@ -215,7 +215,7 @@
 
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						「117ms」はアップテンポな曲の「16 分音符」に相当する遅延
 					</span>
 					<br/>
@@ -228,7 +228,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						音ゲーで「16 分音符」遅延は許容できない
 					</span>
 					<br/>
@@ -251,7 +251,7 @@
 
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						音ゲーはまだマシで、最悪なのは遅延キャリブレーションが不可能なジャンルのゲーム
 					</span>
 					<br/>
@@ -294,7 +294,7 @@
 
 			<ul>
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						音声のみ直接スピーカーに、映像のみを TV に出力する
 					</span>
 					<br/>
@@ -346,7 +346,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						サウンドバー接続状態で、ゲーム画面と音感知 LED を高フレームレート動画撮影
 					</span>
 					<br/>
@@ -366,7 +366,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						サウンド遅延は解消した
 					</span>
 					<br/>
@@ -384,7 +384,7 @@
 			</h2>
 			<ul>
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						さらに異なる条件で比較
 					</span>
 					<br/>
@@ -392,17 +392,17 @@
 					比較実験として、
 					<br/>
 
-					<b><font color="#FFC080">
+					<span class="emphasis2">
 						ゲーム機 →（HDMI）→ TV →（HDMI）→ サウンドバー
-					</font></b>
+					</span>
 					<br/>
 
 					や
 					<br/>
 
-					<b><font color="#FFC080">
+					<span class="emphasis2">
 						ゲーム機 →（光デジタル）→ TV
-					</font></b>
+					</span>
 					<br/>
 
 					という接続順序も試しました。
@@ -413,7 +413,7 @@
 
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						TV の設定をすべて見直す
 					</span>
 					<br/>
@@ -433,7 +433,7 @@
 
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						サウンド遅延は TV 内部で生じていることで間違いなさそう
 					</span>
 					<br/>
@@ -471,15 +471,15 @@
 
 			<ul>
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						TV 内部で何が起きているのか？（推測）
 					</span>
 					<br/>
 					<ul>
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								サウンドのバッファリング
-							</font></b>
+							</span>
 							<br/>
 
 							サウンド出力などのストリーミング処理には、
@@ -497,9 +497,9 @@
 						</li>
 
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								サウンド書き込み位置がサウンド読み取り位置に追いつかれてはいけない
-							</font></b>
+							</span>
 							<br/>
 
 							もし、サウンド読み取り位置がサウンド書き込み位置に追いついてしまったら、
@@ -516,9 +516,9 @@
 						</li>
 
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								サウンド書き込み位置は安定的に更新できるとは限らない
-							</font></b>
+							</span>
 							<br/>
 
 							サウンド読み取り位置は阻害要因が無いので安定したタイミングで更新できるのに対して、
@@ -533,9 +533,9 @@
 						</li>
 
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								安全性を高めるとサウンド遅延が増える
-							</font></b>
+							</span>
 							<br/>
 
 							サウンド書き込み位置の更新速度が不安定であるにも関わらず、
@@ -546,9 +546,9 @@
 						</li>
 
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								バッファリング処理が複数存在する場合、総遅延量はそれらの合算値になる
-							</font></b>
+							</span>
 							<br/>
 
 							サウンド出力経路上には、バッファリング処理が複数存在する可能性があります。
@@ -567,7 +567,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						つまり遅延の増大は、昨今の TV モニタの仕様の複雑化が原因？
 					</span>
 					<br/>
@@ -597,11 +597,11 @@
 			TV が内部に持っているサウンド処理系とは独立した、
 			ゲームモード専用のサウンド出力経路を、
 			TV 側で用意する必要があると考えられます。
-			<b><font color="#FFC080">
+			<span class="emphasis2">
 				例えば
 				「ゲーム機 → サウンドバー → TV」相当の迂回経路を TV 内部に持たせ、
 				ゲームモードの場合はそちらが利用されるようにするというものです。
-			</font></b>
+			</span>
 			<br/><br/>
 
 			もはやユーザーレベルで手を出せる領域ではないので、

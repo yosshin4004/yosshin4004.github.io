@@ -38,23 +38,299 @@
 			ここではファミリーベーシックとその発売当時の状況についてまとめます。
 			さらに関連項目として、
 			ファミコンの海外向けモデルのプロトタイプである Advanced Video System とファミリーベーシックの関連などを考察します。
-			<b><font color="#FFC080">
-				これを書いている私は、当時子供だった一ユーザーにすぎず、歴史家ではありません。
+			<br/><br/>
+
+			これを書いている私は、当時子供だった一ユーザーにすぎず、歴史家ではありません。
+			<span class="emphasis2">
 				時系列、定義、考証の精度などはあいまいな場合がありますがご了承ください。
 				推測に基づく内容は、断言を避ける表現を使っていきます。
 				私が見てきたものを中心に書いていますので、内容が偏りがちな点もご了承ください。
-			</font></b>
+			</span>
 			<br/><br/>
 
 
-			<h2>
-				ファミリーベーシックの構成
-			</h2>
+			<a name="index">
+				<h2>
+					目次
+				</h2>
+			</a>
 			<ul>
 				<li>
-					<span class="emphasis">
-						ファミコン本体 + 専用カートリッジ + 専用データレコーダー
-					</span>
+					<a href="#Components_of_Family_Basic">
+						ファミリーベーシックの構成
+					</a>
+					<ul>
+						<li>
+							<a href="#Full_set_of_Family_Basic">
+								フルセット
+							</a>
+						</li>
+						<li>
+							<a href="#Data_storage_media_for_Family_Basic">
+								データ記録メディア
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#Computer_learning_environment_for_children">
+						ファミリーベーシックは子供向けコンピュータ学習環境
+					</a>
+					<ul>
+						<li>
+							<a href="#low-cost_personal_computer_for_children">
+								子供向けの安価なパソコン
+							</a>
+						</li>
+						<li>
+							<a href="#Keyboard_designed_for_children">
+								子供向けにデザインされたキーボード
+							</a>
+						</li>
+						<li>
+							<a href="#Instruction_sets_designed_for_children">
+								子供向けにデザインされた命令セット
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#Collaboration_between_Family_Basic_and_game_software">
+						ファミリーベーシックとゲームソフトの連携
+					</a>
+					<ul>
+						<li>
+							<a href="#as_data_storage_for_game_software">
+								ゲームソフトのデータ保存手段としても利用された
+							</a>
+						</li>
+						<li>
+							<a href="#Hudson_has_released_family_basic_support_game_softwares">
+								ハドソンが積極的に対応ゲームソフトを投入
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#Collaboration_between_Family_Basic_and_bools_and_magazines">
+						ファミリーベーシックと書籍・雑誌の連携
+					</a>
+					<ul>
+						<li>
+							<a href="#Hudson_has_released_Family_Basics_related_books">
+								ハドソンが関連書籍をリリース
+							</a>
+						</li>
+						<li>
+							<a href="#Tokuma_Shoten_has_released_Family_Basics_related_books">
+								徳間書店も関連書籍をリリース
+							</a>
+						</li>
+						<li>
+							<a href="#reader-submitted_program">
+								雑誌に読者投稿プログラムが掲載されていた
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#What_kind_of_games_were_possible_to_create_with_Family_Basic">
+						ファミリーベーシックではどの程度のゲームが作成可能だったのか
+					</a>
+					<ul>
+						<li>
+							<a href="#only_for_simple_games">
+								簡単なゲームしか作れない
+							</a>
+						</li>
+						<li>
+							<a href="#Internal_hardware_documents_are_not_disclosed">
+								ハードウェア内部資料は非公開
+							</a>
+						</li>
+						<li>
+							<a href="#The_games_that_could_be_created_were_limited">
+								ゲームが作り放題の遊び放題ではない
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#version_fragmentation">
+						バージョンの分断による混乱
+					</a>
+					<ul>
+						<li>
+							<a href="#Four_versions_have_been_released_in_just_eight_months">
+								わずか 8 か月の間に 4 つのバージョンがリリースされた！
+							</a>
+						</li>
+						<li>
+							<a href="#Each_lot_contained_a_different_version_of_the_software">
+								しかもロット毎にどのバージョンが入っているか異なる
+							</a>
+						</li>
+						<li>
+							<a href="#Family_Basic_V3_had_released_as_a_standalone_cartridge">
+								ファミリーベーシック V3.0 はソフト単体発売に
+							</a>
+						</li>
+						<li>
+							<a href="#It_was_not_a_good_choice_to_update_the_version_with_cartridges">
+								そもそもカートリッジでバージョンを更新していくことに無理がある
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#shifted_to_reverse_engineering">
+						ファミリーベーシック上でのゲーム制作は解析ベースへ移行
+					</a>
+					<ul>
+						<li>
+							<a href="#Basic_Magazine">
+								マイコンベーシックマガジン「ファミリーベーシック・マシン語講座」
+							</a>
+						</li>
+						<li>
+							<a href="#tonkachi_editor">
+								市販ゲームソフト改造ツールのドキュメントにハードウェア解析情報が載っていた
+							</a>
+						</li>
+						<li>
+							<a href="#Developing_games_by_directly_accessing_the_hardware">
+								解析情報に頼り、ハードを直接叩きながらゲーム制作
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#Story_of_Game_Freak">
+						ポケモンを生み出した「ゲームフリーク」の逸話
+					</a>
+					<ul>
+						<li>
+							<a href="#It_was_difficult_to_get_a_devkit_for_the_NES">
+								当時、ファミコンの開発環境を入手することは困難だった
+							</a>
+						</li>
+						<li>
+							<a href="#Reverse_engineering_with_Family_Basics">
+								ファミリーベーシックでハードウェア解析しながらのゲーム制作
+							</a>
+						</li>
+						<li>
+							<a href="#Quinty">
+								自主制作したゲームを「クインティ」というタイトルで発売
+							</a>
+						</li>
+						<li>
+							<a href="#Done_from_almost_nothing">
+								開発開始時期は早く、ほぼゼロからの解析だった
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#What_was_Nintendos_real_purpose_for_releasing_Family_Basics">
+						任天堂がファミリーベーシックをリリースした本当の目的は？
+					</a>
+					<ul>
+						<li>
+							<a href="#Home_Computer_Development_Race">
+								リビングの TV の座をめぐるホームコンピュータ開発競争
+							</a>
+						</li>
+						<li>
+							<a href="#NES_became_the_winner">
+								ファミコンは日本のホームコンピュータ競争の勝者に
+							</a>
+						</li>
+						<li>
+							<a href="#The_issue_of_how_to_release_the_NES_for_overseas_markets">
+								ファミコンの海外向けリリースをどうするかが課題に
+							</a>
+						</li>
+						<li>
+							<a href="#Advanced_Video_System">
+								海外向けファミコンのプロトタイプ Advanced Video System
+							</a>
+						</li>
+						<li>
+							<a href="#Advanced_Video_System_is_Family_Basic_V3">
+								Advanced Video System = ファミリーベーシック V3.0 ?
+							</a>
+						</li>
+						<li>
+							<a href="#Advanced_Video_System_was_cancelled">
+								Advanced Video System はキャンセルになった
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#What_was_lacking">
+						足りなかったもの = ファミリーコンピュータディスクシステム
+					</a>
+					<ul>
+						<li>
+							<a href="#Disk_system_can_use_a_large_amount_of_RAM_space">
+								ディスクシステムなら広大な RAM 領域が利用できる
+							</a>
+						</li>
+						<li>
+							<a href="#Family_Basics_V4_was_never_released">
+								残念ながらファミリーベーシック V4.0 のようなものはリリースされなかった
+							</a>
+						</li>
+						<li>
+							<a href="#Nintendo_was_no_longer_open">
+								任天堂はすっかりガードが固くなってしまった
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#About_Hudson">
+						余談：ハドソンの話
+					</a>
+					<ul>
+						<li>
+							<a href="#Establish_a_license_fee-free_data_distribution_channel">
+								ライセンス料を回避可能なデータ配信経路を確立
+							</a>
+						</li>
+						<li>
+							<a href="#PEEK_POKE_CALL">
+								BASIC 言語に PEEK POKE CALL 命令を搭載
+							</a>
+						</li>
+						<li>
+							<a href="#NES_has_been_powned">
+								ファミコンの内部仕様は丸裸に
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#summary">
+						まとめ
+					</a>
+				</li>
+			</ul>
+
+			<a name="Components_of_Family_Basic">
+				<h2>
+					ファミリーベーシックの構成
+				</h2>
+			</a>
+			<ul>
+				<li>
+					<a name="Full_set_of_Family_Basic">
+						<span class="emphasis1">
+							フルセット
+						</span>
+					</a>
 					<br/>
 
 					ファミリーベーシック環境のフルセットは、写真に示したような構成になります。
@@ -64,11 +340,25 @@
 						<img src="famibe_v3_full_set.JPG" alt="ファミリーベーシック環境のフルセット" border="2" width="50%" height="50%"/>
 						<br/>
 						ファミリーベーシック環境のフルセット
+						<br/>
+						ファミコン本体 + 専用カートリッジ + 専用データレコーダー
 					</center>
 					<br/>
+				</li>
 
-					「データレコーダー」とは、フロッピーディスク登場以前に利用されたデータ保存装置で、
-					カセットテープ（磁気テープ）に音声としてデータを保存します。
+				<li>
+					<a name="Data_storage_media_for_Family_Basic">
+						<span class="emphasis1">
+							データ記録メディア
+						</span>
+					</a>
+					<br/>
+
+					ファミリーベーシックでは、データ記録メディアとして、カセットテープ（磁気テープ）を利用します。
+					<br/>
+
+					これは、フロッピーディスク登場以前に利用されたデータ保存の仕組みで、
+					データを直接音声として保存します。
 					<br/><br/>
 
 					<center>
@@ -81,14 +371,18 @@
 			</ul>
 
 
-			<h2>
-				ファミリーベーシックは 子供向けコンピュータ学習環境
-			</h2>
+			<a name="Computer_learning_environment_for_children">
+				<h2>
+					ファミリーベーシックは子供向けコンピュータ学習環境
+				</h2>
+			</a>
 			<ul>
 				<li>
-					<span class="emphasis">
-						子供向けの安価なパソコン
-					</span>
+					<a name="low-cost_personal_computer_for_children">
+						<span class="emphasis1">
+							子供向けの安価なパソコン
+						</span>
+					</a>
 					<br/>
 
 					ファミリーベーシックが発売された 1984年、
@@ -104,9 +398,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						子供向けを意識したキーボード
-					</span>
+					<a name="Keyboard_designed_for_children">
+						<span class="emphasis1">
+							子供向けにデザインされたキーボード
+						</span>
+					</a>
 					<br/>
 
 					子供が雑に扱っても壊れないよう、キーボードはしっかりとした作りになっています。
@@ -119,9 +415,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						子供向けを意識した命令セット
-					</span>
+					<a name="Instruction_sets_designed_for_children">
+						<span class="emphasis1">
+							子供向けにデザインされた命令セット
+						</span>
+					</a>
 					<br/>
 
 					プログラミングについて全く知識がない子供たちでも、
@@ -148,14 +446,18 @@
 			</ul>
 
 
-			<h2>
-				ファミリーベーシックとゲームソフトの連携
-			</h2>
+			<a name="Collaboration_between_Family_Basic_and_game_software">
+				<h2>
+					ファミリーベーシックとゲームソフトの連携
+				</h2>
+			</a>
 			<ul>
 				<li>
-					<span class="emphasis">
-						ファミリーベーシックはゲームソフトのデータ保存手段としても利用された
-					</span>
+					<a name="as_data_storage_for_game_software">
+						<span class="emphasis1">
+							ゲームソフトのデータ保存手段としても利用された
+						</span>
+					</a>
 					<br/>
 
 					ファミリーベーシックのデータレコーダーを利用し、
@@ -181,9 +483,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						ハドソンが積極的にファミリーベーシック対応ゲームソフトを投入
-					</span>
+					<a name="Hudson_has_released_family_basic_support_game_softwares">
+						<span class="emphasis1">
+							ハドソンが積極的に対応ゲームソフトを投入
+						</span>
+					</a>
 					<br/>
 
 					ファミリーベーシック対応ソフトである
@@ -202,14 +506,18 @@
 			</ul>
 
 
-			<h2>
-				ファミリーベーシックと書籍・雑誌の連携
-			</h2>
+			<a name="Collaboration_between_Family_Basic_and_bools_and_magazines">
+				<h2>
+					ファミリーベーシックと書籍・雑誌の連携
+				</h2>
+			</a>
 			<ul>
 				<li>
-					<span class="emphasis">
-						ハドソンがファミリーベーシック関連書籍をリリース
-					</span>
+					<a name="Hudson_has_released_Family_Basics_related_books">
+						<span class="emphasis1">
+							ハドソンが関連書籍をリリース
+						</span>
+					</a>
 					<br/>
 
 					ファミリーベーシック開発に携わったハドソンから、
@@ -238,9 +546,9 @@
 					</center>
 					<br/>
 
-					<b><font color="#FFC080">
+					<span class="emphasis2">
 						この書籍の構成、漫画の原案、掲載プログラムは、当時ハドソン社員だった高橋名人が担当されています。
-					</font></b>
+					</span>
 					本の内容は（2020年）現在読み直しても的確で、
 					高橋名人が当時いかに凄い仕事をされていたのかがわかります。
 					<br/>
@@ -308,9 +616,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						徳間書店もファミリーベーシック関連書籍をリリース
-					</span>
+					<a name="Tokuma_Shoten_has_released_Family_Basics_related_books">
+						<span class="emphasis1">
+							徳間書店も関連書籍をリリース
+						</span>
+					</a>
 					<br/>
 
 					こちらは
@@ -334,9 +644,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						雑誌に読者投稿プログラムが掲載されていた
-					</span>
+					<a name="reader-submitted_program">
+						<span class="emphasis1">
+							雑誌に読者投稿プログラムが掲載されていた
+						</span>
+					</a>
 					<br/>
 
 					当時唯一のコンシューマゲーム情報雑誌であった「ファミリーコンピュータMagazine」（徳間書店 1985年7月～）では、
@@ -351,17 +663,21 @@
 				</li>
 			</ul>
 
-			<h2>
-				ファミリーベーシックではどの程度のゲームが作成可能だったのか
-			</h2>
+			<a name="What_kind_of_games_were_possible_to_create_with_Family_Basic">
+				<h2>
+					ファミリーベーシックではどの程度のゲームが作成可能だったのか
+				</h2>
+			</a>
 			それではここで、ファミリーベーシック上で実際どの程度の品質・規模のゲームが作成可能だったのかをみていきましょう。
 			<br/>
 
 			<ul>
 				<li>
-					<span class="emphasis">
-						簡単なゲームしか作れない
-					</span>
+					<a name="only_for_simple_games">
+						<span class="emphasis1">
+							簡単なゲームしか作れない
+						</span>
+					</a>
 					<br/>
 
 					ファミリーベーシックでは、どうやっても簡単なゲームしか作れませんでした。
@@ -378,9 +694,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						ハードウェア内部資料は非公開
-					</span>
+					<a name="Internal_hardware_documents_are_not_disclosed">
+						<span class="emphasis1">
+							ハードウェア内部資料は非公開
+						</span>
+					</a>
 					<br/>
 
 					BASIC 言語を離れ、
@@ -393,9 +711,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						ゲームが作り放題の遊び放題ではない
-					</span>
+					<a name="The_games_that_could_be_created_were_limited">
+						<span class="emphasis1">
+							ゲームが作り放題の遊び放題ではない
+						</span>
+					</a>
 					<br/>
 
 					当時の子供たちのファミリーベーシック購入決断理由は、以下のようなものでした。
@@ -412,15 +732,19 @@
 
 
 
-			<h2>
-				バージョンの分断による混乱
-			</h2>
+			<a name="version_fragmentation">
+				<h2>
+					バージョンの分断による混乱
+				</h2>
+			</a>
 
 			<ul>
 				<li>
-					<span class="emphasis">
-						わずか 8 か月の間に 4 つのバージョンがリリースされた！
-					</span>
+					<a name="Four_versions_have_been_released_in_just_eight_months">
+						<span class="emphasis1">
+							わずか 8 か月の間に 4 つのバージョンがリリースされた！
+						</span>
+					</a>
 					<br/>
 
 					ファミリーベーシックのカートリッジには、
@@ -435,9 +759,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						しかもロット毎にどのバージョンが入っているか異なる
-					</span>
+					<a name="Each_lot_contained_a_different_version_of_the_software">
+						<span class="emphasis1">
+							しかもロット毎にどのバージョンが入っているか異なる
+						</span>
+					</a>
 					<br/>
 
 					カートリッジのバージョンはロット毎に異なり、
@@ -452,9 +778,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						ファミリーベーシック V3.0 はソフト単体発売に
-					</span>
+					<a name="Family_Basic_V3_had_released_as_a_standalone_cartridge">
+						<span class="emphasis1">
+							ファミリーベーシック V3.0 はソフト単体発売に
+						</span>
+					</a>
 					<br/>
 
 					恐らく任天堂はこれはまずい状況だと考えたのでしょう。V3.0 はソフト単体発売になりました。
@@ -482,9 +810,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						そもそもカートリッジでバージョンを更新していくことに無理がある
-					</span>
+					<a name="It_was_not_a_good_choice_to_update_the_version_with_cartridges">
+						<span class="emphasis1">
+							そもそもカートリッジでバージョンを更新していくことに無理がある
+						</span>
+					</a>
 					<br/>
 
 					ファミリーベーシック V3.0 は、完成度はとても高かったのですが、
@@ -512,14 +842,18 @@
 			</ul>
 
 
-			<h2>
-				ファミリーベーシック上でのゲーム制作は解析ベースへ移行
-			</h2>
+			<a name="shifted_to_reverse_engineering">
+				<h2>
+					ファミリーベーシック上でのゲーム制作は解析ベースへ移行
+				</h2>
+			</a>
 			<ul>
 				<li>
-					<span class="emphasis">
-						マイコンベーシックマガジン「ファミリーベーシック・マシン語講座」
-					</span>
+					<a name="Basic_Magazine">
+						<span class="emphasis1">
+							マイコンベーシックマガジン「ファミリーベーシック・マシン語講座」
+						</span>
+					</a>
 					<br/>
 
 					ファミリーベーシック V3.0 の売り上げが不振に終わると、
@@ -545,7 +879,7 @@
 						<br/>
 						（マイコンベーシックマガジン 1987年9月号）
 						<br/>
-						メジャーな雑誌に、据え置きゲーム機の解析情報が掲載されていた。
+						業界屈指の健全な雑誌に、据え置きゲーム機の解析情報が掲載されていた。
 						<br/>
 						おおらかな時代。
 					</center>
@@ -553,9 +887,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						市販ゲームソフト改造ツールのドキュメントにハードウェア解析情報が載っていた
-					</span>
+					<a name="tonkachi_editor">
+						<span class="emphasis1">
+							市販ゲームソフト改造ツールのドキュメントにハードウェア解析情報が載っていた
+						</span>
+					</a>
 					<br/>
 
 					当時の市販ゲームソフト改造ツールのドキュメントに、
@@ -597,9 +933,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						解析情報に頼り、ハードを直接叩きながらゲーム制作
-					</span>
+					<a name="Developing_games_by_directly_accessing_the_hardware">
+						<span class="emphasis1">
+							解析情報に頼り、ハードを直接叩きながらゲーム制作
+						</span>
+					</a>
 					<br/>
 
 					ファミリーベーシック上のゲーム制作は、
@@ -613,18 +951,21 @@
 				</li>
 			</ul>
 
-			<h2>
-				ポケモンを生み出した「ゲームフリーク」の逸話
-			</h2>
-			ここで、
-			ファミリーベーシックを利用したファミコンの解析から始まり、
+			<a name="Story_of_Game_Freak">
+				<h2>
+					ポケモンを生み出した「ゲームフリーク」の逸話
+				</h2>
+			</a>
+			ここで、ファミリーベーシックを利用したファミコンの解析から始まり、
 			ゲームを完成させ市販ソフトとしてリリースした「ゲームフリーク」の逸話について触れます。
 
 			<ul>
 				<li>
-					<span class="emphasis">
-						当時、ファミコンの開発環境を入手することは困難だった
-					</span>
+					<a name="It_was_difficult_to_get_a_devkit_for_the_NES">
+						<span class="emphasis1">
+							当時、ファミコンの開発環境を入手することは困難だった
+						</span>
+					</a>
 					<br/>
 					当時（80 年代中頃）、任天堂のライセンシとして
 					個人レベルのデベロッパが参入することはとても難しいことでした。
@@ -635,9 +976,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						ファミリーベーシックでハードウェア解析しながらのゲーム制作
-					</span>
+					<a name="Reverse_engineering_with_Family_Basics">
+						<span class="emphasis1">
+							ファミリーベーシックでハードウェア解析しながらのゲーム制作
+						</span>
+					</a>
 					<br/>
 					「ゲームフリーク」が
 					まだゲーム系同人サークルだったころ、
@@ -649,12 +992,12 @@
 					<br/><br/>
 
 					ここで補足が必要です。
-					<b><font color="#FFC080">
+					<span class="emphasis2">
 						この逸話だけを聞くと、
 						ファミリーベーシックが市販相当のゲームが作成可能な、
 						一般的な開発キットのように感じられるかもしれません。
 						しかし前述のとおり、実際はそのようなことは不可能です。
-					</font></b>
+					</span>
 					ファミリーベーシックは、フリーメモリ領域が非常に狭いだけでなく、任意のドット絵すら作成することができません。
 					「ゲームフリーク」の方々がファミリーベーシック上で行ったことは、
 					ハードウェアの仕様確認などの基本的なことと、
@@ -674,9 +1017,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						自主制作したゲームを「クインティ」というタイトルで発売
-					</span>
+					<a name="Quinty">
+						<span class="emphasis1">
+							自主制作したゲームを「クインティ」というタイトルで発売
+						</span>
+					</a>
 					<br/>
 
 					このゲームは当時のナムコに持ち込まれ、「クインティ」というタイトルで販売されました。
@@ -703,9 +1048,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						開発開始時期は早く、ほぼゼロからの解析だった
-					</span>
+					<a name="Done_from_almost_nothing">
+						<span class="emphasis1">
+							開発開始時期は早く、ほぼゼロからの解析だった
+						</span>
+					</a>
 					<br/>
 
 					ここで、クインティ開発者がハードウェア解析を行った頃の時系列を確認します。
@@ -718,9 +1065,9 @@
 					つまり時系列上では、
 					先ほど触れたマイコンベーシックマガジンの記事やトンカチエディタの冊子等々よりも早い時期で
 					（バッ活の解析記事より先だったかどうかは不明ですが）、
-					<b><font color="#FFC080">
+					<span class="emphasis2">
 						何の情報源もないところからの、ほぼゼロからの解析だったと考えられます。
-					</font></b>
+					</span>
 
 					当時はインターネットは無く、BBS も普及以前です。
 					解析グループメンバ間の情報のシェアは、恐らく電話での口頭や文通で行われています。
@@ -736,9 +1083,11 @@
 				</li>
 			</ul>
 
-			<h2>
-				任天堂がファミリーベーシックをリリースした本当の目的は？
-			</h2>
+			<a name="What_was_Nintendos_real_purpose_for_releasing_Family_Basics">
+				<h2>
+					任天堂がファミリーベーシックをリリースした本当の目的は？
+				</h2>
+			</a>
 			それではここで、
 			任天堂がファミリーベーシックをリリースした本当の目的を考えていきます。
 			以降、推測に基づく話が多くなることをご了承ください。
@@ -747,9 +1096,11 @@
 
 			<ul>
 				<li>
-					<span class="emphasis">
-						リビングの TV の座をめぐるホームコンピュータ開発競争
-					</span>
+					<a name="Home_Computer_Development_Race">
+						<span class="emphasis1">
+							リビングの TV の座をめぐるホームコンピュータ開発競争
+						</span>
+					</a>
 					<br/>
 
 					かつて 1980 年代初頭の日本では、ホームコンピュータ開発競争が起きていました。
@@ -762,9 +1113,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						ファミコンは日本のホームコンピュータ競争の勝者に
-					</span>
+					<a name="NES_became_the_winner">
+						<span class="emphasis1">
+							ファミコンは日本のホームコンピュータ競争の勝者に
+						</span>
+					</a>
 					<br/>
 					任天堂はこの開発競争に、キーボードを持たずゲームに特化したハードウェアであるファミコンを投入しました。
 					ファミコン発売から 1 年後、ファミコンをホームコンピュータへ拡張する周辺機器として、ファミリーベーシックも発売されました。
@@ -791,9 +1144,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						ファミコンの海外向けリリースをどうするかが課題に
-					</span>
+					<a name="The_issue_of_how_to_release_the_NES_for_overseas_markets">
+						<span class="emphasis1">
+							ファミコンの海外向けリリースをどうするかが課題に
+						</span>
+					</a>
 					<br/>
 					日本では勝者になれたファミコンでしたが、
 					海外へのリリースをどうするかが課題でした。
@@ -825,9 +1180,11 @@
 
 
 				<li>
-					<span class="emphasis">
-						海外向けファミコンのプロトタイプ Advanced Video System
-					</span>
+					<a name="Advanced_Video_System">
+						<span class="emphasis1">
+							海外向けファミコンのプロトタイプ Advanced Video System
+						</span>
+					</a>
 					<br/>
 
 					海外向けのファミコンは Nintendo Entertainment System (NES) と呼ばれており、
@@ -863,9 +1220,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						Advanced Video System = ファミリーベーシック V3.0 ?
-					</span>
+					<a name="Advanced_Video_System_is_Family_Basic_V3">
+						<span class="emphasis1">
+							Advanced Video System = ファミリーベーシック V3.0 ?
+						</span>
+					</a>
 					<br/>
 					Advanced Video System の写真をよくみると、
 					キーボードのキー構成がファミリーベーシックと全く同じです。
@@ -958,9 +1317,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						Advanced Video System はキャンセルになった
-					</span>
+					<a name="Advanced_Video_System_was_cancelled">
+						<span class="emphasis1">
+							Advanced Video System はキャンセルになった
+						</span>
+					</a>
 					<br/>
 
 					Advanced Video System 発表直後に、
@@ -994,9 +1355,11 @@
 				</li>
 			</ul>
 
-			<h2>
-				足りなかったもの = ファミリーコンピュータディスクシステム
-			</h2>
+			<a name="What_was_lacking">
+				<h2>
+					足りなかったもの = ファミリーコンピュータディスクシステム
+				</h2>
+			</a>
 			ファミリーコンピュータディスクシステムは、
 			ファミリーベーシックの弱点を補うことができる理想的なシステムでした。
 			しかしながら、それが活用されることはありませんでした。
@@ -1004,9 +1367,11 @@
 
 			<ul>
 				<li>
-					<span class="emphasis">
-						ディスクシステムなら広大な RAM 領域が利用できる
-					</span>
+					<a name="Disk_system_can_use_a_large_amount_of_RAM_space">
+						<span class="emphasis1">
+							ディスクシステムなら広大な RAM 領域が利用できる
+						</span>
+					</a>
 					<br/>
 					ファミリーベーシックのバージョン分断の問題を解決するには、
 					更新ソフトウェアが配布できる大容量メディアと、それを読み込むための広大な RAM 領域が必要でした。
@@ -1017,9 +1382,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						残念ながらファミリーベーシック V4.0 のようなものはリリースされなかった
-					</span>
+					<a name="Family_Basics_V4_was_never_released">
+						<span class="emphasis1">
+							残念ながらファミリーベーシック V4.0 のようなものはリリースされなかった
+						</span>
+					</a>
 					<br/>
 					ファミリーコンピュータディスクシステムを利用すれば、
 					ファミリーベーシックの弱点はすべて解決することになります。
@@ -1039,9 +1406,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						任天堂はすっかりガードが固くなってしまった
-					</span>
+					<a name="Nintendo_was_no_longer_open">
+						<span class="emphasis1">
+							任天堂はすっかりガードが固くなってしまった
+						</span>
+					</a>
 					<br/>
 					ファミリーコンピュータディスクシステムには、
 					有名な「任天堂許諾画面」を表示しないとゲームが開始できないというプロテクトが入っていました。
@@ -1076,9 +1445,11 @@
 			</ul>
 
 
-			<h2>
-				余談：ハドソンの話
-			</h2>
+			<a name="About_Hudson">
+				<h2>
+					余談：ハドソンの話
+				</h2>
+			</a>
 			最後に、
 			ファミリーベーシック開発に携わり、
 			それをきっかけにファミコン初のサードパーティとして参入したハドソンが、
@@ -1088,9 +1459,11 @@
 
 			<ul>
 				<li>
-					<span class="emphasis">
-						ライセンス料を回避可能なデータ配信経路を確立
-					</span>
+					<a name="Establish_a_license_fee-free_data_distribution_channel">
+						<span class="emphasis1">
+							ライセンス料を回避可能なデータ配信経路を確立
+						</span>
+					</a>
 					<br/>
 
 					再度触れますが、ハドソンはファミリーベーシックと同発（一か月遅れ）で、
@@ -1101,10 +1474,10 @@
 					<br/><br/>
 
 					ここで疑問なのが、
-					<b><font color="#FFC080">
+					<span class="emphasis2">
 						これらの書籍で発生した収益について、
 						ハドソンは任天堂に対してライセンス料を支払う必要があったかどうか？
-					</font></b>
+					</span>
 					です。
 					いずれも、ハドソン自身が出版しているので、
 					収益はすべてハドソンの懐に入ったと考えられます。
@@ -1119,9 +1492,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						BASIC 言語に PEEK POKE CALL 命令を搭載
-					</span>
+					<a name="PEEK_POKE_CALL">
+						<span class="emphasis1">
+							BASIC 言語に PEEK POKE CALL 命令を搭載
+						</span>
+					</a>
 					<br/>
 
 					それだけではありません。
@@ -1134,11 +1509,11 @@
 					<br/>
 					CALL は、指定のメモリのネイティブコードを実行する命令です。
 					<br/>
-					<b><font color="#FFC080">
+					<span class="emphasis2">
 						この 3 つが揃うと、
 						任天堂にとって機密情報であるはずのファミコン内部仕様は、
 						解析し放題になります。
-					</font></b>
+					</span>
 					<br/><br/>
 
 					これらの命令は、どういう経緯で搭載されたのでしょうか？
@@ -1148,19 +1523,21 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						ファミコンの内部仕様は丸裸に
-					</span>
+					<a name="NES_has_been_powned">
+						<span class="emphasis1">
+							ファミコンの内部仕様は丸裸に
+						</span>
+					</a>
 					<br/>
 
 					ハドソンが当初やっていたことは、
 					ステージエディット対応ゲームを 2 本もリリースしたり、
 					関連書籍を次々販売したり、
 					PEEK POKE CALL 命令を仕込んだりと、
-					<b><font color="#FFC080">
+					<span class="emphasis2">
 						いずれも「任天堂にライセンス料を払うことなく、
 						ファミコンを活用する手段の開拓」という点が共通しています。
-					</font></b>
+					</span>
 					<br/><br/>
 
 					ハドソンは元々コンピュータの活用が本業のソフトウェアメーカーなので、
@@ -1172,9 +1549,11 @@
 			</ul>
 
 
-			<h2>
-				まとめ
-			</h2>
+			<a name="summary">
+				<h2>
+					まとめ
+				</h2>
+			</a>
 			ここまで推測と事実が入り混じった感じで書いてきたので、
 			それらを分離しながら整理します。
 			<br/><br/>

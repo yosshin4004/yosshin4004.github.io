@@ -37,17 +37,168 @@
 			<br/><br/>
 
 
-			<h2>
-				夢のマシン X68000 !!!!
-			</h2>
+			<a name="index">
+				<h2>
+					目次
+				</h2>
+			</a>
+			<ul>
+				<li>
+					<a href="#Power_to_make_your_dream_come_true">
+						夢のマシン X68000 !!!!
+					</a>
+					<ul>
+						<li>
+							<a href="#Achieved_the_first_complete_port_of_Gradius">
+								至上初のグラディウス（ほぼ）完全移植達成
+							</a>
+						</li>
+						<li>
+							<a href="#Powerful_sprite_function">
+								強力なスプライト機能を搭載
+							</a>
+						</li>
+						<li>
+							<a href="#X68000_has_the_most_powerful_sprite_function">
+								X68000 のスプライト機能はぶっちぎりに高性能だった
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#X68000_has_become_obsolete_in_90s">
+						しかし 90年代、すでに X68000 に陳腐化の兆しが…
+					</a>
+					<ul>
+						<li>
+							<a href="#128_sprites_are_not_enough_spec">
+								128 枚って多いと思ったけどそうでもないよね…
+							</a>
+						</li>
+						<li>
+							<a href="#256_PCGs_are_not_enough_spec">
+								パターン定義数 256 ってのも結構狭い…
+							</a>
+						</li>
+						<li>
+							<a href="#The_number_of_sprite_displays_was_reduced_by_half_to_cut_costs">
+								ハード設計時、コスト削減のためスプライト表示数が半分に減らされていた（推測）
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#Extend_the_max_number_of_sprites_displayed_forcibly_with_software">
+						スプライト表示数上限をソフトウェアの力で（無理やり）拡張する
+					</a>
+					<ul>
+						<li>
+							<a href="#sprite_doubler">
+								スプライトダブラーと呼ばれる手法
+							</a>
+						</li>
+						<li>
+							<a href="#Example_of_Sprite_Doubler_being_used">
+								スプライトダブラー採用事例
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#Extend_the_max_number_of_PCG_definitions">
+						パターン定義数上限をソフトウェアの力で拡張する
+					</a>
+					<ul>
+						<li>
+							<a href="#Consider_the_PCG_area_as_cache_area">
+								スプライトパターン定義領域は、キャッシュ領域だと考える
+							</a>
+						</li>
+						<li>
+							<a href="#Consider_the_position_of_the_raster">
+								走査線の位置を考慮しながらスプライトパターン転送を行う
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#priority_control_function">
+						スプライト表示優先度管理機能も必要
+					</a>
+					<ul>
+						<li>
+							<a href="#priority_control_by_sprite_number_is_difficult_to_manage">
+								スプライト番号による表示優先度管理は難しい
+							</a>
+						</li>
+						<li>
+							<a href="#Introduce_a_display_priority_independent_of_sprite_number">
+								スプライト番号とは独立した「表示優先度」を導入
+							</a>
+						</li>
+						<li>
+							<a href="#Need_a_fast_sorting_algorithm">
+								高速なソートアルゴリズムが必要
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#Implementation_Result">
+						実装結果
+					</a>
+					<ul>
+						<li>
+							<a href="#Sprite_management_system_XSP">
+								スプライト管理システム XSP
+							</a>
+						</li>
+						<li>
+							<a href="#Extend_sprite_count_by_4_times_Extend_PCG_count_by_128_times">
+								ハードウェア上限の 4 倍の表示数、パターン定義数（ほぼ）無制限を達成
+							</a>
+						</li>
+						<li>
+							<a href="#The_theoretical_max_number_of_sprites_that_can_be_displayed">
+								512 枚 = スプライト欠け無しで表示できる理論上の最大数
+							</a>
+						</li>
+						<li>
+							<a href="#Sprite_doubler_implementation_of_XSP">
+								XSP のスプライトダブラー
+							</a>
+						</li>
+						<li>
+							<a href="#Reduce_display_priority_collapse_on_raster_split_boundaries">
+								ラスター分割境界上での表示優先度破綻を軽減
+							</a>
+						</li>
+						<li>
+							<a href="#Sprite_display_priority_management_and_optimization">
+								スプライト表示優先度管理と高速化
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+
+
+
+			<a name="Power_to_make_your_dream_come_true">
+				<h2>
+					夢のマシン X68000 !!!!
+				</h2>
+			</a>
 			X68000 は、
 			当時のアーケードゲーム愛好家に取って夢のマシンでした。
 
 			<ul>
 				<li>
-					<span class="emphasis">
-						至上初のグラディウス（ほぼ）完全移植達成
-					</span>
+					<a name="Achieved_the_first_complete_port_of_Gradius">
+						<span class="emphasis1">
+							至上初のグラディウス（ほぼ）完全移植達成
+						</span>
+					</a>
 					<br/>
 					当時、アーケード版グラディウス（1985年 コナミ）の移植再現度は、
 					現在でいうベンチマークテストのような意味合いがあり、
@@ -76,9 +227,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						X68000 の強力なスプライト機能
-					</span>
+					<a name="Powerful_sprite_function">
+						<span class="emphasis1">
+							強力なスプライト機能を搭載
+						</span>
+					</a>
 					<br/>
 					X68000 には、強力なスプライト機能が搭載されていました。
 					スプライト機能とは、16x16 ドットなどのサイズのキャラクタを表示するためのハードウェア機能です。
@@ -95,9 +248,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						X68000 のスプライト機能はぶっちぎりに高性能だった
-					</span>
+					<a name="X68000_has_the_most_powerful_sprite_function">
+						<span class="emphasis1">
+							X68000 のスプライト機能はぶっちぎりに高性能だった
+						</span>
+					</a>
 					<br/>
 
 					X68000 のスプライト機能を、他機種と比較してみます。
@@ -232,9 +387,11 @@
 			</ul>
 
 
-			<h2>
-				しかし 90年代、すでに X68000 に陳腐化の兆しが…
-			</h2>
+			<a name="X68000_has_become_obsolete_in_90s">
+				<h2>
+					しかし 90年代、すでに X68000 に陳腐化の兆しが…
+				</h2>
+			</a>
 			X68000 のリリース後、
 			PC-Engine（1987 年 10 月）、
 			メガドライブ（1988 年 10 月）、
@@ -244,9 +401,11 @@
 
 			<ul>
 				<li>
-					<span class="emphasis">
-						128 枚って多いと思ったけどそうでもないよね…
-					</span>
+					<a name="128_sprites_are_not_enough_spec">
+						<span class="emphasis1">
+							128 枚って多いと思ったけどそうでもないよね…
+						</span>
+					</a>
 					<br/>
 					X68000 は、1 画面中に 128 枚のスプライトを表示可能でした。
 					初代グラディウスを移植する上では、
@@ -279,9 +438,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						パターン定義数 256 ってのも結構狭い…
-					</span>
+					<a name="256_PCGs_are_not_enough_spec">
+						<span class="emphasis1">
+							パターン定義数 256 ってのも結構狭い…
+						</span>
+					</a>
 					<br/>
 					スプライトの表示に使う絵を、スプライトパターンと呼びます。
 					X68000 のスプライトパターン定義領域（絵を格納するメモリ領域）は、
@@ -312,9 +473,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						ハード設計時、コスト削減のためスプライト表示数が半分に減らされていた（推測）
-					</span>
+					<a name="The_number_of_sprite_displays_was_reduced_by_half_to_cut_costs">
+						<span class="emphasis1">
+							ハード設計時、コスト削減のためスプライト表示数が半分に減らされていた（推測）
+						</span>
+					</a>
 					<br/>
 
 					X68000 のディスプレイは、31KHz モードと呼ばれる高解像度表示が可能でした。
@@ -355,18 +518,22 @@
 			</ul>
 
 
-			<h2>
-				スプライト表示数上限をソフトウェアの力で（無理やり）拡張する
-			</h2>
+			<a name="Extend_the_max_number_of_sprites_displayed_forcibly_with_software">
+				<h2>
+					スプライト表示数上限をソフトウェアの力で（無理やり）拡張する
+				</h2>
+			</a>
 			スプライトが 128 枚しか出せないなら、増やせば良いじゃないか、ソフトウェアの力で！
 			ということで、当時のプログラマたちは、この問題を解決する手法を開発しました。
 			<br/>
 
 			<ul>
 				<li>
-					<span class="emphasis">
-						スプライトダブラーと呼ばれる手法
-					</span>
+					<a name="sprite_doubler">
+						<span class="emphasis1">
+							スプライトダブラーと呼ばれる手法
+						</span>
+					</a>
 					<br/>
 
 					当時のディスプレイはブラウン管を使っており、
@@ -377,10 +544,10 @@
 					走査線が過ぎ去った位置のスプライトは、すでにディスプレイ上に表示されているので、
 					移動してもそのフレーム中は消されることはありません。
 					そして、
-					<b><font color="#FFC080">
+					<span class="emphasis2">
 						すでに表示が済んだスプライトを走査線より下に持ってくることで、
 						再度走査線を通過させ表示する事が可能です。
-					</font></b>
+					</span>
 					このような手法を、スプライトダブラーと呼びます。
 					<br/><br/>
 
@@ -413,9 +580,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						スプライトダブラー採用事例
-					</span>
+					<a name="Example_of_Sprite_Doubler_being_used">
+						<span class="emphasis1">
+							スプライトダブラー採用事例
+						</span>
+					</a>
 					<br/>
 					X68000 上でスプライトダブラーを早くから利用していたタイトルとして、コナミの A-JAX があります。
 					このほか、電波新聞社によるキャメルトライの移植版では、
@@ -435,10 +604,11 @@
 			</ul>
 
 
-			<h2>
-				パターン定義数上限をソフトウェアの力で拡張する
-			</h2>
-
+			<a name="Extend_the_max_number_of_PCG_definitions">
+				<h2>
+					パターン定義数上限をソフトウェアの力で拡張する
+				</h2>
+			</a>
 			スプライトパターン定義数上限についても、
 			ソフトウェアの力で拡張できます。
 			ただし、スプライトダブラーのような特殊なテクニックは用いず、
@@ -447,9 +617,11 @@
 
 			<ul>
 				<li>
-					<span class="emphasis">
-						スプライトパターン定義領域は、キャッシュ領域だと考える
-					</span>
+					<a name="Consider_the_PCG_area_as_cache_area">
+						<span class="emphasis1">
+							スプライトパターン定義領域は、キャッシュ領域だと考える
+						</span>
+					</a>
 					<br/>
 					X68000 のスプライトパターン定義領域は 256 枚分しかありませんが、
 					これを 256 枚分のキャッシュ領域とみなせば、
@@ -469,9 +641,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						走査線の位置を考慮しながらスプライトパターン転送を行う
-					</span>
+					<a name="Consider_the_position_of_the_raster">
+						<span class="emphasis1">
+							走査線の位置を考慮しながらスプライトパターン転送を行う
+						</span>
+					</a>
 					<br/>
 					スプライトパターン転送を行う際は、
 					走査線が現在どのあたりにいるのかを考慮する必要があります。
@@ -491,14 +665,18 @@
 			</ul>
 
 
-			<h2>
-				スプライト表示優先度管理機能も必要
-			</h2>
+			<a name="priority_control_function">
+				<h2>
+					スプライト表示優先度管理機能も必要
+				</h2>
+			</a>
 			<ul>
 				<li>
-					<span class="emphasis">
-						スプライトには表示優先度の概念があるが、管理が難しい
-					</span>
+					<a name="priority_control_by_sprite_number_is_difficult_to_manage">
+						<span class="emphasis1">
+							スプライト番号による表示優先度管理は難しい
+						</span>
+					</a>
 					<br/>
 
 					スプライトには元々、表示優先度の概念があり、
@@ -515,9 +693,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						スプライト番号とは独立した「表示優先度」を導入
-					</span>
+					<a name="Introduce_a_display_priority_independent_of_sprite_number">
+						<span class="emphasis1">
+							スプライト番号とは独立した「表示優先度」を導入
+						</span>
+					</a>
 					<br/>
 
 					先に示したとおり、スプライト番号を明示的に扱うことによる表示優先度管理は困難です。
@@ -527,9 +707,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						高速なソートアルゴリズムが必要
-					</span>
+					<a name="Need_a_fast_sorting_algorithm">
+						<span class="emphasis1">
+							高速なソートアルゴリズムが必要
+						</span>
+					</a>
 					<br/>
 
 					このことはつまり、
@@ -541,17 +723,17 @@
 					スプライト表示優先度管理の戦略は大きく 2 つに分けられます。
 					<ol>
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								速度を優先したスタイル。
 								あらかじめ表示物同士を優先度順でリンク構造化。実行時にソートしない。
-							</font></b>
+							</span>
 							<br/>
 						</li>
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								柔軟性を優先したスタイル。
 								すべて実行時にソートする。
-							</font></b>
+							</span>
 							<br/>
 						</li>
 					</ol>
@@ -571,16 +753,20 @@
 			</ul>
 
 
-			<h2>
-				実装結果
-			</h2>
+			<a name="Implementation_Result">
+				<h2>
+					実装結果
+				</h2>
+			</a>
 			ここでは、実装例として、私が当時作成したスプライト管理システムである XSP をご紹介します。
 
 			<ul>
 				<li>
-					<span class="emphasis">
-						スプライト管理システム XSP
-					</span>
+					<a name="Sprite_management_system_XSP">
+						<span class="emphasis1">
+							スプライト管理システム XSP
+						</span>
+					</a>
 					<br/>
 
 					XSP は、
@@ -606,9 +792,11 @@
 
 
 				<li>
-					<span class="emphasis">
-						ハードウェア上限の 4 倍の表示数、パターン定義数（ほぼ）無制限を達成
-					</span>
+					<a name="Extend_sprite_count_by_4_times_Extend_PCG_count_by_128_times">
+						<span class="emphasis1">
+							ハードウェア上限の 4 倍の表示数、パターン定義数（ほぼ）無制限を達成
+						</span>
+					</a>
 					<br/>
 
 					スプライト表示数をハードウェア上限の 4 倍である 512 枚に、
@@ -626,9 +814,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						512 枚 = スプライト欠け無しで表示できる理論上の最大数
-					</span>
+					<a name="The_theoretical_max_number_of_sprites_that_can_be_displayed">
+						<span class="emphasis1">
+							512 枚 = スプライト欠け無しで表示できる理論上の最大数
+						</span>
+					</a>
 					<br/>
 					X68000 のスプライトは、横に 32 枚以上並べると、
 					横方向の表示数限界により 33 枚目以降は消えてしまいます。
@@ -646,9 +836,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						XSP のスプライトダブラー
-					</span>
+					<a name="Sprite_doubler_implementation_of_XSP">
+						<span class="emphasis1">
+							XSP のスプライトダブラー
+						</span>
+					</a>
 					<br/>
 					XSP のスプライトダブラーは、
 					128 枚のスプライトを 偶数番 奇数番 の 64 枚セットの 2 グループに分け、
@@ -677,9 +869,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						ラスター分割境界上での表示優先度破綻を軽減
-					</span>
+					<a name="Reduce_display_priority_collapse_on_raster_split_boundaries">
+						<span class="emphasis1">
+							ラスター分割境界上での表示優先度破綻を軽減
+						</span>
+					</a>
 					<br/>
 
 					ラスター分割ブロック上では、
@@ -749,9 +943,11 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
-						スプライト表示優先度管理と高速化
-					</span>
+					<a name="Sprite_display_priority_management_and_optimization">
+						<span class="emphasis1">
+							スプライト表示優先度管理と高速化
+						</span>
+					</a>
 					<br/>
 
 					XSP のスプライト表示優先度管理は、

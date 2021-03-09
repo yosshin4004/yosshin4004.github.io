@@ -105,9 +105,14 @@ div.bad_code {
 }
 
 /* 強調文字 */
-span.emphasis {
+span.emphasis1 {
 	color       : #FF4080;
 	font-weight : bold;
 	font-size   : larger;
 }
 
+/* 強調文字 */
+span.emphasis2 {
+	color       : #FFC080;
+	font-weight : bold;
+}

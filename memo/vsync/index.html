@@ -50,7 +50,7 @@
 			</h2>
 			<ul>
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						走査線（ラスター）
 					</span>
 					<br/>
@@ -81,7 +81,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						リフレッシュレート と フレームレート
 					</span>
 					<br/>
@@ -99,7 +99,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						処理落ち
 					</span>
 					<br/>
@@ -112,7 +112,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						HBLANK と VBLANK
 					</span>
 					<br/>
@@ -133,7 +133,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						HSYNC と VSYNC
 					</span>
 					<br/>
@@ -155,7 +155,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						フレームバッファの裏表とフリップ
 					</span>
 					<br/>
@@ -177,7 +177,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						ティアリング
 					</span>
 					<br/>
@@ -215,7 +215,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						スタッタリング
 					</span>
 					<br/>
@@ -247,7 +247,7 @@
 
 			<ul>
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						1980 年代 : 常時 VSYNC
 					</span>
 					<br/>
@@ -274,7 +274,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						1980 年代末 : VSYNC on/off 動的変更
 					</span>
 					<br/>
@@ -308,7 +308,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						GPU 登場初期 : 処理落ち時はティアリング発生覚悟で HSYNC フリップ
 					</span>
 					<br/>
@@ -348,7 +348,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						現行 GPU : トリプルバッファリングと、CPU の非同期化
 					</span>
 					<br/>
@@ -388,7 +388,7 @@
 
 			<ul>
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						PAL 方式と NTSC 方式とで周波数が異なる
 					</span>
 					<br/>
@@ -413,7 +413,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						古い PC やアーケードゲーム機のリフレッシュレート ≠ 60Hz
 					</span>
 					<br/>
@@ -459,7 +459,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						HSYNC フリップによるティアリングはスタッタリングを伴う
 					</span>
 					<br/>
@@ -502,7 +502,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						トリプルバッファリングによる遅延の増大問題
 					</span>
 					<br/>
@@ -545,7 +545,7 @@
 
 			<ul>
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						VSYNC とリフレッシュレート指定はフルスクリーンモード時のみ可能
 					</span>
 					<br/>
@@ -557,7 +557,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						VSYNC フリップが利用できる場合
 					</span>
 					<br/>
@@ -570,9 +570,9 @@
 
 					<ul>
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								Independent Flip モードにする
-							</font></b>
+							</span>
 							<br/>
 
 							まず、
@@ -589,9 +589,9 @@
 							<br/><br/>
 
 
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								トリプルバッファリングの CPU 先行実行を抑制する
-							</font></b>
+							</span>
 							<br/>
 
 							トリプルバッファリングは、
@@ -628,7 +628,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						VSYNC フリップが利用できず、HSYNC フリップを利用する場合
 					</span>
 					<br/>
@@ -640,9 +640,9 @@
 
 					<ul>
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								マルチメディアタイマを利用する方法
-							</font></b>
+							</span>
 							<br/>
 
 							Windows には、
@@ -671,9 +671,9 @@
 						</li>
 
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								パフォーマンスカウンタを利用する方法
-							</font></b>
+							</span>
 							<br/>
 
 							Windows には、
@@ -700,9 +700,9 @@
 						</li>
 
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								Adaptive HSYNC（HSYNC フリップの安定化）
-							</font></b>
+							</span>
 							<br/>
 
 							HSYNC フリップが発生する走査線の位置がフレーム毎に変動すると、

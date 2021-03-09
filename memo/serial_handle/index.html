@@ -48,7 +48,7 @@
 			</h2>
 			<ul>
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						解放済みメモリに対する不正アクセスは、ゲームプログラムでありがちで厄介なバグ
 					</span>
 					<br/>
@@ -71,7 +71,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						ポインタから参照先のメモリブロックの生存を知る方法が必要
 					</span>
 					<br/>
@@ -102,7 +102,7 @@
 			どのような使い方をするのかを説明します。
 			<ul>
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						シリアルハンドルの定義
 					</span>
 					<br/>
@@ -112,19 +112,19 @@
 					<br/>
 					<ul>
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								シリアルハンドルはポインタと相互に変換可能
-							</font></b>
+							</span>
 						</li>
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								無効なシリアルハンドルをポインタに変換すると NULL が得られる
-							</font></b>
+							</span>
 						</li>
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								同一のシリアルハンドル値は二度と出現しない
-							</font></b>
+							</span>
 						</li>
 					</ul>
 					<br/>
@@ -132,7 +132,7 @@
 
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						シリアルハンドルの使い方
 					</span>
 					<br/>
@@ -151,7 +151,7 @@
 
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						シリアルハンドル利用コードの例
 					</span>
 					<br/>
@@ -213,7 +213,7 @@
 				<br/><br/>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						シリアル値とハンドル値のそれぞれに割り当てるビット数を決定する
 					</span>
 					<br/>
@@ -241,7 +241,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						固定長の管理テーブルを用意する
 					</span>
 					<br/>
@@ -266,7 +266,7 @@
 
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						同じハンドル値が生成される度にシリアル値をインクリメントする
 					</span>
 					<br/>
@@ -285,16 +285,16 @@
 
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						シリアルハンドル API の具体的実装
 					</span>
 					<br/>
 
 					<ul>
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								ポインタ → シリアルハンドル変換 API
-							</font></b>
+							</span>
 							<br/>
 
 							現在未使用のハンドルを一つ選んで、
@@ -324,9 +324,9 @@
 						</li>
 
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								シリアルハンドル → ポインタ変換 API
-							</font></b>
+							</span>
 							<br/>
 
 							ハンドル値をインデクスとしてテーブルを参照して、
@@ -347,9 +347,9 @@
 						</li>
 
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								シリアルハンドル破棄 API
-							</font></b>
+							</span>
 							<br/>
 
 							ハンドル値をインデクスとしてテーブルを参照して、
@@ -374,7 +374,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						実装例
 					</span>
 					<br/>
@@ -392,7 +392,7 @@
 			</h2>
 			<ul>
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						想定シチュエーション
 					</span>
 					<br/>
@@ -402,24 +402,24 @@
 
 					<ul>
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								あなたは、複数のプログラマとチーム開発を行っている。
-							</font></b>
+							</span>
 						</li>
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								あなたは、あるオブジェクトの生成・更新・削除の API を実装し、チームに提供しなければならない。
-							</font></b>
+							</span>
 						</li>
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								その API は、どのような間違った使い方をされるか全く予想がつかない。
-							</font></b>
+							</span>
 						</li>
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								ハッカー気質なプログラマが、中を解析して想定外な使い方をしてくる可能性がある。
-							</font></b>
+							</span>
 						</li>
 					</ul>
 					<br/>
@@ -430,7 +430,7 @@
 
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						シリアルハンドルを使えば安全
 					</span>
 					<br/>
@@ -446,9 +446,9 @@
 
 					<ul>
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								シリアルハンドル 使用前
-							</font></b>
+							</span>
 							<br/>
 <pre><code>
 	struct Obj {
@@ -465,9 +465,9 @@
 						</li>
 
 						<li>
-							<b><font color="#FFC080">
+							<span class="emphasis2">
 								シリアルハンドル 使用後
-							</font></b>
+							</span>
 							<br/>
 <pre><code>
 	typedef uint32_t ObjHandle;
@@ -493,7 +493,7 @@
 				</li>
 
 				<li>
-					<span class="emphasis">
+					<span class="emphasis1">
 						シリアルハンドルを使えば、非公開領域への直接アクセスや解析を回避できる
 					</span>
 					<br/>
