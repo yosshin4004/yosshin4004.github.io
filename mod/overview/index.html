@@ -40,13 +40,13 @@
 			<h2>
 				概要
 			</h2>
-			<ul>
-				<li>
+			<dl>
+				<dt>
 					<span class="emphasis1">
 						MOD とは
 					</span>
-					<br/>
-
+				</dt>
+				<dd>
 					MOD はミュージックフォーマットの一種です。
 					初期は MOD 形式のみでしたが、
 					その後派生して、S3M 形式 / XM 形式 / IT 形式などの様々なバリエーションが登場しました。
@@ -55,28 +55,28 @@
 					それ以降フォーマットが拡張されることはありませんでした。
 					4 つの形式の中で、主流とされるのは XM 形式 です。
 					<br/><br/>
-				</li>
+				</dd>
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						MOD の音色データはサンプリング音のみが利用可能
 					</span>
-					<br/>
-
+				</dt>
+				<dd>
 					MOD データは音色を定義するサンプリングデータと、
 					音を並べて曲を作るためのシーケンス情報から構成されます。
 					音色データは、サンプリング音以外は利用できません。
 					たとえ矩形波や三角波などの単純な波形であっても、
 					サンプリング音として用意する必要があります。
 					<br/><br/>
-				</li>
+				</dd>
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						MOD データは楽曲データの中身がまる見せなフォーマットである
 					</span>
-					<br/>
-
+				</dt>
+				<dd>
 					MOD データにはソースコードという概念がなく、
 					楽曲データ = ソースコード となっています。
 					したがって、楽曲データの中を覗くと、構成する音色情報やシーケンス情報などすべての情報がまる見せになっています。
@@ -87,70 +87,70 @@
 					またアーティスト同士が相互に刺激しあう（パクリ合う）きっかけを作り、
 					コミュニティを発展させることにつながりました。
 					<br/><br/>
-				</li>
-			</ul>
+				</dd>
+			</dl>
 
 
 			<h2>
 				MOD の長所・短所
 			</h2>
-			<ul>
-				<li>
+			<dl>
+				<dt>
 					<span class="emphasis1">
 						MOD の長所
 					</span>
-					<br/>
-
-					<ul>
-						<li>
+				</dt>
+				<dd>
+					<dl>
+						<dt>
 							<span class="emphasis2">
 								再生結果が再生機材に依存しない
 							</span>
-							<br/>
-
+						</dt>
+						<dd>
 							データファイル内に音色データをサンプリングデータとして持つので、
 							MIDI 音源等の様に使っている機材毎に再生結果が異なるといった心配がありません。
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis2">
 								データサイズが比較的小さい
 							</span>
-							<br/>
-
+						</dt>
+						<dd>
 							楽曲データは音色定義のための短いサンプリング音とシーケンスデータで構成されるので、
 							mp3 等のストリーミング系のフォーマットに比べデータサイズを小さくできます。
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis2">
 								枯れたフォーマットである
 							</span>
-							<br/>
-
+						</dt>
+						<dd>
 							これ以上改変されることがないフォーマットです。
 							フォーマットのバージョンによって動作が異なるなどの心配がないので、
 							安心して楽曲データ作成に集中することができます。
 							<br/><br/>
-						</li>
-					</ul>
-				</li>
+						</dd>
+					</dl>
+				</dd>
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						MOD の短所
 					</span>
-					<br/>
-
-					<ul>
-						<li>
+				</dt>
+				<dd>
+					<dl>
+						<dt>
 							<span class="emphasis2">
 								再生結果が再生ソフトによって異なる
 							</span>
-							<br/>
-
+						</dt>
+						<dd>
 							MOD の再生結果は、再生ソフトによって異なります。
 							同様にデータ作成ツールごとに方言があり、
 							再生ソフトの相性次第で再生結果が異なります。
@@ -162,14 +162,14 @@
 							例えば MOD データを単体で WEB 上で配布するような場合は、
 							推奨再生環境をしっかり指定しておく必要があります。
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis2">
 								フォーマットの完全な仕様書は存在しない
 							</span>
-							<br/>
-
+						</dt>
+						<dd>
 							フォーマットの仕様書は存在するのですが、
 							事実上の標準となっているのは、主要な MOD 作成ソフトおよび再生ソフトの挙動そのものです。
 							仕様書に書かれていないような細かな動作の違い、解釈の違い、実装バグ等々が、再生結果に影響を与えます。
@@ -189,10 +189,10 @@
 							歴史的な経緯でフルアセンブラ実装だったりするため、
 							それらを移植することはとても困難です。
 							<br/><br/>
-						</li>
-					</ul>
-				</li>
-			</ul>
+						</dd>
+					</dl>
+				</dd>
+			</dl>
 
 			<h2>
 				MOD がサポートする機能
@@ -235,71 +235,71 @@
 			</ul>
 			<br/>
 
-
 			<h2>
 				MOD データの構成要素
 			</h2>
 			MOD データは以下に挙げる要素で構成されています。
-			<ul>
-				<li>
+			<dl>
+				<dt>
 					<span class="emphasis1">
 						Note
 					</span>
-					<br/>
-
+				</dt>
+				<dd>
 					音符に相当します。音階、音色、音量、エフェクト等の情報をまとめたものです。
 					<br/><br/>
-				</li>
+				</dd>
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						Row
 					</span>
-					<br/>
-
+				</dt>
+				<dd>
 					各チャンネルの Note を横一列に記述した行を Row と呼びます。
 					これはある瞬間の各チャンネルの発声状況を記述したものです。
 					<br/><br/>
-				</li>
+				</dd>
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						Pattern
 					</span>
-					<br/>
-
+				</dt>
+				<dd>
 					１小節相当の演奏内容を記述したものです。
 					Row を縦に羅列したものです。
 					<br/><br/>
-				</li>
+				</dd>
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						Sequence
 					</span>
-					<br/>
-
+				</dt>
+				<dd>
 					Pattern の演奏順序を数字の羅列で示したものです。
 					Sequence は Order とも呼ばれます。
 					<br/><br/>
-				</li>
+				</dd>
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						Sample
 					</span>
-					<br/>
+				</dt>
+				<dd>
 					サンプリングデータ、つまり音色の波形データです。
 					ループ再生の指定等が可能です。
 					<br/><br/>
-				</li>
+				</dd>
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						Instrument
 					</span>
-					<br/>
-
+				</dt>
+				<dd>
 					音色データです。以下のような情報を含んでいます。
 					<br/>
 
@@ -314,8 +314,8 @@
 							自動ビブラートの形状
 						</li>
 					</ul>
-				</li>
-			</ul>
+				</dd>
+			</dl>
 			要約すると、
 			各チャンネルの音符（=Note）と音色（=Sample &amp; Instrument）の情報を横に記述した行（=Row）を、
 			さらに縦に並べて１小節（=Pattern）分のデータを作ったのち、
@@ -327,13 +327,13 @@
 				MOD データの作成
 			</h2>
 			MOD データ作成ツールは、一般的に Tracker と呼ばれています。
-			<ul>
-				<li>
+			<dl>
+				<dt>
 					<span class="emphasis1">
 						OpenMPT 
 					</span>
-					<br/>
-
+				</dt>
+				<dd>
 					一般的な Windows アプリケーションの体裁をもつトラッカーです。
 
 					<a href="https://openmpt.org/" target="top">
@@ -348,14 +348,14 @@
 						OpenMPT
 					</center>
 					<br/>
-				</li>
+				</dd>
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						FastTracker II
 					</span>
-					<br/>
-
+				</dt>
+				<dd>
 					FastTracker II は、
 					XM 形式開発チームによるオリジナル実装です。
 					長らくメンテナンスが途絶えていましたが、
@@ -377,19 +377,20 @@
 						ft2-clone
 					</center>
 					<br/>
-				</li>
-			</ul>
+				</dd>
+			</dl>
 
 
 			<h2>
 				MOD データの再生
 			</h2>
-			<ul>
-				<li>
+			<dl>
+				<dt>
 					<span class="emphasis1">
 						おすすめ再生ソフト
 					</span>
-					<br/>
+				</dt>
+				<dd>
 					<a href="https://wiki.openmpt.org/Libopenmpt" target="top">
 						XMPlay
 					</a>
@@ -405,8 +406,8 @@
 						XMPlay
 					</center>
 					<br/>
-				</li>
-			</ul>
+				</dd>
+			</dl>
 
 
 			<h2>

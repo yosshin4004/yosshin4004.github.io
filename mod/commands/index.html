@@ -38,12 +38,13 @@
 			原文上で内容が欠落している部分は、訳注として可能な限り補っておきました。
 
 
-			<ul>
-				<li>
+			<dl>
+				<dt>
 					<span class="emphasis1">
 						書式について
 					</span>
-					<br/>
+				</dt>
+				<dd>
 					音階の後ろにつける数字は、オクターブを示しています。
 					<br/>
 					例）
@@ -55,56 +56,59 @@
 							C#4
 						</li>
 					</ul>
-					<br/>
-				</li>
+				</dd>
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						用語について
 					</span>
-					<br/>
+				</dt>
+				<dd>
 					note , row , pattern , order , sequence については、
 					<a href="../overview/index.html">
 						こちら
 					</a>
 					を参照。
 					<br/>
-				</li>
 
-				<ul>
-					<li>
-						<b>
-							tick
-						</b>
-						<br/>
-						最小時簡単位です。
-						AMIGA 生まれの MOD では、VSync に同期していたので、
-						PAL 周期の 1/50 秒が単位で不変だったようですが、
-						その後 tempo に合わせて可変になったようです。
-						<br/><br/>
-					</li>
+					<dl>
+						<dt>
+							<span class="emphasis2">
+								tick
+							</span>
+						</dt>
+						<dd>
+							最小時簡単位です。
+							AMIGA 生まれの MOD では、VSync に同期していたので、
+							PAL 周期の 1/50 秒が単位で不変だったようですが、
+							その後 tempo に合わせて可変になったようです。
+							<br/><br/>
+						</dd>
 
-					<li>
-						<b>
-							speed
-						</b>
-						<br/>
-						row（行）が 1 つ進むのに、何 tick 要するかを示す値。
-						小さいほど、再生が速くなります。
-						<br/><br/>
-					</li>
+						<dt>
+							<span class="emphasis2">
+								speed
+							</span>
+						</dt>
+						<dd>
+							row（行）が 1 つ進むのに、何 tick 要するかを示す値。
+							小さいほど、再生が速くなります。
+							<br/><br/>
+						</dd>
 
-					<li>
-						<b>
-							tempo
-						</b>
-						<br/>
-						BPM です。つまり、秒間 beat 数です。1 beat = 4 row と、
-						MOD 形式の資料にはありました。
-						<br/><br/>
-					</li>
-				</ul>
-			</ul>
+						<dt>
+							<span class="emphasis2">
+								tempo
+							</span>
+						</dt>
+						<dd>
+							BPM です。つまり、秒間 beat 数です。1 beat = 4 row と、
+							MOD 形式の資料にはありました。
+							<br/><br/>
+						</dd>
+					</dl>
+				</dd>
+			</dl>
 
 			<h2>
 				Arpeggio (MOD/XM: 0xy, S3M/IT: Jxy)
@@ -452,148 +456,163 @@
 					拡張 MOD コマンド 
 					（訳注：MOD 専用拡張コマンド。詳細不明です。
 					以下は私が ModPlug Tracker 上で確認したコマンド名と、その詳細の解析結果にすぎません。）
-					<ul>
-						<li>
+					<dl>
+						<dt>
 							<span class="emphasis1">
 								E1x: Fine Portamento Up
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：音程を上昇させます。
 							コマンド 1xy (Portamento Up) と似ていますが、持続的な音程の上昇はありません。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								E2x: Fine Portamento Down
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：音程を下降させます。
 							コマンド 2xy (Portamento Down) と似ていますが、持続的な音程の下降はありません。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								E3x: Grissando Control
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：S3M/IT のコマンド S1x と互換機能です。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								E4x: Vibrato waveform
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：S3M/IT のコマンド S3x と互換機能です。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								E5x: Set Finetune（MOD 形式のみサポート）
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：サンプリングの Finetune 値を x に変更します。MOD 形式でのみ機能します。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								E6x: Pattern loop
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：S3M/IT のコマンド SBx と互換機能です。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								E7x: Tremolo waveform
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：S3M/IT のコマンド S4x と互換機能です。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								E8x: Set Pannning
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：S3M/IT のコマンド S8x と互換機能です。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								E9x: Retrigger note
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：これは妙な機能です。x-1 tick おきに、指定の note の発声を行います。
 							x が 0 の時は、1 を指定した時と同じ結果が得られます。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								EAx: Fine volslide up
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：音量を上昇させます。
 							コマンド 6xy (Volume Slide) と似ていますが、持続的な音程の変化はありません。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								EBx: Fine volslide down
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：音量を下降させます。
 							コマンド 6xy (Volume Slide) と似ていますが、持続的な音程の変化はありません。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								ECx: Note cut
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：x tick 後に、
 							音量を 0 にすることで、チャンネルの発声を停止します。
 							音量が 0 になっているに過ぎず、発声処理自体は継続されています。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								EDx: Note delay
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：S3M/IT のコマンド SDx と互換機能です。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								EEx: Pattern delay
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：S3M/IT のコマンド SEx と互換機能です。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								EFx: Set active macro（XM形式のみサポート）
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：S3M/IT のコマンド SFx と互換機能です。）
-						</li>
-					</ul>
+						</dd>
+					</dl>
 				</font>
 			</blockquote>
 
@@ -755,91 +774,142 @@
 					拡張 S3M コマンド
 				</font>
 			</blockquote>
-			<ul>
-				<li>
+			<dl>
+				<dt>
 					<span class="emphasis1">
 						S1x: Glissando Control
 					</span>
-				</li>
-				Active (S11) or desactive (S10) the glissando.
-				When glissando is active, tone-portamento effects will slide by semitones. 
-				<blockquote>
-					<font color="#C0FFC0">
-						グリッサンド（滑奏法）コントロール。
-						コマンド S11 でグリッサンドが有効となり、コマンド S10 でグリッサンドが無効となります。
-						グリッサンドが有効のとき、tone-portamento は半音単位でスライドします。
-					</font>
-				</blockquote>
+				</dt>
+				<dd>
+					Active (S11) or desactive (S10) the glissando.
+					When glissando is active, tone-portamento effects will slide by semitones. 
+					<blockquote>
+						<font color="#C0FFC0">
+							グリッサンド（滑奏法）コントロール。
+							コマンド S11 でグリッサンドが有効となり、コマンド S10 でグリッサンドが無効となります。
+							グリッサンドが有効のとき、tone-portamento は半音単位でスライドします。
+						</font>
+					</blockquote>
+				</dd>
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						S2x: Set finetune
 					</span>
-				</li>
-				This effect is only provided for MOD compatibility. 
-				<blockquote>
-					<font color="#C0FFC0">
-						このコマンドは、MOD 形式との互換性の為に用意されています。
-					</font>
-				</blockquote>
+				</dt>
+				<dd>
+					This effect is only provided for MOD compatibility. 
+					<blockquote>
+						<font color="#C0FFC0">
+							このコマンドは、MOD 形式との互換性の為に用意されています。
+						</font>
+					</blockquote>
+				</dd>
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						S3x: Set vibrato waveform
 					</span>
-				</li>
-				S30,S34: Sine
-				<br/>
-				S31,S35: Triangle
-				<br/>
-				S32,S36: Square
-				<br/>
-				S33,S37: Random
-				<br/><br/>
-				For S34,S35,S36,S37, the vibrato position will not be reset to zero when a new note is being played.
-				<br/>
-				<blockquote>
-					<font color="#C0FFC0">
-						S30,S34: サイン波
-						<br/>
-						S31,S35: ノコギリ波（訳注：三角波ではないので注意。左上がりのノコギリ波。）
-						<br/>
-						S32,S36: 矩形波
-						<br/>
-						S33,S37: ランダム波
-						<br/><br/>
-						S34,S35,S36,S37 が指定された場合は、
-						ビブラートの波形位置を 0 に初期化せずに次の音符が再生されます。
-						<br/><br/>
-						（訳注：ランダム波の解釈はプレイヤー毎に異なる部分なので注意です。
-						ある資料では、ランダム波は波形がランダムの意味ではなく、
-						サイン波 / ノコギリ波 / 矩形波 の中からランダムに選ばれるの意味だ
-						となっていました。CubicPlayer では、ランダム波そのものが存在せず、
-						右上がりのノコギリ波となっています。ModPlug Tracker にて確認したところでは、
-						マニュアルにある通り、ランダムな波形（しかも周期的な波形）が適用されているようでした。）
-					</font>
-				</blockquote>
+				</dt>
+				<dd>
+					<dl>
+						<dt>
+							S30,S34
+						</dt>
+						<dd>
+							Sine
+						</dd>
+
+						<dt>
+							S31,S35
+						</dt>
+						<dd>
+							Triangle
+						</dd>
+
+						<dt>
+							S32,S36
+						</dt>
+						<dd>
+							Square
+						</dd>
+
+						<dt>
+							S33,S37
+						</dt>
+						<dd>
+							Random
+						</dd>
+					</dl>
+
+					For S34,S35,S36,S37, the vibrato position will not be reset to zero when a new note is being played.
+					<br/>
+					<blockquote>
+						<font color="#C0FFC0">
+							<dl>
+								<dt>
+									S30,S34
+								</dt>
+								<dd>
+									サイン波
+								</dd>
+
+								<dt>
+									S31,S35
+								</dt>
+								<dd>
+									ノコギリ波（訳注：三角波ではないので注意。左上がりのノコギリ波。）
+								</dd>
+
+								<dt>
+									S32,S36
+								</dt>
+								<dd>
+									矩形波
+								</dd>
+
+								<dt>
+									S33,S37
+								</dt>
+								<dd>
+									ランダム波
+								</dd>
+							</dl>
+							S34,S35,S36,S37 が指定された場合は、
+							ビブラートの波形位置を 0 に初期化せずに次の音符が再生されます。
+							<br/><br/>
+							（訳注：ランダム波の解釈はプレイヤー毎に異なる部分なので注意です。
+							ある資料では、ランダム波は波形がランダムの意味ではなく、
+							サイン波 / ノコギリ波 / 矩形波 の中からランダムに選ばれるの意味だ
+							となっていました。CubicPlayer では、ランダム波そのものが存在せず、
+							右上がりのノコギリ波となっています。ModPlug Tracker にて確認したところでは、
+							マニュアルにある通り、ランダムな波形（しかも周期的な波形）が適用されているようでした。）
+						</font>
+					</blockquote>
+				</dd>
 
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						S4x: Set tremolo waveform
 					</span>
-					<br/>
+				</dt>
+				<dd>
 					Same thing then S3x, but selects the tremolo waveform. 
 					<blockquote>
 						<font color="#C0FFC0">
 							コマンド S3x に似ていますが、このコマンドでは tremolo の波形を指定します。
 						</font>
 					</blockquote>
-				</li>
+				</dd>
 
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						S5x: Set panbrello waveform
 					</span>
-					<br/>
+				</dt>
+				<dd>
 					Same thing then S3x, but selects the panbrello waveform. 
 					<blockquote>
 						<font color="#C0FFC0">
@@ -847,200 +917,214 @@
 							（訳注：panbrello は、パン位置を指定の波形で変動させる機能です。）
 						</font>
 					</blockquote>
-				</li>
+				</dd>
 
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						S6x: Pattern delay for x frames
 					</span>
-					<br/>
+				</dt>
+				<dd>
 					This will delay the playback of the current row by x ticks (beats). 
 					<blockquote>
 						<font color="#C0FFC0">
 							このコマンドは、現在の行の再生を、x tick 遅れて行います。
 						</font>
 					</blockquote>
-				</li>
+				</dd>
 
 
-				<li>
+				<dt>
 					<span class="emphasis1">
 						S7x: Envelope and New Note Action (NNA) control
 					</span>
-					<br/>
-					<ul>
-						<li>
+				</dt>
+				<dd>
+					<dl>
+						<dt>
 							<b>
-								S70
+								S70: Cut all background notes
 							</b>
-							: Cut all background notes:
+						</dt>
+						<dd>
 							 this will cut all the notes that have been triggered by NNA effects
-						</li>
-						<li>
+						</dd>
+
+						<dt>
 							<b>
-								S71
+								S71: Release all background notes
 							</b>
-							: Release all background notes: this is similar to S70, but with Key Off instead of Cut
-						</li>
-						<li>
+						</dt>
+						<dd>
+							this is similar to S70, but with Key Off instead of Cut
+						</dd>
+
+						<dt>
 							<b>
-								S72
+								S72: Fade all background notes
 							</b>
-							: Fade all background notes: similar to S70, but will fade the notes,
-							 using the fadeout value of the instrument 
-						</li>
-						<li>
+						</dt>
+						<dd>
+							similar to S70, but will fade the notes,
+							using the fadeout value of the instrument 
+						</dd>
+
+						<dt>
 							<b>
-								S73
+								S73: Set NNA to Note Cut 
 							</b>
-							: Set NNA to Note Cut 
-						</li>
-						<li>
+						</dt>
+
+						<dt>
 							<b>
-								S74
+								S74: Set NNA to Continue 
 							</b>
-							: Set NNA to Continue 
-						</li>
-						<li>
+						</dt>
+
+						<dt>
 							<b>
-								S75
+								S75: Set NNA to Note Off 
 							</b>
-							: Set NNA to Note Off 
-						</li>
-						<li>
+						</dt>
+
+						<dt>
 							<b>
-								S76
+								S76: Set NNA to Note Fade 
 							</b>
-							: Set NNA to Note Fade 
-						</li>
-						<li>
+						</dt>
+
+						<dt>
 							<b>
-								S77
+								S77: Disable volume envelope 
 							</b>
-							: Disable volume envelope 
-						</li>
-						<li>
+						</dt>
+
+						<dt>
 							<b>
-								S78
+								S78: Enable volume envelope 
 							</b>
-							: Enable volume envelope 
-						</li>
-						<li>
+						</dt>
+
+						<dt>
 							<b>
-								S79
+								S79: Disable panning envelope 
 							</b>
-							: Disable panning envelope 
-						</li>
-						<li>
+						</dt>
+
+						<dt>
 							<b>
-								S7A
+								S7A: Enable panning envelope 
 							</b>
-							: Enable panning envelope 
-						</li>
-						<li>
+						</dt>
+
+						<dt>
 							<b>
-								S7B
+								S7B: Disable pitch/filter envelope 
 							</b>
-							: Disable pitch/filter envelope 
-						</li>
-						<li>
+						</dt>
+
+						<dt>
 							<b>
-								S7C
+								S7C: Enable pitch/Filter envelope 
 							</b>
-							: Enable pitch/Filter envelope 
-						</li>
-					</ul>
+						</dt>
+					</dl>
 					<blockquote>
 						<font color="#C0FFC0">
-							<ul>
-								<li>
+							<dl>
+								<dt>
 									<b>
-										S70
+										S70: すべての background note を停止します。
 									</b>
-									: すべての background note を停止します。：
+								</dt>
+								<dd>
 									他の NNA エフェクトで起動したすべての音符を、カットします。
-								</li>
-								<li>
+								</dd>
+
+								<dt>
 									<b>
-										S71
+										S71: すべての background note を開放します。
 									</b>
-									: すべての background note を開放します。: 
+								</dt>
+								<dd>
 									コマンド S70 に似ていますが、カットするかわりにキーを OFF にします。
-								</li>
-								<li>
+								</dd>
+
+								<dt>
 									<b>
-										S72
+										S72: すべての background note をフェードします。
 									</b>
-									: すべての background note をフェードします。: 
+								</dt>
+								<dd>
 									コマンド S70 に似ていますが、
 									音符をインストゥールメントのフェード値に合わせてフェードします。
-								</li>
-								<li>
+								</dd>
+
+								<dt>
 									<b>
-										S73
+										S73: Set NNA to Note Cut（訳注：詳細不明）
 									</b>
-									: Set NNA to Note Cut（訳注：なんでしょ？）
-								</li>
-								<li>
+								</dt>
+
+								<dt>
 									<b>
-										S74
+										S74: Set NNA to Continue（訳注：詳細不明）
 									</b>
-									: Set NNA to Continue（訳注：なんでしょ？）
-								</li>
-								<li>
+								</dt>
+
+								<dt>
 									<b>
-										S75
+										S75: Set NNA to Note Off（訳注：詳細不明）
 									</b>
-									: Set NNA to Note Off（訳注：なんでしょ？）
-								</li>
-								<li>
+								</dt>
+
+								<dt>
 									<b>
-										S76
+										S76: Set NNA to Note Fade（訳注：詳細不明）
 									</b>
-									: Set NNA to Note Fade（訳注：なんでしょ？）
-								</li>
-								<li>
+								</dt>
+
+								<dt>
 									<b>
-										S77
+										S77: volume envelope 無効化
 									</b>
-									: volume envelope 禁止
-								</li>
-								<li>
+								</dt>
+
+								<dt>
 									<b>
-										S78
+										S78: volume envelope 有効化
 									</b>
-									: volume envelope 許可
-								</li>
-								<li>
+								</dt>
+
+								<dt>
 									<b>
-										S79
+										S79: panning envelope 無効化
 									</b>
-									: panning envelope 禁止
-								</li>
-								<li>
+								</dt>
+
+								<dt>
 									<b>
-										S7A
+										S7A: panning envelope 有効化
 									</b>
-									: panning envelope 許可
-								</li>
-								<li>
+								</dt>
+
+								<dt>
 									<b>
-										S7B
+										S7B: pitch/filter envelope 無効化
 									</b>
-									: pitch/filter envelope 禁止
-								</li>
-								<li>
+								</dt>
+
+								<dt>
 									<b>
-										S7C
+										S7C: pitch/Filter envelope 有効化
 									</b>
-									: pitch/Filter envelope 許可
-								</li>
-							</ul>
+								</dt>
+							</dl>
 						</font>
 					</blockquote>
-				</li>
-			</ul>
+				</dd>
+			</dl>
 
 
 
@@ -1058,168 +1142,198 @@
 			<h2>
 				S9x: Extended Channel Effects
 			</h2>
-			<ul>
-				<li>
+			<dl>
+				<dt>
 					<b>
-						S90
+						S90: Disable surround for the current channel
 					</b>
-					: Disable surround for the current channel
-				</li>
-				<li>
+				</dt>
+
+				<dt>
 					<b>
-						S91
+						S91: Enable surround for the current channel.
 					</b>
-					: Enable surround for the current channel.
-					 Note that a panning effect will automatically desactive the surround,
-					 unless the 4-way (Quad) surround mode has been activated with the S9B effect.
-				</li>
-				<li>
+				</dt>
+				<dd>
+					Note that a panning effect will automatically desactive the surround,
+					unless the 4-way (Quad) surround mode has been activated with the S9B effect.
+				</dd>
+
+				<dt>
 					<b>
-						S98
+						S98: Disable reverb for this channel
 					</b>
-					: Disable reverb for this channel
-				</li>
-				<li>
+				</dt>
+
+				<dt>
 					<b>
-						S99
+						S99: Force reverb for this channel
 					</b>
-					: Force reverb for this channel
-				</li>
-				<li>
+				</dt>
+
+				<dt>
 					<b>
-						S9A
+						S9A: Select mono surround mode (center channel)
 					</b>
-					: Select mono surround mode (center channel). This is the default
-				</li>
-				<li>
+				</dt>
+				<dd>
+					This is the default.
+				</dd>
+
+				<dt>
 					<b>
-						S9B
+						S9B: Select quad surround mode
 					</b>
-					: Select quad surround mode: this allows you to pan in the rear channels,
-					 especially useful for 4-speakers playback.
-					 Note that S9A and S9B do not activate the surround for the current channel,
-					 it is a global setting that will affect the behavior of the surround for all channels.
-					 You can enable or disable the surround for individual channels
-					 by using the S90 and S91 effects.
-					 In quad surround mode, the channel surround will stay active
-					 until explicitely disabled by a S90 effect
-				</li>
-				<li>
+				</dt>
+				<dd>
+					this allows you to pan in the rear channels,
+					especially useful for 4-speakers playback.
+					Note that S9A and S9B do not activate the surround for the current channel,
+					it is a global setting that will affect the behavior of the surround for all channels.
+					You can enable or disable the surround for individual channels
+					by using the S90 and S91 effects.
+					In quad surround mode, the channel surround will stay active
+					until explicitely disabled by a S90 effect
+				</dd>
+
+				<dt>
 					<b>
-						S9C
+						S9C: Select global filter mode (IT compatibility).
 					</b>
-					: Select global filter mode (IT compatibility).
+				</dt>
+				<dd>
 					 This is the default, when resonant filters are enabled with a Zxx effect,
 					 they will stay active until explicitely disabled
 					 by setting the cutoff frequency to the maximum (Z7F),
 					 and the resonance to the minimum (Z80).
-				</li>
-				<li>
+				</dd>
+
+				<dt>
 					<b>
-						S9D
+						S9D: Select local filter mode (MPT beta compatibility)
 					</b>
-					: Select local filter mode (MPT beta compatibility):
-					 when this mode is selected, the resonant filter will only affetc the current note.
-					 It will be deactivated when a new note is being played.
-				</li>
-				<li>
+				</dt>
+				<dd>
+					when this mode is selected, the resonant filter will only affetc the current note.
+					It will be deactivated when a new note is being played.
+				</dd>
+
+				<dt>
 					<b>
-						S9E
+						S9E: Play forward
 					</b>
-					: Play forward. You may use this to temporarily force the direction of a bidirectional loop
+				</dt>
+				<dd>
+					You may use this to temporarily force the direction of a bidirectional loop
 					to go forward.
-				</li>
-				<li>
+				</dd>
+
+				<dt>
 					<b>
-						S9F
+						S9F: Play backward
 					</b>
-					: Play backward. The current instrument will be played backwards,
-					 or it will temporarily set the direction of a loop to go backward. 
-				</li>
-			</ul>
+				</dt>
+				<dd>
+					The current instrument will be played backwards,
+					or it will temporarily set the direction of a loop to go backward. 
+				</dd>
+			</dl>
 			<blockquote>
 				<font color="#C0FFC0">
-					<ul>
-						<li>
+					<dl>
+						<dt>
 							<b>
-								S90
+								S90: 現行チャンネルのサラウンドを無効化します
 							</b>
-							: 現行チャンネルのサラウンドを禁止します。
-						</li>
-						<li>
+						</dt>
+
+						<dt>
 							<b>
-								S91
+								S91: 現行チャンネルのサラウンドを有効化します
 							</b>
-							: 現行チャンネルのサラウンドを許可します。
+						</dt>
+						<dd>
 							コマンド S9B により、4-way (クアッド) サラウンドモードが有効に
 							されていた場合は、パン エフェクトは自動的に無効化します。
-						</li>
-						<li>
+						</dd>
+
+						<dt>
 							<b>
-								S98
+								S98: このチャンネルのリバーブエフェクトを無効化します
 							</b>
-							: このチャンネルのリバーブエフェクトを禁止します。
-						</li>
-						<li>
+						</dt>
+
+						<dt>
 							<b>
-								S99
+								S99: このチャンネルに、強制的にリバーブをかけます
 							</b>
-							: このチャンネルに、強制的にリバーブをかけます。
-						</li>
-						<li>
+						</dt>
+
+						<dt>
 							<b>
-								S9A
+								S9A: モノサラウンドモードを選択（センターチャンネル）
 							</b>
-							: モノサラウンドモードを選択（センターチャンネル（訳注：なんでしょう？））。
+						</dt>
+						<dd>
 							これはデフォルト状態です。
-						</li>
-						<li>
+						</dd>
+
+						<dt>
 							<b>
-								S9B
+								S9B: クアッド サラウンドモード を選択します
 							</b>
-							: クアッド サラウンドモード を選択します。これは、後部チャンネルへのパンを
-							許可するもので、特に 4 つのスピーカーで再生する時に便利です。
+						</dt>
+						<dd>
+							これは、後部チャンネルへのパンを許可するもので、特に 4 つのスピーカーで再生する時に便利です。
 							コマンド S9A と S9B は、現行チャンネルのサラウンドを有効にせず、
 							影響するのはグローバルの設定であり、すべてのチャンネルに対して効果が出ます。
-							コマンド S90 と S91 で、チャンネル毎に個別にサラウンドの 許可 / 禁止 を設定できます。
-							クアッドサラウンドモードでは、特にコマンド S90 で禁止をしない限りは、
+							コマンド S90 と S91 で、チャンネル毎に個別にサラウンドの 有効化 / 無効化 を設定できます。
+							クアッドサラウンドモードでは、特にコマンド S90 で無効化をしない限りは、
 							サラウンド機能は有効であり続けます。
-						</li>
-						<li>
+						</dd>
+
+						<dt>
 							<b>
-								S9C
+								S9C: グローバルフィルターモードを選択します（IT 形式互換）
 							</b>
-							: グローバルフィルターモードを選択します（IT 形式互換）。
+						</dt>
+						<dd>
 							これは、コマンド Zxx にて resonant filter が有効になっている時、
 							またはカットオフ周波数をコマンド Z7F にて最大にもしくはコマンド Z80 にて
-							最小に設定することで明示的に禁止されない限り、デフォルト状態である
+							最小に設定することで明示的に無効化されない限り、デフォルト状態である
 							（訳注：この付近の訳は自信無し）。
-						</li>
-						<li>
+						</dd>
+
+						<dt>
 							<b>
-								S9D
+								S9D: ローカルフィルターモードを選択します（MPT 形式互換）
 							</b>
-							: ローカルフィルターモードを選択します（MPT 形式互換）。
+						</dt>
+						<dd>
 							このモードを選択すると、
 							resonant filter は現在の音符に対してのみ有効となります。
 							それ（訳注：resonant filter のことだと思う）は、
 							次の音符が再生される時に無効化します。
-						</li>
-						<li>
+						</dd>
+
+						<dt>
 							<b>
-								S9E
+								S9E: 順再生
 							</b>
-							: 順再生。これを使うと、双方向ループ（訳注：ピンポンループのことと思われる）にて、
+							これを使うと、双方向ループ（訳注：ピンポンループのことと思われる）にて、
 							一時的に強制的に先へ分岐させることが出来ます。
-						</li>
-						<li>
+						</dt>
+
+						<dt>
 							<b>
-								S9F
+								S9F: 逆順再生
 							</b>
-							: 逆順再生。現行のインストゥールメントは逆再生されるか、
+						</dt>
+						<dd>
+							現行のインストゥールメントは逆再生されるか、
 							一時的にループの向きは後ろ向きになります。
-						</li>
-					</ul>
+						</dd>
+					</dl>
 				</font>
 			</blockquote>
 
@@ -1390,69 +1504,75 @@
 					（訳注：詳細不明です。
 					以下は私が ModPlug Tracker 上で確認したコマンド名と、
 					その詳細の解析結果にすぎません。）
-					<ul>
-						<li>
+					<dl>
+						<dt>
 							<span class="emphasis1">
 								X1x: Extra Fine Portamento Up
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：４倍精度の Fine Portamento Up を行います。
 							同じ音色の音を同時に複数チャンネルで発声するような場合、このコマンドを用いて、
 							各チャンネルの音程を若干ずらしておくと、コーラスっぽい効果が得られます。
 							それ以外の用途は特に考えられません。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								X2x: Extra Fine Portamento Down
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：４倍精度の Fine Portamento Down を行います。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								X5x: Panbrello wave form
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：Panbrello コマンドの、パン位置の変動のさせかたを指定します。
 							ModPlug では、0=SINE 波、1=ノコギリ波、2=矩形波、3=ランダム波、
 							という割り当てになっています。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								X6x: Fine pattern delay
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：通常の pattern delay コマンドが、指定行数の遅延を起こさせるのに対して、
 							このコマンドでは、指定 tick 数の遅延を発生させます。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								X9x: Surround control
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注： x の値と、対応する効果の組み合わせは、
 							S9x:Extended Channel Effects と同一なので、そちらを参照して下さい。）
 							<br/><br/>
-						</li>
+						</dd>
 
-						<li>
+						<dt>
 							<span class="emphasis1">
 								XAx: Set high offset
 							</span>
-							<br/>
+						</dt>
+						<dd>
 							（訳注：コマンド Set Sample Offset で指定できるサンプリング再生位置オフセットは、
 							16 進数で 2 桁ですが、このコマンド Set high offset は、3 桁目の値を設定できます。）
 							<br/><br/>
-						</li>
-					</ul>
+						</dd>
+					</dl>
 				</font>
 			</blockquote>
 
