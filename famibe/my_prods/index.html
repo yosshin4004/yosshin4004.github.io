@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+
+	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>
+			ファミリーベーシック上で過去にリリースしたゲーム
+		</title>
+		<link rel="stylesheet" type="text/css" href="../../style.css"/>
+
+		<!-- OGP -->
+		<meta property="og:title" content="ファミリーベーシック上で過去にリリースしたゲーム"/>
+		<meta property="og:image" content="https://yosshin4004.github.io/title_small.png"/>
+		<meta property="og:site_name" content="yosshin4004.github.io" />
+
+		<!-- OGP for twitter -->
+		<meta name="twitter:card" content="summary"/>
+		<meta name="twitter:site" content="@yosshin4004"/>
+	</head>
+
+	<body>
+        <div class="main">
+			<a href="../../index.html">
+				[戻る]
+			</a>
+
+			<br/>
+
+			<h1>
+				ファミリーベーシック上で過去にリリースしたゲーム
+			</h1>
+
+
+			<a href="https://translate.google.com/translate?hl=&sl=ja&tl=en&u=https%3A%2F%2Fyosshin4004.github.io%2Ffamibe%2Fmy_prods%2Findex.html">
+				English version is here (translate by google).
+			</a>
+			<br/><br/>
+
+
+
+			過去に私が
+			<a href="../overview/index.html">
+				ファミリーベーシック
+			</a>
+			上で作成したゲームをまとめました。
+			<br/><br/>
+
+
+			<h2>
+				ファミリーベーシック上でアーケード版グラディウスのレーザーを再現
+			</h2>
+			当時のゲームプログラマは、
+			グラディウス（のようなもの）を沢山作成しました。
+			グラディウス（のようなもの）は、
+			実装チャレンジの定番の題材であり、
+			かつその動作環境のスペックを評価するためのベンチマークという意味合いがありました。
+			そのような背景のなかで、私が作成したのがこちらの作品になります。
+			<br/>
+
+			<dl>
+				<dt>
+					<span class="emphasis1">
+						マイコンベーシックマガジン 1993年5月号掲載「ZACNERII」
+					</span>
+				</dt>
+				<dd>
+					<br/>
+					<center>
+						2周目
+						<div class="movie-wrap">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/yAF525nRm08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="1"></iframe>
+						</div>
+						3周目の時間差撃ち返し
+						<div class="movie-wrap">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/m9DxgDvdggI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="1"></iframe>
+						</div>
+						<a href="zacner2_list1.modified.wav">
+							Download list 1
+						</a>
+						|
+						<a href="zacner2_list2.modified.wav">
+							Download list 2
+						</a>
+						|
+						<a href="zacner2_list3.modified.wav">
+							Download list 3
+						</a>
+						|
+						<a href="zacner2_list4.modified.wav">
+							Download list 4
+						</a>
+					</center>
+					<br/>
+
+					当時市販されていた移植版グラディウスでは、
+					ハードウェアの制約から様々なフィーチャーが省略されていました。
+					それらを再現することに重点を置いた内容となっています。
+					<br/>
+
+					<dl>
+						<dt>
+							<span class="emphasis2">
+								アーケード版相当のレーザー描画を実現
+							</span>
+						</dt>
+						<dd>
+							アーケード版グラディウスでは、
+							レーザーが画面上の端から端までとどく横一直線のラインとして描画されますが、
+							ファミコンはそれを再現可能なハードウェア機能を持ちません。
+							ファミコンでリリースされた市販のグラディウスシリーズでは、
+							レーザーの描画をスプライト機能で行っており、
+							表示数制約などから短いレーザーに置き換えられていました。
+							<br/><br/>
+							本作（ZACNERII）では、
+							レーザーの描画に BG 面を使うことで、画面の端までとどくレーザーを実現しました。
+							BG 面は 8x8 ドットのブロック単位でしか描画できないため、
+							任意の位置にレーザーを描画することができませんが、
+							4 ピクセルずらしたレーザーのキャラクタパターンを使い分けることで、
+							Y 方向に 4 ピクセル単位で任意の位置に描画可能にしています。
+							このあたりの実装は MSX 版グラディウスと同じ手法になります。
+							<br/><br/>
+
+							1 プレーンしかない BG 面をレーザー描画で使い切ってしまっているため、
+							BG 上にその他のものが一切描画できない状態になってしまいました。
+							巨大なボスキャラは同じく BG 面に描画されるのですが、
+							レーザーの描画と混在はできないので、
+							1フレーム単位でレーザーとボスキャラを交互に表示することで、無理やり双方を表示しています。
+							<br/><br/>
+						</dd>
+
+						<dt>
+							<span class="emphasis2">
+								アーケード版相当の 撃ち返し弾 &amp; 時間差撃ち返し弾 を実装
+							</span>
+						</dt>
+						<dd>
+							アーケード版グラディウスシリーズには一貫して「撃ち返し弾」というフィーチャーがありました。
+							撃ち返し弾とは、敵を倒すとそれが敵弾に変化するという上級プレイヤ殺しのための仕様で、
+							ゲームを全ステージクリアした後に始まる高難易度の「2 周目」から発生する現象です。
+							<br/><br/>
+
+							ファミコンでリリースされた市販のグラディウスシリーズでは、
+							子供向けに難易度を低めに抑える必要があることや、
+							スプライト描画数の上限などのハードウェア制約から、撃ち返し弾は省略されることが通例でした。
+
+							<br/><br/>
+							本作（ZACNERII）では、撃ち返し弾を搭載しています。
+							高次周（3 周目以降）では一つの敵から複数の敵弾が発生する「時間差撃ち返し弾」も発生します。
+							当時ゲームセンターで稼働していた「パロディウスだ！」で
+							ゲーマーたち（私も含まれる）を悩ませていた「時間差撃ち返し」に対処するべく、
+							自らの動体視力の訓練用に作成したという経緯があります。
+							<br/><br/>
+						</dd>
+					</dl>
+				</dd>
+			</dl>
+
+			<h2>
+				ファミリーベーシック上で弾幕シューティングを実装
+			</h2>
+			TAITO からリリースされるシューティングゲームのうち、
+			良作の多くが東亜プランというメーカー製であることが明らかになり、
+			にわかに東亜プランブームのような状況が発生していた頃に作成したものです。
+			<br/>
+
+			<dl>
+				<dt>
+					<span class="emphasis1">
+						マイコンベーシックマガジン 1990年3月号掲載「メタルさ！伊藤」
+					</span>
+				</dt>
+				<dd>
+					マイコンベーシックマガジン掲載版を元に、
+					BOSS ラッシュ戦仕様に修正したものがこちらになります。
+					断じて「メタル斎藤」ではありません。
+					<br/><br/>
+
+					<center>
+						<div class="movie-wrap">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/rengfS8oLzQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="1"></iframe>
+						</div>
+						<a href="bosstest_list1.modified.wav">
+							Download list 1
+						</a>
+						|
+						<a href="bosstest_list2.modified.wav">
+							Download list 2
+						</a>
+						|
+						<a href="bosstest_list3.modified.wav">
+							Download list 3
+						</a>
+					</center>
+					<br/>
+
+					<dl>
+						<dt>
+							<span class="emphasis2">
+								東亜シューの拡散ショットを再現
+							</span>
+						</dt>
+						<dd>
+							7 方向の拡散ショットを、画面上に 4 セットの合計 28 発まで発射することができます。
+							東亜シュー（東亜プラン製のシューティングゲーム）のような
+							派手な拡散ショットをバリバリ撃てるゲームは、
+							当時のファミコン市販ソフトでは存在しておらず、
+							それを実装することがコンセプトでした。
+							<br/><br/>
+						</dd>
+
+						<dt>
+							<span class="emphasis2">
+								東亜シューのボス攻撃を再現
+							</span>
+						</dt>
+						<dd>
+							東亜シューでは敵側も拡散する弾幕で攻撃をしかけてくるのですが、
+							それを再現することが、もう一つの大きなコンセプトでした。
+							ファミコンのスプライトは画面上に最大 64 個まで表示できます。
+							自機と拡散ショットに 32 個使っているので、残り 32 個ですが、
+							これをすべて敵弾に割り当てました。
+							<br/><br/>
+						</dd>
+					</dl>
+				</dd>
+
+
+				<dt>
+					<span class="emphasis1">
+						マイコンベーシックマガジン 1991年7月号掲載「V.V 電電」
+					</span>
+				</dt>
+				<dd>
+					こちらも、当時高難易度化が進むアーケードシューティングゲームに対抗するべく、
+					動体視力を鍛えるために自作したゲームです。
+					<br/><br/>
+
+					敵弾駆動と自機弾のシステムのみアセンブラで作成し、
+					それ以外の制御はすべて BASIC で作成したゲームです。
+					コードの修正頻度が高いゲームロジック部はアセンブラ化しないことで、
+					開発効率を高めることが狙いでした。
+					<br/><br/>
+
+					<center>
+						<div class="movie-wrap">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/5fWzcEwOSUg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="1"></iframe>
+						</div>
+						<a href="v5den2_list1.modified.wav">
+							Download list 1
+						</a>
+						|
+						<a href="v5den2_list2.modified.wav">
+							Download list 2
+						</a>
+					</center>
+				</dd>
+			</dl>
+			<br/>
+
+
+			<hr/>
+			1998/09/14 初出
+			<br/>
+			2021/02/03 全面的リライト
+			<br/>
+			文責：
+			<a href="../../about/index.html">
+				よっしん
+			</a>
+			<br/><br/>
+
+
+			<a href="../../index.html">
+				[戻る]
+			</a>
+		</div>
+	</body>
+</html>
+

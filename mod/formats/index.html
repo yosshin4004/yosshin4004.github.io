@@ -1,0 +1,400 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+
+	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>
+			MOD/S3M/XM/IT 各形式のフォーマットについて
+		</title>
+		<link rel="stylesheet" type="text/css" href="../../style.css"/>
+
+		<!-- OGP -->
+		<meta property="og:title" content="MOD/S3M/XM/IT 各形式のフォーマットについて"/>
+		<meta property="og:image" content="https://yosshin4004.github.io/title_small.png"/>
+		<meta property="og:site_name" content="yosshin4004.github.io" />
+
+		<!-- OGP for twitter -->
+		<meta name="twitter:card" content="summary"/>
+		<meta name="twitter:site" content="@yosshin4004"/>
+	</head>
+
+
+	<body>
+        <div class="main">
+			<a href="../../index.html">
+				[戻る]
+			</a>
+			<br/>
+
+			<h1>
+				MOD/S3M/XM/IT 各形式のフォーマットについて
+			</h1>
+
+			以下は、ModPlugTracker のヘルプの、各種フォーマットの解説部分を和訳したモノです。
+			MOD / S3M / XM / IT 各形式の詳細と差異についてまとめられています。
+			<br/><br/>
+			網羅的な内容ですので、必要な個所だけ掻い摘んでください。
+			和訳の精度は低いかもしれないのでご注意ください。
+
+			<h2>
+				MOD: ProTracker / NoiseTracker Music Module
+			</h2>
+			The MOD format is the most widely supported music module file format.
+			If you heard about "Only Amiga makes it possible", you probably know the story of MOD music.
+			Anyway, this is probably the oldest music module file format, and has a lot of limitations:
+			you may be able to edit some features in ModPlug Tracker, but you'll lose some information
+			after saving the song to disk. 
+			<blockquote>
+				<font color="#C0FFC0">
+					MOD 形式は最も広くサポートされたモジュール音楽フォーマットである。
+					<br/>
+					もし貴方が「アミガだけが、それが可能である」と聞いた事があるなら、
+					多分、貴方は MOD 音楽の話（訳注：経緯？）について知っているだろう。
+					<br/>
+					とにかく、MOD 形式は最も古いモジュール音楽フォーマットであり、
+					多くの制約を持っている。
+					そのため、あなたはいくつかの機能を ModPlug Tracker でエディットできるが、
+					ディスクに保存するときいくつかの情報が欠落することが有る。
+				</font>
+			</blockquote>
+			Here is the limitation of the MOD format:
+			<ul>
+				<li>
+					No instrument support
+				</li>
+				<li>
+					Maximum of 31 samples
+				</li>
+				<li>
+					Sample size is limited to 8-bit, 128K
+				</li>
+				<li>
+					Fixed number of 64 rows per pattern
+				</li>
+				<li>
+					Maximum of 64 different patterns
+				</li>
+				<li>
+					Maximum of 128 patterns in the pattern sequence
+				</li>
+				<li>
+					No volume column (You can edit it, but it won't be saved)
+				</li>
+				<li>
+					No note off/note cut support in the note column
+				</li>
+				<li>
+					Effects not supported: Global Volume, Global Volume Slide, Key Off,
+					Panning Slide, R-Retrig, Tremor, Fine Portamento
+					(Only MOD/XM effects 0-F are supported).
+				</li>
+				<li>
+					Comments are not saved in the file
+				</li>
+				<li>
+					Initial Speed, Initial Tempo and Initial Volume are not saved
+				</li>
+				<li>
+					Fixed default panning for each channel
+				</li>
+			</ul>
+
+			<blockquote>
+				<font color="#C0FFC0">
+					以下は、MOD 形式の制限である。
+					<ul>
+						<li>
+							インストゥールメントがサポートされていない。
+						</li>
+						<li>
+							サンプリングデータは最大 31 種類。
+						</li>
+						<li>
+							サンプリングデータは 8bit（訳注：ちなみにモノラル）固定で、
+							（訳注：１サンプリングデータ当たり）最大 128K Bytes までである。
+						</li>
+						<li>
+							一つのパターンあたり、64 行で固定である。
+						</li>
+						<li>
+							最大、異なる 64 種類のパターンまでしか扱えない。
+						</li>
+						<li>
+							パターンシーケンスは、最大 128 要素まで。
+						</li>
+						<li>
+							ボリューム欄がない。（エディットはできるものの、セーブできない。）
+						</li>
+						<li>
+							ノート欄にて、note off と note cut がサポートされていない。
+						</li>
+						<li>
+							以下のエフェクトはサポートされていない。
+							<ul>
+								<li>
+									Global Volume（訳注：曲全体の音量）
+								</li>
+								<li>
+									Global Volume Slide
+								</li>
+								<li>
+									Key Off
+								</li>
+								<li>
+									Panning Slide
+								</li>
+								<li>
+									R-Retrig
+								</li>
+								<li>
+									Tremor
+								</li>
+								<li>
+									Fine Portamento
+								</li>
+							</ul>
+							（MOD/XM 形式が持つエフェクトの 0 から F までだけがサポートされている）
+						</li>
+						<li>
+							コメント行がファイルに保存されない。
+						</li>
+						<li>
+							初期スピード、初期テンポ、初期ボリューム値が保存されない。
+						</li>
+						<li>
+							各チャンネルのパンは、チャンネル毎に固定である。
+							（訳注：チャンネル 0 は L、チャンネル 1 は R、と言う具合。
+							困ったことにこの振り分けはトラッカー毎に異なっている。）
+						</li>
+					</ul>
+				</font>
+			</blockquote>
+			I personnally don't recommend using MOD files.
+			If you're familiar with MOD effect syntax, you should edit XM modules,
+			which have pretty much the same effects,
+			and a lot more features.
+			XM songs are also quite popular on PC.
+			<blockquote>
+				<font color="#C0FFC0">
+					個人的には、このフォーマットはオススメできない。
+					もし貴方が MOD 形式の文法になれているなら、XM 形式でエディットするべきである。
+					XM 形式は、MOD 形式とほぼ同じエフェクトを持ち、かつもっと多くの機能を搭載している。
+					XM 形式もまた、PC 界の最もポピュラーな形式である。
+				</font>
+			</blockquote>
+
+			<h2>
+				S3M: ScreamTracker III Music Modules
+			</h2>
+			ScreamTracker III is probably the first big impact in mod music on the PC platform.
+			It has all the features of the mod format, and introduced a lot more features.
+			It's still limited compared to XM or IT modules,
+			especially since it lacks volume envelopes, but is still a very powerful format.
+			One of the big advantage of S3M modules is that it's almost as popular as MOD songs,
+			and will be played by any decent mod player.
+			<blockquote>
+				<font color="#C0FFC0">
+					ScreamTracker III は、
+					恐らく PC 環境のモジュール音楽に最初に大きな衝撃を与えたトラッカーだろう。
+					ScreamTracker III は、MOD 形式のすべての機能をもち、かつもっと多くの機能を導入した。
+					S3M 形式は、XM 形式、IT 形式にくらべて、
+					とりわけボリュームエンベロープ機能が欠落しているものの、
+					とてもパワフルなフォーマットである。
+					S3M 形式の最大の利点は、MOD 形式とほぼ同等に普及していて、
+					かつ現行の多くのプレイヤで再生可能という点である。
+				</font>
+			</blockquote>
+			The only thing S3M songs don't allow is instruments and everything
+			that comes with it (envelopes, note mapping), 
+			and have the same mod limitation of 64 rows per pattern.
+			Song comments will not be saved in S3M modules, and there is a maximum of 32 channels.
+			<blockquote>
+				<font color="#C0FFC0">
+					S3M 形式が許していない（訳注：搭載していない）のは、
+					インストゥールメントと、それに付随する機能（エンベロープ、ノートマッピング）である。
+					そして 1 パターン当たりに 64 行までしか記述できないという制限がある。
+					コメントは保存できない。そしてミキシングは最大 32 チャンネルまでである。
+				</font>
+			</blockquote>
+			Besides that, it's still an excellent format,
+			although some older players may not recognize the new S3M effects introduced by Impulse Tracker,
+			like Tempo Slide (T0x, T1x), Channel Volume (Mxx, Nxy), Panning Slide (Pxy) and PanBrello (Yxy),
+			and won't play S3M with more than 16 channels.
+			<blockquote>
+				<font color="#C0FFC0">
+					上記以外にも制約はある。
+					いくつかの古いプレイヤーは、
+					Impulse Tracker から導入された新しい S3M 形式のエフェクト（以下）
+					<ul>
+						<li>
+							Tempo Slide (T0x, T1x)
+						</li>
+						<li>
+							Channel Volume (Mxx, Nxy)
+						</li>
+						<li>
+							Panning Slide (Pxy)
+						</li>
+						<li>
+							PanBrello (Yxy)
+						</li>
+					</ul>
+					を認識できないし、
+					16 チャンネル以上使用する S3M 形式のデータは演奏できない。
+					しかし、S3M 形式は依然すぐれたフォーマットである。
+				</font>
+			</blockquote>
+
+
+			<h2>
+				XM: FastTracker II Music Modules
+			</h2>
+			XM modules are a superset of MOD modules.
+			You can find everything you have in MODs, but there is more effects,
+			no sample size limit (Well, ModPlug has a sample limit of 16MB/sample),
+			support for 16-bit samples,
+			a variable number of rows per pattern,
+			up to 64 channels,
+			and the introduction of a powerful new feature: the instruments.
+			<blockquote>
+				<font color="#C0FFC0">
+					MX 形式は、MOD 形式を包括するスーパーセットとなっている。 
+					MOD 形式で利用できるすべての機能が利用でき、
+					しかもより多くのエフェクトを持ち、
+					サンプリングサイズにも制限がない
+					（ただし ModPluには 1サンプル当たり 16MBytes という上限がある）。
+					加え16bitサンプリングのサポート、
+					可変なパターン当たりの行数、
+					総チャンネル数 64、
+					そして強力な新機能であるインストゥールメントの導入などの特徴を持つ。
+					（訳協力：
+					<a href="http://www.tk.xaxon.ne.jp/~toyoshim/" target="top">
+						とよしま
+					</a>
+					さん。ありがとうございます。）
+				</font>
+			</blockquote>
+			Before, instruments and samples were quite the same thing.
+			In XM and IT modules, an instrument can have more than one sample.
+			For each note, you can associate a different instrument,
+			a volume/panning envelope, and a fadeout volume.
+			<blockquote>
+				<font color="#C0FFC0">
+					インストゥールメント と サンプリングデータ は、全く同じ物である。
+					XM 形式と IT 形式では、インストゥールメント は
+					一つ以上のサンプリングデータを持つことができる。
+					各音符（訳注：note）において、異なるインストゥールメントと、
+					ボリューム / パンニング・エンベロープと、
+					フェードアウト・ボリュームを、一緒にして使うことが可能である。
+				</font>
+			</blockquote>
+			The only problem with XM modules, is that samples can't be shared by different instruments.
+			So when you associate a sample in two different instruments, ModPlug will save the sample twice,
+			in order to preserve XM compatibility.
+			<blockquote>
+				<font color="#C0FFC0">
+					XM 形式の唯一の問題点は、一つのサンプリングデータを、
+					異なるインストゥールメントで共有できないことである。
+					そのため、一つのサンプリングデータを異なるインストゥールメントに連結する場合は、
+					ModPlug は XM 形式の互換性を維持するためにサンプリングデータを２度保存する。
+				</font>
+			</blockquote>
+			The main advantage of XM over IT modules is that they are more supported on PC than IT modules
+			 - which not a lot of players support yet.
+			<blockquote>
+				<font color="#C0FFC0">
+					XM 形式が IT 形式より優位に有る主な点は、
+					PC 界では IT 形式よりもサポートが進んでいるという点である。
+					IT 形式は、多くのプレイヤーがサポートしていない。
+				</font>
+			</blockquote>
+			Note: FT2 will not load XM modules with an odd number of channels,
+			or modules with more than 32 channels.
+			<blockquote>
+				<font color="#C0FFC0">
+					注意：FT2（訳注：FastTracker II の略称）は、奇数個のチャンネルを用いたり、
+					32 チャンネルを超えた XM 形式データはロードできない。
+				</font>
+			</blockquote>
+
+
+			<h2>
+				IT: Impulse Tracker Music Modules
+			</h2>
+			Like XM modules are an extension of MOD modules, IT is a superset of S3M.
+			Impulse Tracker Modules represent a major improvement over the other ones.
+			If you never used instruments with FastTracker, 
+			IT songs could be considered exactly as S3M songs.
+			<blockquote>
+				<font color="#C0FFC0">
+					XM 形式が MOD 形式の拡張であったように、IT 形式は、S3M 形式を拡張したものである。
+					IT 形式は、他の形式の大部分を改善した形式である。
+					<br/>
+					もし貴方が FastTracker にてインストゥールメントを使ったことが無いならば、
+					IT 形式の音楽は、S3M 形式と同じとみなして良いだろう。
+					（訳注：おおざっぱに言って、S3M 形式 + インストゥールメント = IT 形式）
+				</font>
+			</blockquote>
+			However, the major improvement, besides the fact that, like FastTracker II,
+			it doesn't have the 64-rows limits in patterns,
+			and can have comments in the song (No need to edit sample names anymore),
+			is the support for volume/panning/pitch envelopes and especially NNAs.
+			<blockquote>
+				<font color="#C0FFC0">
+					しかし、FastTracker II の時と同様に、（S3M 形式から）多くの点が改良されている。
+					<ul>
+						<li>
+							1 パターン当たり 64 行と言う（訳注：S3M 形式の）制限を撤回。
+						</li>
+						<li>
+							曲のコメントを導入可能（サンプリングデータ個別に
+							名前をエディットする必要はない）。
+						</li>
+						<li>
+							ボリューム / パンニング / ピッチ エンベロープ機能と、
+							特に NNA 群. がサポートされた
+							（訳注：NNAs とは、以下の New Note Action の略称の複数形）。
+						</li>
+					</ul>
+				</font>
+			</blockquote>
+			The New Note Action option means that when you play a new note,
+			the old one doesn't have to be cut abruptly, but can fade in the background, for example.
+			<blockquote>
+				<font color="#C0FFC0">
+					New Note Action オプションとは、例えば、新しい音符（訳注：note）が再生される時、
+					古い音符は突然にはカットされず、バックグラウンドにフェードインできるような機能を意味する。
+				</font>
+			</blockquote>
+			If you are just starting to write your own mod music,
+			I recommend starting with S3M modules (Or IT modules with no instruments),
+			and then get yourself used to the volume envelopes and NNA effects.
+			<blockquote>
+				<font color="#C0FFC0">
+					もし貴方が、オリジナルのモジュール音楽を作り始めたいと考えているなら、
+					私は S3M 形式（もしくは、インストゥールメントを用いない IT 形式）から始めることを推奨する。
+					それから、慣れてきたら（？）ボリュームエンベロープ機能や
+					NNA（訳注：New Note Action の略称）を用いることを推奨する。
+				</font>
+			</blockquote>
+
+
+			<hr/>
+			2000/07/11 初出
+			<br/>
+			文責：
+			<a href="../../about/index.html">
+				よっしん
+			</a>
+			<br/><br/>
+
+
+			<a href="../../index.html">
+				[戻る]
+			</a>
+		</div>
+	</body>
+</html>
