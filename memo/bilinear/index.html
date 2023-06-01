@@ -93,7 +93,7 @@
 					<br/><br/>
 
 					<center>
-						<img src="bilinear.png" alt="バイリニアフィルタ" border="2" width="50%" height="50%"/>
+						<img src="bilinear.png" alt="バイリニアフィルタ" border="2" width="40%" height="40%"/>
 						<br/>
 						バイリニアフィルタが読み取った 2x2 ピクセルを拡大表示した図。
 						<br/>
@@ -112,7 +112,8 @@
 					</span>
 				</dt>
 				<dd>
-					実際の画像をご覧ください。
+					バイリニアフィルタで拡大した結果を、
+					sRGB 規格のディスプレイ上での表示した結果を示します。
 					<br/><br/>
 
 					<center>
@@ -181,7 +182,7 @@
 							バイリニアフィルタがまずいのか？
 						</li>
 						<li>
-							じゃあ、バイキュービック補間にすればいいのか？
+							バイキュービック補間にすればいいのか？
 						</li>
 						<li>
 							CRT の画素の再現やスキャンライン感が必要なのか？
@@ -434,7 +435,7 @@
 					</span>
 				</dt>
 				<dd>
-					この問題を回避するには、EOTF を考慮する必要があります。
+					この問題を回避するには、
 					EOTF を利用して、ピクセル値を実際のディスプレイ上の明るさに変換したのち、
 					バイリニアフィルタを適用する必要があります。
 					ピクセル値に対して直接バイリニアフィルタを適用するのは間違いです。
@@ -484,7 +485,7 @@
 					次の図は、フォントのスクリーンショットの x のあたりを拡大したものです。
 					<br/><br/>
 					<center>
-						<img src="zoom_7_bilinear_pixel_component.png" alt="バイリニア拡大" border="2" width="80%" height="80%"/>
+						<img src="zoom_7_bilinear_pixel_component.png" alt="バイリニア拡大" border="2" width="60%" height="60%"/>
 					</center>
 					<br/>
 					2つの白ピクセル（RGB=255,255,255）と、2つの黒ピクセル（RGB=0,0,0）に囲まれた部分があります。
@@ -616,7 +617,7 @@
 					フォントのスクリーンショットの x のあたりを拡大してみます。
 					<br/><br/>
 					<center>
-						<img src="zoom_8_bilinear_gamma_pixel_component.png" alt="バイリニア拡大" border="2" width="80%" height="80%"/>
+						<img src="zoom_8_bilinear_gamma_pixel_component.png" alt="バイリニア拡大" border="2" width="60%" height="60%"/>
 					</center>
 					<br/>
 					2つの白ピクセル（RGB=255,255,255）と、2つの黒ピクセル（RGB=0,0,0）に囲まれた位置のピクセル値は、RGB=188,188,188 になっていました。
@@ -755,13 +756,13 @@
 					<br/>
 
 					ドット感を残しつつ適度な滲みが表現できていることがわかります。
-					滲み具合は、補間率を調整する関数の調整でカスタマイズが可能です。
+					滲み具合は、補間率を調整する関数を変更することでカスタマイズが可能です。
 					<br/><br/>
 
 					フォントのスクリーンショットの x のあたりを拡大してみます。
 					<br/><br/>
 					<center>
-						<img src="zoom_9_smoothstep_gamma_pixel_component.png" alt="バイリニア拡大" border="2" width="80%" height="80%"/>
+						<img src="zoom_9_smoothstep_gamma_pixel_component.png" alt="バイリニア拡大" border="2" width="60%" height="60%"/>
 					</center>
 					<br/>
 					2つの白ピクセル（RGB=255,255,255）と、2つの黒ピクセル（RGB=0,0,0）に囲まれた位置のピクセル値は、RGB=188,188,188 になっています。
@@ -791,6 +792,9 @@
 					sRGB の EOTF を適用する処理は、
 					バイリニアフィルタが適用される前のピクセル値に対して行われます。
 					従って、単にバイリニアサンプリングするだけで良いということになります。
+					<br/><br/>
+
+					EOTF を考慮したバイリニアフィルタの疑似コードは、次のように劇的に簡略化されます。
 <pre><code>
 	/*
 		float2 texCoord = テクスチャ座標
@@ -807,7 +811,7 @@
 
 </code></pre>
 
-					ドット感を残しつつぼけさせる補正を加える場合は、以下のようになります。
+					ドット感を残しつつぼけさせる smoothstep 補正を加える場合は、以下のようになります。
 <pre><code>
 	/*
 		float2 texCoord = テクスチャ座標
