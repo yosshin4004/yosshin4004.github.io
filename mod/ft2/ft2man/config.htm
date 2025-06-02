@@ -1,0 +1,216 @@
+﻿<html>
+
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>セットアップ</title>
+</head>
+
+<body>
+
+<p align="center">　</p>
+
+<h2 align="center">セットアップ</h2>
+
+<hr color="#008000">
+
+<p>Configuration：</p>
+
+<p>　　I/O Devices &nbsp;&nbsp;&nbsp; 入出力関係の設定を行います<br>
+　　LayOut &nbsp;&nbsp;&nbsp; 画面の構成に関する設定を行います<br>
+　　Miscellaneous　その他いろいろな設定を行います</p>
+
+<p>Ａｕｔｏ　ｓａｖｅ</p>
+
+<p>　　ここにチェックを入れると設定が自動でセーブされます</p>
+
+<p>Ｌｏａｄｃｏｎｆｉｇ．</p>
+
+<p>　　設定ファイルを読み出します</p>
+
+<p>Ｓａｖｅｃｏｎｆｉｇ．</p>
+
+<p>　　設定ファイルを書き出します</p>
+
+<p>Ｅｘｉｔ</p>
+
+<p>　　セットアップを終了します</p>
+
+<p>　</p>
+
+<hr color="#008000">
+
+<h2 align="center">入出力関係のセットアップ</h2>
+
+<hr color="#008000">
+
+<p><img src="Config1.gif" alt="Config1.gif (11566 バイト)" WIDTH="634" HEIGHT="176"></p>
+
+<p>Ｏｕｔｐｕｔ　ｄｅｖｉｃｅ：</p>
+
+<p>&nbsp;&nbsp;&nbsp; 出力に使うサウンドカードを選択します</p>
+
+<p>Ｓａｍｐｌｉｎｇ　ｄｅｖｉｃｅ：</p>
+
+<p>&nbsp;&nbsp;&nbsp; サンプリングに使うサウンドカードを選択します</p>
+
+<p>　</p>
+
+<blockquote>
+  <p>Ｇｒａｖｉｓ　Ｕｌｔｒａｓｏｕｎｄ：</p>
+  <p>&nbsp;&nbsp;&nbsp; Gravis Ultrasound(ＧＵＳ)を使う場合の環境変数を入力します</p>
+  <p>Ｓｏｕｎｄ　Ｂｌａｓｔｅｒ：</p>
+  <p>&nbsp;&nbsp;&nbsp; 
+  サウンドブラスターを使う場合の環境変数を入力します。</p>
+  <p><br>
+  &nbsp;&nbsp;&nbsp; 環境変数はWindows上での設定と合わせればほとんど問題なく動作すると思います<br>
+  &nbsp;&nbsp;&nbsp; Windows上の設定を見るにはコントロールパネル→システム→デバイスマネージャー→サウンドビデオおよびゲームのコントローラ→プロパティで確認できます<br>
+  　<br>
+  Ｓｏｕｎｄ　Ｐｌａｙｅｒ：</p>
+  <p>&nbsp;&nbsp;&nbsp; 
+  サウンドプレイヤー（詳細不明）を使う場合の設定を行います</p>
+  <p>Ｓｐｅａｋｅｒ：</p>
+  <p>&nbsp;&nbsp;&nbsp; 
+  内蔵スピーカー（ＢＥＥＰ音）を使う場合の設定を行います</p>
+</blockquote>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>Ｍｉｘｉｎｇ　ｄｅｖｉｃｅ　ｃｔｒｌ：</p>
+
+<p>　　　Ｉｎｔｅｒｐｏｌａｔｉｏｎ&nbsp;&nbsp;&nbsp; SoundBlasterやSoundPlayerを使っている場合に音質が悪い場合はこれにチェックを入れると音質が良くなります。ＣＰＵパワーを食いますがよほど古いＰＣではない限りほとんど影響は出ないはずなのでチェックを入れておいたほうが良いでしょう。ＣＰＵは４８６以上が推奨のようです。<br>
+<br>
+　　　１６－ｂｉｔ　ｍｉｘｉｎｇ　１６BitMixingが可能ならばそれを有効にします。これも一応ＣＰＵパワーを食うようです</p>
+
+<p>Ａｍｐ：</p>
+
+<p>&nbsp;&nbsp;&nbsp; 出力を増幅します。</p>
+
+<p>Ｍｉｘｉｎｇ　ｆｒｅｑｕｅｎｃｙ：</p>
+
+<p>&nbsp;&nbsp;&nbsp; 
+ミキシングの周波数を設定します。高いほうが音質は良いです。とりあえずＭａｘにしておきましょう</p>
+
+<p>　　　Ｍｉｎ．　値を最小にします<br>
+　　　Ｍａｘ．　値を最大にします</p>
+
+<p>ｆｒｅｑｕｅｎｃｙ　ｔａｂｌｅ：<br>
+　周波数テーブルを設定します。Linerにチェックを入れておけばいいでしょう。<br>
+　切り替えるとポルタメント（エフェクトの一種）の効果の出かたに影響が出る場合があります</p>
+
+<p>&nbsp;&nbsp;&nbsp; Amiga freq-table　アミガ形式に設定します<br>
+&nbsp;&nbsp;&nbsp; Liner freq-table　ライナー形式に設定します</p>
+
+<p>Stereo　ステレオでならす場合にチェックします</p>
+
+<p>Master-Volume　マスターボリュームを設定します</p>
+
+<p>Maximam DPMI memory</p>
+
+<p>&nbsp;&nbsp;&nbsp; メモリの使用量を設定した値に制限します</p>
+
+<p>　</p>
+
+<hr color="#008000">
+
+<p align="center"><strong><big><big>画面の構成のセットアップ</big></big></strong></p>
+
+<hr color="#008000">
+
+<p><img src="Config2.gif" alt="Config2.gif (10931 バイト)" WIDTH="635" HEIGHT="174"></p>
+
+<p>Pattern Layout:</p>
+
+<p>&nbsp;&nbsp;&nbsp; Pattern stretch　ライン間のスペースの有無の切り替え<br>
+&nbsp;&nbsp;&nbsp; Hex count　ライン番号の１６進数、１０進数の切り替え<br>
+&nbsp;&nbsp;&nbsp; Accidential　半音の表示を＃、♭、のどちらを使うかの切り替え<br>
+&nbsp;&nbsp;&nbsp; Show zeroes　ボリュームカラムの値が指定されてない場所に０を挿入するかの切り替え<br>
+&nbsp;&nbsp;&nbsp; Framework　フレームの有無の切り替え<br>
+&nbsp;&nbsp;&nbsp; Line number colors　４ラインごとにライン番号の色を反転させるかの切り替え<br>
+&nbsp;&nbsp;&nbsp; Channel numbering　チャンネルの番号の有無の切り替え</p>
+
+<p>Mouse Shape:</p>
+
+<p>&nbsp;&nbsp;&nbsp; マウスカーソルの形を指定します</p>
+
+<p>Mouse busy shope:</p>
+
+<p>&nbsp;&nbsp;&nbsp; 待ち時間の時のマウスカーソルの形を指定します</p>
+
+<p>Pattern modes:</p>
+
+<p>&nbsp;&nbsp;&nbsp; Show volume column 
+&nbsp;&nbsp;&nbsp; ボリュームカラムを表示するか切り替えます。<br>
+&nbsp;&nbsp;&nbsp; Maximum visible chn.:　１画面に対してのトラックの最大表示数を切り替えます</p>
+
+<p>Pattern font:</p>
+
+<p>&nbsp;&nbsp;&nbsp; フォントを切り替えます</p>
+
+<p>Number of stars:</p>
+
+<p>&nbsp;&nbsp;&nbsp; メイン画面でAboutを押したときに出てくる星の数を指定します</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>&nbsp;&nbsp;&nbsp; 右側の設定はカラーの設定になります。</p>
+
+<p>　</p>
+
+<hr color="#008000">
+
+<p align="center"><strong><big><big>その他のセットアップ</big></big></strong></p>
+
+<hr color="#008000">
+
+<p><img src="config3.gif" alt="config3.gif (11387 バイト)" WIDTH="637" HEIGHT="179"></p>
+
+<p>　</p>
+
+<p>Mouse sensitibity:</p>
+
+<p>&nbsp;&nbsp;&nbsp; マウスの感度を設定します</p>
+
+<p>Dir.sorting priority</p>
+
+<p>&nbsp;&nbsp;&nbsp; ファイルの表示の順番を指定します。</p>
+
+<p>&nbsp;&nbsp;&nbsp; Ext.　拡張子順<br>
+&nbsp;&nbsp;&nbsp; Name　名前順</p>
+
+<p>Keyb.layout</p>
+
+<p> 
+&nbsp;&nbsp;&nbsp; キーボードのレイアウトを指定します。ＵＳでいいでしょう。</p>
+
+<p>Sample cut-to-buffer　カットしたサンプルデータをバッファに蓄えるか指定します<br>
+Pattern cut-to-buffer　カットしたパターンデータをバッファに蓄えるか指定します<br>
+Kill notes at music stop　演奏を中断した時にノートの発音を止めるか指定します<br>
+File-overwrite warning　ファイルを上書きするときに警告するか指定します</p>
+
+<p>Rec./Edit/Play:</p>
+
+<p>&nbsp;&nbsp;&nbsp; Multichannel record　リアルタイム録音時に複数のトラックに分散してノートを記録するか指定します<br>
+&nbsp;&nbsp;&nbsp; Multichannel &quot;keyjazz&quot;　リアルタイム録音時に複数のノートを同時に録音出来るか指定します<br>
+&nbsp;&nbsp;&nbsp; Multi channel edit　ノート編集時に複数のトラックに分散してノートを記録するか指定します<br>
+&nbsp;&nbsp;&nbsp; Record keyrelease notes　リアルタイム録音時にキーを離した時にキーオフを挿入するか指定します<br>
+&nbsp;&nbsp;&nbsp; Quantisize　リアルタイム録音時に演奏のタイミングのずれの修正範囲を右のパラメータで指定します<br>
+&nbsp;&nbsp;&nbsp; Change pattern length when inserting/deleting line.　ノート編集時にノートを挿入、消去した時にパターンの長さを変更するか指定します<br>
+&nbsp;&nbsp;&nbsp; Allow MIDI-in program change　ＭＩＤＩ機器からのプログラムチェンジを有効にするか指定します</p>
+
+<p>Default directories:</p>
+
+<p>&nbsp;&nbsp;&nbsp; デフォルトでのディレクトリを指定します</p>
+
+<p>MIDI Enable　ＭＩＤＩを有効にします<br>
+Record MIDI-Chn　ＭＩＤＩの入力に使うチャンネル番号を指定します<br>
+Record transpose　ＭＩＤＩデータの階調を行う場合右の値で指定します<br>
+Record velosity　ベロシティを有効にするか設定します<br>
+Record aftertouch　アフタータッチを有効にするか指定します<br>
+Vel./A.T.Senstvty.　ベロシティ、アフタータッチの感度を右の値で調整します</p>
+</body>
+</html>

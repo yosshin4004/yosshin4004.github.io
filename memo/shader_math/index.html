@@ -1,0 +1,531 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+
+	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>
+			シェーダ言語ライクなベクトル演算の C++ 実装
+		</title>
+		<link rel="stylesheet" type="text/css" href="../../style.css"/>
+
+		<!-- OGP -->
+		<meta property="og:title" content="シェーダ言語ライクなベクトル演算の C++ 実装"/>
+		<meta property="og:image" content="https://yosshin4004.github.io/title_small.png"/>
+		<meta property="og:site_name" content="yosshin4004.github.io" />
+
+		<!-- OGP for twitter -->
+		<meta name="twitter:card" content="summary"/>
+		<meta name="twitter:site" content="@yosshin4004"/>
+	</head>
+
+	<body>
+        <div class="main">
+			<a href="../../index.html">
+				[戻る]
+			</a>
+
+			<br/>
+
+			<h1>
+				シェーダ言語ライクなベクトル演算の C++ 実装
+			</h1>
+			ここでは、シェーダ言語ライクなベクトル演算を C++ 上で記述可能にする方法についてまとめます。
+			<blockquote>
+				<span class="emphasis2">
+					注）2003/07/11 時点の記事（C++03 ベース）をもとに加筆修正し 2020 年 8 月時点の状況（C++17 ベース）を反映させた内容となっています。
+					<br/>
+					その後
+					<a href="https://github.com/g-truc/glm">
+						 glm
+					</a>
+					というプロジェクトが完全な glsl 互換ベクトル演算を実現してしまったため、
+					ここに書かれている内容は、実装の仕組みを考えるという趣味的探求以上の価値はありません。
+					<br/><br/>
+				</span>
+			</blockquote>
+
+
+			<h2>
+				シェーダ言語で使われるベクトル演算
+			</h2>
+			シェーダ言語では、座標値や色など多次元の値を沢山利用します。
+			そのためシェーダ言語は、
+			これらを扱うためベクトル型およびベクトル型をサポートした数学関数を提供しています。
+			<br/><br/>
+			コード例：色の加算
+<pre><code>
+	vec3 colorR = {1,0,0};                   // 赤色
+	vec3 colorG = {0,1,0};                   // 緑色
+	vec3 colorB = {0,0,1};                   // 青色
+
+	vec3 colorW = colorR + colorG + colorB;  // 白色
+
+</code></pre>
+			<br/>
+
+			コード例：座標変換
+<pre><code>
+	vec4 localPos = {0,0,0,1};               // ローカル座標（3次元同次）
+	mat4 localToWorld = {{1,0,0,0},          // ローカル → ワールド変換（1,1,1 の平行移動）
+	                     {0,1,0,0},
+	                     {0,0,1,0},
+	                     {1,1,1,1}};
+	vec4 worldPos = localToWorld * localPos; // ワールド座標（3次元同次）
+
+</code></pre>
+			<br/>
+
+
+			<h2>
+				swizzle とは
+			</h2>
+			シェーダ言語のベクトル型は、操作対象のメンバを swizzle と呼ばれる仕組みで指定できます。
+			実際のコード例を示します。
+
+<pre><code>
+	vec4 a = vec4(1,2,3,4);
+	vec3 b = a.xyz;        // b = vec3(1,2,3)
+
+</code></pre>
+
+			この例では、a は 4 次元ベクトルですが、x y z の 3 次元成分のみを b にコピーしています。
+			この xyz が、swizzle と呼ばれるものです。
+			<br/><br/>
+			swizzle は、x y z w をどのような順序で並べても構いません。例えば以下のような記述も可能です。
+
+<pre><code>
+	vec4 a = vec4(1,2,3,4);
+	vec4 b = a.xyzw;       // b = vec4(1,2,3,4)
+	vec4 c = a.wzyx;       // c = vec4(4,3,2,1)
+	vec4 d;
+	d.wzyx = a;            // d = vec4(4,3,2,1)
+
+</code></pre>
+
+			swizzle は、x y z w 以外にも、r g b a の組み合わせで指定することが可能です。
+			色情報を扱うベクトルの場合は、r g b a を使った方がコードが読みやすくなります。
+
+<pre><code>
+	vec4 a = vec4(1,2,3,4);
+	vec4 b = a.rgba;       // b = vec4(1,2,3,4)
+	vec4 c = a.abgr;       // c = vec4(4,3,2,1)
+	vec4 d;
+	d.abgr = a;            // d = vec4(4,3,2,1)
+
+</code></pre>
+
+			swizzle はとても便利な機能です。
+			一度この便利さに慣れてしまうと、
+			シェーダ言語以外の環境でのグラフィクスプログラミングが億劫になるほどの中毒性があります。
+			<br/><br/>
+
+
+			<h2>
+				C++ 化が難しい点
+			</h2>
+			一般にベクトル演算の実装は C++ にとって難しいものではありません。
+			しかし、シェーダ言語ライクなベクトル演算の C++ 実装となると話は別で、
+			トリッキーな実装を沢山書かなくてはいけなくなります。
+			ここでは、具体的にどのような問題があるかをまとめます。
+
+			<dl>
+				<dt>
+					<span class="emphasis1">
+						swizzle 対応
+					</span>
+				</dt>
+				<dd>
+					swizzle パターンから、操作対象のメンバをどう決定するのかという問題があります。
+					C# などの言語では、setter getter という仕組みが利用できるので、
+					swizzle を実現することは比較的容易です。
+					しかし C++ の場合、現状ではそれに相当する機能がありません。
+					近い動作をするものが、代入演算子です。
+					これと暗黙のキャストを利用して、似たような挙動を実現していく必要があります。
+					<br/><br/>
+				</dd>
+
+				<dt>
+					<span class="emphasis1">
+						コンパイル速度の高速化
+					</span>
+				</dt>
+				<dd>
+					ベクトル演算は広範囲のソースコードで利用されるものなので、
+					コンパイル速度はとても重要です。
+					難解な実装は、コンパイル速度を低下させます。
+					極力シンプルで、コンパイラに負荷を与えない実装に保つ必要があります。
+					<br/><br/>
+				</dd>
+
+				<dt>
+					<span class="emphasis1">
+						SIMD 化との両立
+					</span>
+				</dt>
+				<dd>
+					高速化のため、SIMD 化は必須です。
+					ただし、SIMD 専用型で値を保持するのは、
+					4 次元ベクトルの場合のみです。
+					つまりベクトル次元数によって、保持するメンバの型や構成が変えられるような実装にする必要があります。
+					<br/><br/>
+				</dd>
+
+				<dt>
+					<span class="emphasis1">
+						あいまいなシンボル問題
+					</span>
+				</dt>
+				<dd>
+					シェーダ言語ライクなベクトル演算では、同一名の関数のオーバーロードが多数存在します。
+					例えば pow 関数を例に挙げると、引数型はスカラ、ベクトル、スカラ・ベクトル混在など、
+					様々なバリエーションが存在します。
+					これらを混乱なく、あいまいなシンボルエラーが生じないように定義仕切るには、慎重なコーディングが必要になります。
+					<br/><br/>
+
+					さらに実用面を考えると、
+					ベクトル演算の C++ 実装が含まれる namespace を using namespace して利用することを想定しなければなりません。
+					このことは、ベクトル演算側にふくまれる sin cos tan abs などのシンボルが、
+					C/C++ の math.h 等で定義されるグローバルな同名シンボルと衝突することを意味ます。
+					<br/><br/>
+				</dd>
+
+				<dt>
+					<span class="emphasis1">
+						コンパイラフレンドリーであること
+					</span>
+				</dt>
+				<dd>
+					諸々の問題を解決していくと、実装が複雑化していきます。
+					特定コンパイラのみで発生するエラーに悩まされることになりがちです。
+					また、コンパイラバージョンアップに伴い、
+					それまで正常にコンパイルできていたコードが突然コンパイルエラーになってしまうこともあります。
+					<br/><br/>
+
+					将来に渡って問題を踏まないように、
+					極力ナイーブで単純明快なコードで記述していく必要があります。
+					<br/><br/>
+				</dd>
+			</dl>
+
+
+			<h2>
+				実装
+			</h2>
+			それでは、このようなシェーダ言語風なベクトル演算クラスを、C++ 上で実装してみます。
+			ここでは、要点をかいつまんで解説します。
+			<br/>
+
+			<dl>
+				<dt>
+					<span class="emphasis1">
+						swizzle のパターン展開には union を利用
+					</span>
+				</dt>
+				<dd>
+					ナイーブな最初の実装は以下のようなものです。
+					この時点では単に swizzle 毎に union メンバを定義しただけで、
+					まだ何の機能も実装されていません。
+<pre><code>
+	union Vec4 {
+	private:
+		float elements[4];
+	public:
+		Vec4 xxxx;
+		Vec4 xxxy;
+		Vec4 xxxz;
+		Vec4 xxxw;
+		Vec4 xxyx;
+			:
+			:
+	};
+
+</code></pre>
+					続いて、
+					ベクトルの次元数と swizzle 構造の情報を、
+					型情報として保持するクラスを用意します。
+					次元数は、メモリ上のフットプリントを示す次元数と、
+					演算上の次元数の 2 種類が必要になります。
+<pre><code>
+	template&lt;int opeDim_, int memDim_, int i0_, int i1_, int i2_, int i3_&gt;
+	struct Traits {
+		enum {
+			opeDim = opeDim_, // 演算上の次元数
+			memDim = memDim_, // メモリ上の次元数
+			i0 = i0_,         // swizzle の第1要素のインデクス
+			i1 = i1_,         // swizzle の第2要素のインデクス
+			i2 = i2_,         // swizzle の第3要素のインデクス
+			i3 = i3_,         // swizzle の第4要素のインデクス
+		};
+	};
+
+</code></pre>
+					そしてこれを、型情報としてベクトル型に与えます。
+<pre><code>
+	template&lt;typename Traits_t&gt;
+	union Vec {
+	private:
+		float elements[Traits_t::memDim];
+	public:
+		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,0,0&gt;&gt; xxxx;
+		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,0,1&gt;&gt; xxxy;
+		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,0,2&gt;&gt; xxxz;
+		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,0,3&gt;&gt; xxxw;
+		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,1,0&gt;&gt; xxyx;
+			:
+			:
+	}
+
+</code></pre>
+					<br/>
+				</dd>
+
+
+				<dt>
+					<span class="emphasis1">
+						自分自身を自分自身で定義するクラスになってしまう無限再帰問題を回避
+					</span>
+				</dt>
+				<dd>
+					ここまでの実装は、Vec 型が Vec 型のメンバを持ってしまっています。
+					このままでは未完成の型を参照することになるため、コンパイルエラーになります。
+					そこで、自分自身を参照できるように、
+					テンプレートを使ったハックを入れます。
+					Vec 型に新たに recursiveCount というテンプレート引数を追加します。
+					そして swizzle 指定 union メンバには、recursiveCount をインクリメントしたVec 型を適用します。
+					recursiveCount は 0 から開始します。
+					具体的には以下のようになります。
+<pre><code>
+	template&lt;typename Traits_t, int recursiveCount&gt;
+	union Vec {
+	private:
+		float elements[Traits_t::memDim];
+	public:
+		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,0,0&gt;, recursiveCount+1&gt; xxxx;
+		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,0,1&gt;, recursiveCount+1&gt; xxxy;
+		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,0,2&gt;, recursiveCount+1&gt; xxxz;
+		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,0,3&gt;, recursiveCount+1&gt; xxxw;
+		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,1,0&gt;, recursiveCount+1&gt; xxyx;
+			:
+			:
+	};
+
+</code></pre>
+					これにより、Vec 型と union メンバで使われる Vec 型は、recursiveCount が異なる別の型と認識され、
+					コンパイルエラーは回避されます。
+					<br/><br/>
+
+					しかしまだ不完全です。このままでは無限に再帰を起こしてしまうので、
+					やはりコンパイルエラーになります。
+					これを回避するため、template 特殊化を利用した再帰ストッパーを定義します。
+<pre><code>
+	template&lt;typename Traits_t&gt;
+	union Vec&lt;Traits_t, 1&gt; {
+	private:
+		float elements[Traits_t::memDim];
+	};
+
+</code></pre>
+					これにより、recursiveCount が 1 に達すると再帰的に展開しなくなります。
+					<br/><br/>
+
+					swizzle パターン展開時の負荷は、
+					swizzle 定義数の「recursiveCount 最大値」乗に比例して生じます。
+					recursiveCount が 2 以上になると、
+					コンパイル速度が劇的に低下し実用になりません。
+					recursiveCount 1 で再帰ストップさせることは必須事項となります。
+					<br/><br/>
+				</dd>
+
+
+				<dt>
+					<span class="emphasis1">
+						swizzle キャスト演算子の定義
+					</span>
+				</dt>
+				<dd>
+					swizzle 変換は暗黙のキャスト演算子として定義します。
+					swizzle 情報は、型情報として取り出します。
+					自分自身と引数の型を区別するため、
+					型情報は 2 種類必要になります
+					（名前に 0 が付くものが自分自身の型、1 が付くものが引数の型を示す）。
+<pre><code>
+	template&lt;typename Traits0_t, int recursiveCount0&gt;
+	union Vec {
+			:
+			:
+	public:
+		template&lt;typename Traits1_t, int recursiveCount1&gt;
+		inline Vec&lt;Traits0_t, recursiveCount0&gt;(
+			const Vec&lt;Traits1_t, recursiveCount1&gt; &amp;param
+		){
+			if constexpr (Traits0_t::opeDim &gt;= 1) {elements[Traits0_t::i0] = param.elements[Traits1_t::i0];}
+			if constexpr (Traits0_t::opeDim &gt;= 2) {elements[Traits0_t::i1] = param.elements[Traits1_t::i1];}
+			if constexpr (Traits0_t::opeDim &gt;= 3) {elements[Traits0_t::i2] = param.elements[Traits1_t::i2];}
+			if constexpr (Traits0_t::opeDim &gt;= 4) {elements[Traits0_t::i3] = param.elements[Traits1_t::i3];}
+		}
+			:
+			:
+	};
+
+</code></pre>
+					<br/>
+				</dd>
+
+
+				<dt>
+					<span class="emphasis1">
+						math.h 由来関数との衝突回避
+					</span>
+				</dt>
+				<dd>
+					シェーダ言語で用いられる sin cos tan 等々の数学関数は、
+					math.h でグローバルな namespace 上で定義されている同名のレガシー関数と衝突します。
+					この問題を自力で回避するのはとても面倒で、
+					コンパイル環境ごとに異なる対処が必要になるため、
+					環境切り分けの #ifdef が大量に発生することになるだけでなく、
+					未知・将来のコンパイル環境に対応できる保証もないという問題があります。
+					<br/><br/>
+
+					この問題のシンプルな解決方法は、namespace std 以下に含まれる数学関数を、
+					そのまま自分の namespace に持ってくるというものです。
+					std 以下に含まれる実装は、そのコンパイル環境で発生しうるシンボル衝突を、
+					各コンパイル環境毎にうまく回避してくれているので、それをそのまま流用すれば安全確実であり、
+					将来に渡って安心であるという考え方です。
+					<br/><br/>
+
+					以下は具体的なコード例です。
+					std にシェーダ言語互換動作の関数が含まれているならそれを using で取り出し、
+					互換でないもののみ独自に実装を定義しています（この例では引数を 2 つとる atan 関数）。
+
+<pre><code>
+	using ::std::sin;
+	using ::std::cos;
+	using ::std::tan;
+	using ::std::asin;
+	using ::std::acos;
+	using ::std::atan;
+
+	static inline float atan(float y, float x){
+		return std::atan2(y, x);
+	}
+	static inline double atan(double y, double x){
+		return std::atan2(y, x);
+	}
+
+</code></pre>
+					<br/>
+				</dd>
+
+				<dt>
+					<span class="emphasis1">
+						SIMD 化
+					</span>
+				</dt>
+				<dd>
+					ベクトルが 4 次元の時だけ、SIMD 命令専用の型をメンバとして持つような仕組みが必要です。
+					これを実現するには、template 特殊化を利用したテクニックが使えます。
+					具体的には以下のようなコードになります。
+					このコードでは、IntrinsicType_t は float x 4 の時だけ __m128 に、
+					それ以外の場合は配列変数型になります。
+<pre><code>
+	template&lt;int dim&gt;
+	struct GenSimdVecTraits {
+		typedef float IntrinsicType_t[dim];
+		enum {
+			isM128 = 0,
+		};
+	};
+
+	template&lt;&gt;
+	struct GenSimdVecTraits&lt;4&gt; {
+		typedef __m128 IntrinsicType_t;
+		enum {
+			isM128 = 1,
+		};
+	};
+
+</code></pre>
+					この GenSimdVecTraits を使い、ベクトルの union メンバを追加します。
+
+<pre><code>
+	template&lt;typename Traits_t, int recursiveCount&gt;
+	union Vec {
+	private:
+		float elements[Traits_t::memDim];
+		GenSimdVecTraits&lt;Traits_t::memDim&gt; simdVec;         // ここに追加した
+	public:
+		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,0,0&gt;, recursiveCount+1&gt; xxxx;
+		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,0,1&gt;, recursiveCount+1&gt; xxxy;
+		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,0,2&gt;, recursiveCount+1&gt; xxxz;
+		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,0,3&gt;, recursiveCount+1&gt; xxxw;
+		Vec&lt;Traits&lt;4, Traits_t::memDim, 0,0,1,0&gt;, recursiveCount+1&gt; xxyx;
+			:
+			:
+	};
+
+</code></pre>
+					GenSimdVecTraits が持つ enum メンバである isM128 は、
+					__m128 型のメンバが存在することをコンパイル時点で認識可能にするために使うフラグで、
+					if constexpr と併用してコードの分岐に利用できます。
+					if constexpr で括ったコードは、有効にならない限りは解釈されません。
+					<br/><br/>
+
+					以下は、このテクニックを利用したコード例で、
+					__m128 型のメンバに対して 4 次元ベクトルとしてアクセスする swizzle が指定されたときのみ、
+					SIMD 命令専用メンバを使った高速なコピーが行われます。
+					一見、__m128 型のメンバを持たない場合コンパイルエラーになりそうですが、
+					その場合は if constexpr による分岐によりコード自体がスキップされるので、
+					問題なくビルドが通ります。
+
+<pre><code>
+	if constexpr (SimdVecTraits_t::isM128 &amp;&amp; Traits0_t::opeDim == 4) {
+		__m128 tmp = v.simdVec;
+		this->simdVec = tmp;
+	} else {
+		通常の実装（elements 配列を 1 つずつコピーする）
+	}
+
+</code></pre>
+					<br/>
+				</dd>
+			</dl>
+
+			<h2>
+				実際の実装はもっと複雑
+			</h2>
+			実際の実装は、さらに泥臭く複雑です。
+			詳細はここには書ききれません
+			（というよりは未完成と言った方が正確）。
+			実装は github 上で確認できます。
+			<br/><br/>
+
+			<a href="https://github.com/yosshin4004/glslmath">
+				https://github.com/yosshin4004/glslmath
+			</a>
+			<br/><br/>
+
+
+
+			<hr/>
+			2003/07/11 初出
+			<br/>
+			2021/02/11 最終更新
+			<br/>
+			文責：
+			<a href="../../about/index.html">
+				よっしん
+			</a>
+			<br/><br/>
+
+
+			<a href="../../index.html">
+				[戻る]
+			</a>
+		</div>
+	</body>
+</html>
+
+

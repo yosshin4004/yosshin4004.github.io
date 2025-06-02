@@ -1,0 +1,531 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+
+	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>
+			シリアルハンドルによる不正メモリアクセス回避
+		</title>
+		<link rel="stylesheet" type="text/css" href="../../style.css"/>
+
+		<!-- OGP -->
+		<meta property="og:title" content="シリアルハンドルによる不正メモリアクセス回避"/>
+		<meta property="og:image" content="https://yosshin4004.github.io/title_small.png"/>
+		<meta property="og:site_name" content="yosshin4004.github.io" />
+
+		<!-- OGP for twitter -->
+		<meta name="twitter:card" content="summary"/>
+		<meta name="twitter:site" content="@yosshin4004"/>
+	</head>
+
+	<body>
+        <div class="main">
+			<a href="../../index.html">
+				[戻る]
+			</a>
+
+			<br/>
+
+			<h1>
+				シリアルハンドルによる不正メモリアクセス回避
+			</h1>
+			C/C++ における、
+			破棄されたメモリブロックに対する不正アクセス問題と、
+			それを解消するシリアルハンドルと呼ばれる手法について記述します。
+			<blockquote>
+				<span class="emphasis2">
+					注）2000/02/13 時点の情報に基づいた内容です。現状とは合致しない可能性があります。
+				</span>
+				<br/><br/>
+			</blockquote>
+
+
+			<h2>
+				解決したい問題
+			</h2>
+			<dl>
+				<dt>
+					<span class="emphasis1">
+						解放済みメモリに対する不正アクセスは、ゲームプログラムでありがちで厄介なバグ
+					</span>
+				</dt>
+				<dd>
+					C/C++ のプログラムでは、
+					メモリ確保・破棄の管理は、プログラマの責任で自力で行う必要があります。
+					このような自力のメモリ管理は、バグの温床となりやすく、
+					以下のような破棄済みメモリに対する不正アクセスは、
+					典型的なバグの一つです。
+
+<pre><code>
+	int *p = (int *)malloc(256);
+	    :
+	free(p);
+	    :
+	*p = 0;    /* 不正なメモリアクセス */
+
+</code></pre>
+					<br/>
+				</dd>
+
+				<dt>
+					<span class="emphasis1">
+						ポインタから参照先のメモリブロックの生存を知る方法が必要
+					</span>
+				</dt>
+				<dd>
+					C/C++ を用いたゲームプログラミングでは、
+					ゲーム内オブジェクトの生成・破棄が頻繁に発生します。
+					いつ破棄されるか予想が難しいワークメモリが、
+					互いにポインタ参照しあう状況が発生しがちです。
+					先ほど触れたような解放済みメモリに対する不正アクセスは、
+					ありがちで厄介なバグです。
+					<br/><br/>
+
+					ポインタが指す先のメモリブロックが「存在しているか or すでに破棄されているか」を
+					確認できる何らかの仕組みがあれば、この問題は解決することが出来ますが、
+					そのような仕組みはポインタ単体では構築できず、何らかの補助的な仕組みが必要です。
+					<br/><br/>
+
+					後述するシリアルハンドルは、
+					この問題を解決するシンプルかつ効果的な手段です。
+					<br/><br/>
+				</dd>
+			</dl>
+
+			<h2>
+				シリアルハンドルとは
+			</h2>
+			シリアルハンドルとは何か？
+			どのような使い方をするのかを説明します。
+			<dl>
+				<dt>
+					<span class="emphasis1">
+						シリアルハンドルの定義
+					</span>
+				</dt>
+				<dd>
+					シリアルハンドルは、以下のような性質を持つものとします。
+					具体的な実装はあとで触れます。
+					<br/>
+					<ul>
+						<li>
+							<span class="emphasis2">
+								シリアルハンドルはポインタと相互に変換可能
+							</span>
+						</li>
+						<li>
+							<span class="emphasis2">
+								無効なシリアルハンドルをポインタに変換すると NULL が得られる
+							</span>
+						</li>
+						<li>
+							<span class="emphasis2">
+								同一のシリアルハンドル値は二度と出現しない
+							</span>
+						</li>
+					</ul>
+				</dd>
+
+
+				<dt>
+					<span class="emphasis1">
+						シリアルハンドルの使い方
+					</span>
+				</dt>
+				<dd>
+					いつだれが開放するかわからないメモリブロックを指すポインタは、
+					ポインタのまま扱わず、シリアルハンドルに変換しておきます。
+					メモリブロックを破棄する時は、
+					そのメモリブロックを指すシリアルハンドルも破棄します。
+					<br/><br/>
+
+					メモリブロックにアクセスする際は、
+					その都度シリアルハンドルをポインタに変換して、
+					有効なポインタ（非 NULL）が得られたことを確認した上でアクセスします。
+					<br/><br/>
+				</dd>
+
+
+				<dt>
+					<span class="emphasis1">
+						シリアルハンドル利用コードの例
+					</span>
+				</dt>
+				<dd>
+					シリアルハンドルを扱う以下のような API があるとします。
+					<br/>
+
+					<ul>
+						<li>
+							<b>
+								p2sh() : ポインタ → シリアルハンドル変換関数
+							</b>
+						</li>
+						<li>
+							<b>
+								sh2p() : シリアルハンドル → ポインタ変換関数
+							</b>
+						</li>
+						<li>
+							<b>
+								dispose_sh() : シリアルハンドル破棄関数
+							</b>
+						</li>
+					</ul>
+
+					これらの API を利用して、
+					冒頭で不正なメモリアクセスの例として挙げたコードは、
+					次のように書き直すことができます。
+
+<pre><code>
+	int sh = p2sh(malloc(256));
+	    :
+	int *p = (int *)sh2p(sh);
+	if (p != NULL) { free(p); dispose_sh(sh); }
+	    :
+	int *p = (int *)sh2p(sh);
+	if (p != NULL) { *p = 0; }    /* 不正なメモリアクセスは回避される */
+
+</code></pre>
+
+					副作用として、若干コードが煩雑化します。
+					C++ の場合、template を利用してもっとシンプルに記述可能にできます（ここでは詳細は割愛します）。
+					<br/><br/>
+				</dd>
+			</dl>
+
+
+			<h2>
+				シリアルハンドルの実装
+			</h2>
+			<dl>
+				シリアルハンドル実装の仕組みはとても単純です。
+				あらかじめ同時に生成可能なシリアルハンドル数の上限を決めておき、
+				個々のシリアルハンドルの生存確認を行うための管理用ワークメモリを用意します。
+				<br/><br/>
+
+				以下、どのように実装すれば良いのかを具体的に説明します。
+				<br/><br/>
+
+				<dt>
+					<span class="emphasis1">
+						シリアル値とハンドル値のそれぞれに割り当てるビット数を決定する
+					</span>
+				</dt>
+				<dd>
+					ここでは説明を簡単にするため、
+					シリアルハンドルは 32 bit 値とします。
+					そしてその 32 bit に、以下のような配分でシリアル値とハンドル値のビット数を割り当てるとします。
+					<br/>
+
+					<ul>
+						<li>
+							<b>
+								上位 16 bit = シリアル値
+							</b>
+						</li>
+						<li>
+							<b>
+								下位 16 bit = ハンドル値
+							</b>
+						</li>
+					</ul>
+					この場合、同時に生成可能な有効なシリアル値は、
+					ハンドル値が 16 bit なので、65536 個までとなります。
+					<br/><br/>
+				</dd>
+
+				<dt>
+					<span class="emphasis1">
+						固定長の管理テーブルを用意する
+					</span>
+				</dt>
+				<dd>
+					シリアルハンドルの生存管理用に、固定要素数のテーブルを用意して、
+					各ハンドルに割り当てられたシリアルハンドル値とポインタを記録します。
+					ここでは、ハンドル値が 16 bit なので、テーブル要素数は 65536 個です。
+
+<pre><code>
+	#define NUM_HANDLE_BITS    16
+	#define NUM_HANDLES        (1 &lt;&lt; NUM_HANDLE_BITS)
+	#define NUM_HANDLES_MINUS1 (NUM_HANDLES - 1)
+	struct {
+	    uint32_t serial;
+	    void *p;
+	} table[NUM_HANDLES] = {0};
+
+</code></pre>
+					ハンドル値は、このテーブルのインデクス値になります。
+					<br/><br/>
+				</dd>
+
+
+				<dt>
+					<span class="emphasis1">
+						同じハンドル値が生成される度にシリアル値をインクリメントする
+					</span>
+				</dt>
+				<dd>
+					シリアル値は、
+					同じハンドル値が生成される度にインクリメントされるカウンタで、
+					毎回ユニークなシリアルハンドルを生成させる効果を持っています。
+					もし、同一ハンドル値が 65536 回生成されると、
+					シリアル値がラップアラウンドしてしまい、
+					過去に生成されたシリアルハンドルと値が衝突しますが、
+					その可能性は極めて低いだろうということで、考慮しないことにします
+					（衝突の危険を回避したい場合は、シリアル値のビット数を多くします。
+					大抵の用途では、16 bit は十分なビット数です）。
+					<br/><br/>
+				</dd>
+
+
+				<dt>
+					<span class="emphasis1">
+						シリアルハンドル API の具体的実装
+					</span>
+				</dt>
+				<dd>
+					<dl>
+						<dt>
+							<span class="emphasis2">
+								ポインタ → シリアルハンドル変換 API
+							</span>
+						</dt>
+						<dd>
+							現在未使用のハンドルを一つ選んで、
+							シリアル値を更新して、シリアルハンドルを生成します。
+							そのハンドルに適用されたシリアル値とポインタ値は、
+							テーブルに記録しておきます。
+							<br/>
+<pre><code>
+	/* 注：説明のためのナイーブな実装です。線形検索を避ける最適化が必要です。*/ 
+
+	uint32_t p2sh(void *p) {
+		for (uint32_t handle = 0; handle &lt; NUM_HANDLES; handle++) {
+			if (table[handle].p == NULL) {
+				uint32_t serialHandle = (++table[handle].serial &lt;&lt; NUM_HANDLE_BITS) | handle;
+				if (serialHandle == 0) {
+					table[handle].serial++;
+					serialHandle = 1;
+				}
+				table[handle].p = p;
+				return serialHandle;
+			}
+		}
+		return 0;       /* シリアルハンドルが確保できなかった */
+	}
+
+</code></pre>
+							<br/>
+						</dd>
+
+						<dt>
+							<span class="emphasis2">
+								シリアルハンドル → ポインタ変換 API
+							</span>
+						</dt>
+						<dd>
+							ハンドル値をインデクスとしてテーブルを参照して、
+							シリアル値が一致しているなら有効なシリアルハンドルであるとみなして、
+							ポインタを取得します。無効なら NULL を返却します。
+							<br/>
+<pre><code>
+	void *sh2p(uint32_t serialHandle) {
+		uint32_t handle = serialHandle &amp; NUM_HANDLES_MINUS1;
+		uint32_t serial = serialHandle &gt;&gt; NUM_HANDLE_BITS;
+		if (table[handle].serial == serial) {
+			return table[handle].p;
+		}
+		return NULL;    /* シリアルハンドルは無効だった */
+	}
+
+</code></pre>
+							<br/>
+						</dd>
+
+						<dt>
+							<span class="emphasis2">
+								シリアルハンドル破棄 API
+							</span>
+						</dt>
+						<dd>
+							ハンドル値をインデクスとしてテーブルを参照して、
+							シリアル値が一致しているなら有効なシリアルハンドルであるとみなして、
+							テーブル上のポインタ値を無効化します。
+							<br/>
+<pre><code>
+	bool dispose_sh(uint32_t serialHandle) {
+		uint32_t handle = serialHandle &amp; NUM_HANDLES_MINUS1;
+		uint32_t serial = serialHandle &gt;&gt; NUM_HANDLE_BITS;
+		if (table[handle].serial == serial) {
+			table[handle].p = NULL;
+			return true;
+		}
+		return false;
+	}
+
+</code></pre>
+							<br/>
+						</dd>
+					</dl>
+				</dd>
+
+				<dt>
+					<span class="emphasis1">
+						実装例
+					</span>
+				</dt>
+				<dd>
+					<a href="main.c">
+						main.c
+					</a>
+					<br/><br/>
+				</dd>
+			</dl>
+
+
+			<h2>
+				シリアルハンドルの応用
+			</h2>
+			<dl>
+				<dt>
+					<span class="emphasis1">
+						想定シチュエーション
+					</span>
+				</dt>
+				<dd>
+					例として以下のようなシチュエーションを想定します。
+					<br/>
+
+					<ul>
+						<li>
+							<span class="emphasis2">
+								あなたは、複数のプログラマとチーム開発を行っている。
+							</span>
+						</li>
+						<li>
+							<span class="emphasis2">
+								あなたは、あるオブジェクトの生成・更新・削除の API を実装し、チームに提供しなければならない。
+							</span>
+						</li>
+						<li>
+							<span class="emphasis2">
+								その API は、どのような間違った使い方をされるか全く予想がつかない。
+							</span>
+						</li>
+						<li>
+							<span class="emphasis2">
+								ハッカー気質なプログラマが、中を解析して想定外な使い方をしてくる可能性がある。
+							</span>
+						</li>
+					</ul>
+
+					これは多人数のゲーム開発では、しばしば発生するシチュエーションです。
+					<br/><br/>
+				</dd>
+
+
+				<dt>
+					<span class="emphasis1">
+						シリアルハンドルを使えば安全
+					</span>
+				</dt>
+				<dd>
+					先ほどあげたシチュエーションのような、
+					どのような間違った使い方をされるか予想がつかない状況では、
+					どのような間違った使い方をされてもクラッシュしない API を作成するのが安全です。
+					例えば、削除済みオブジェクトを更新するような間違った手順で API が実行されても、
+					適切にエラー終了するようにします。
+					シリアルハンドルを利用することで、このような問題を簡単に解決できます。
+					具体的には以下のようにします。
+					<br/>
+
+					<dl>
+						<dt>
+							<span class="emphasis2">
+								シリアルハンドル 使用前
+							</span>
+						</dt>
+						<dd>
+<pre><code>
+	struct Obj {
+		:
+	};
+
+	Obj *CreateObj();
+
+	bool UpdateObj(Obj *p);
+
+	bool DeleteObj(Obj *p);
+
+</code></pre>
+							<br/>
+						</dd>
+
+						<dt>
+							<span class="emphasis2">
+								シリアルハンドル 使用後
+							</span>
+						</dt>
+						<dd>
+
+<pre><code>
+	typedef uint32_t ObjHandle;
+
+	ObjHandle CreateObj();
+
+	bool UpdateObj(ObjHandle h);
+
+	bool DeleteObj(ObjHandle h);
+
+</code></pre>
+							シリアルハンドルを受け取る API は、内部で シリアルハンドル → ポインタ 変換を行います。
+							そしてポインタとして NULL が得られたら、そのオブジェクトは破棄済みであるとみなし、
+							エラー終了します。
+							<br/><br/>
+							シリアルハンドル使用前と使用後で、
+							API の互換性がなくなることを避けたい場合は、
+							シリアルハンドルをポインタであると偽ってユーザーに返却すれば問題ありません。
+							実ポインタを隠せることは、内部メモリに不正なアクセスが試みられることの回避にもつながるので、より安全です。
+							<br/><br/>
+						</dd>
+					</dl>
+				</dd>
+
+				<dt>
+					<span class="emphasis1">
+						シリアルハンドルを使えば、非公開領域への直接アクセスや解析を回避できる
+					</span>
+				</dt>
+				<dd>
+					最後に、シリアルハンドル → ポインタ変換 API はユーザーへ非公開とします。
+					オブジェクト内部のワーク領域を定義した構造体などの型も非公開とします。
+					これで、もはやいかなる手段を用いても、不正なメモリアクセスも、解析ベースのアクセスも不可能となります。
+					<br/><br/>
+				</dd>
+			</dl>
+
+
+			<hr/>
+			2000/02/13 初出
+			<br/>
+			2021/02/11 最終更新
+			<br/>
+			文責：
+			<a href="../../about/index.html">
+				よっしん
+			</a>
+			<br/><br/>
+
+
+			<a href="../../index.html">
+				[戻る]
+			</a>
+		</div>
+	</body>
+</html>
+
+

@@ -1,0 +1,118 @@
+﻿/* 1280px以上の幅の場合に適応される */
+body {
+	background-image : url("back01.jpg");	/* 背景画像 */
+	background-color : #000000;				/* 背景色 16進数 0~FF */
+	color            : #FFFFFF;				/* テキストの色 */
+	font-family      : sans-serif;			/* ゴシック体 */
+	max-width        : 1280px;				/* 横解像度の上限 */
+	margin-left      : auto;				/* 中央に配置 */
+	margin-right     : auto;				/* 中央に配置 */
+	font-size        : 100%;
+}
+
+/* 1280pxまでの幅の場合に適応される */
+@media screen and (max-width: 1280px) {
+	body {
+		background-image : url("back01.jpg");	/* 背景画像 */
+		background-color : #000000;				/* 背景色 16進数 0~FF */
+		color            : #FFFFFF;				/* テキストの色 */
+		font-family      : sans-serif;	/* ゴシック体 */
+		max-width        : 100%;		/* 横解像度の上限 */
+		margin-left      : auto;		/* 中央に配置 */
+		margin-right     : auto;		/* 中央に配置 */
+		font-size        : 100%;
+	}
+}
+
+/* 800pxまでの幅の場合に適応される */
+@media screen and (max-width: 800px) {
+	/* 埋め込み動画のレスポンシブ対応 */
+	.movie-wrap {
+	     position       : relative;
+	     padding-bottom : 56.25%; 	/* アスペクト比 16:9 の場合の縦幅 */
+	     height         : 0;
+	     overflow       : hidden;
+	}
+	.movie-wrap iframe {
+	     position       : absolute;
+	     top            : 0;
+	     left           : 0;
+	     width          : 100%;
+	     height         : 100%;
+	}
+
+	/* 画像を縮小しすぎない */
+	img {
+		min-width: 80%;
+	}
+}
+
+/* H タグ */
+h1 {
+	padding          : 1% 1%; 	/* 外周を大きくする */
+#	border-bottom    : 5px solid #555550;	/* 下線 */
+#	border-left      : 10px solid #555550;	/* 左端 */
+	width            : 100%;
+	background-color : #504060;
+}
+h2,h3,h4,h5,h6 {
+	padding          : 1% 1%; 	/* 外周を大きくする */
+#	border-bottom    : 5px solid #555550;	/* 下線 */
+#	border-left      : 10px solid #555550;	/* 左端 */
+	width            : 100%;
+	background-color : #504080;
+}
+
+/* リンク URL */
+a:link{
+	color           : #A0A0FF;
+	text-decoration : none;
+	font-weight     : bold;
+}
+a:visited{
+	color           : #8080FF;
+	text-decoration : none;
+	font-weight     : bold;
+}
+a:hover{
+	color : #C0C0FF;
+}
+a:active{
+	color : #FFFFFF;
+}
+
+/* 本文を記述する領域 */
+div.main {
+	margin           : 3%;		/* 外周部分の余白 */
+	padding          : 2%;		/* 内周部分の余白 */
+	background-color : rgba(32, 32, 32, 0.8);
+}
+
+/* プログラムコード */
+pre code {
+	background     : rgba(32, 32, 64, 0.5);
+	border         : 1px solid gray;
+	color          : #d0d0d0;
+	font-family    : 'consolas', 'Ricty', 'Monaco', monospace;
+	font-size      : 80%;
+	display        : block;
+	overflow       : auto;		/* 左右表示範囲に収まらないならスクロールバー出現 */
+}
+
+
+div.bad_code {
+	background-color : #603020;
+}
+
+/* 強調文字 */
+span.emphasis1 {
+	color       : #FF4080;
+	font-weight : bold;
+	font-size   : larger;
+}
+
+/* 強調文字 */
+span.emphasis2 {
+	color       : #FFC080;
+	font-weight : bold;
+}
